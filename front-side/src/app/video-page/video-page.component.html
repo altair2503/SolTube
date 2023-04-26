@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="video_container" [ngClass]="videoCondition ? 'video_container' : 'video_container paused'" data-volume-level="high">
+    <img class="thumbnail_img">
+    <div class="controls_container">
+      <div class="timeline_container" (mousemove)="handleTimelineUpdate($event)">
+        <div class="timeline">
+          <img class="preview_img">
+          <div class="thumb_indicator"></div>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="play_pause_buttons" (click)="playPauseAction()">
+          <img src="/assets/video-controls/play.svg" class="play_btn" alt="play-btn">
+          <img src="/assets/video-controls/pause.svg" class="pause_btn" alt="pause-btn">
+        </button>
+        <div class="volume_container">
+          <button class="mute_btn" (click)="videoMute()">
+            <img src="/assets/video-controls/volume-high.svg" class="volume_high" alt="">
+            <img src="/assets/video-controls/volume-low.svg" class="volume_low" alt="">
+            <img src="/assets/video-controls/volume-muted.svg" class="volume_muted" alt="">
+          </button>
+          <input class="volume_slider" (input)="volumeSlider($event)" type="range" min="0" max="1" step="any" value="1">
+        </div>
+        <div class="duration_container">
+          <p class="current_time">0:00</p>
+          <span>/</span>
+          <p class="total_time">10:00</p>
+        </div>
+        <button class="speed_btn">1</button>
+        <button class="mini_player_btn" (click)="toggleMiniPlayerMode()">
+          <img src="/assets/video-controls/mini-player.svg" alt="">
+        </button>
+        <button class="full_screen_btn" (click)="toggleFullScreenMode()">
+          <img src="/assets/video-controls/full-screen.svg" class="full_btn" alt="">
+          <img src="/assets/video-controls/exit-full-screen.svg" class="exit_full_btn" alt="">
+        </button>
+      </div>
+    </div>
+    <video src="/assets/video.mp4" (click)="playPauseAction()"></video>
+  </div>
+</div>
+
+<!--autoplay-->

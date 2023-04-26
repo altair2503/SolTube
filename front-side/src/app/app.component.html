@@ -1,0 +1,141 @@
+<div class="left">
+  <div class="menu">
+    <div class="menu_btn" (click)="menuClose($event)">
+      <img src="/assets/menu.svg" class="btn" alt="menu">
+      <img src="/assets/soltube.gif" class="logo" alt="soltube-logo">
+    </div>
+  </div>
+  <nav>
+    <ul>
+      <li>
+        <a routerLink="/home" (click)="selectScreen($event)">
+          <div class="icons">
+            <img src="/assets/home.svg" alt="home">
+            <img src="/assets/home-active.svg" alt="home-active">
+          </div>
+          <p>Home</p>
+        </a>
+      </li>
+      <li>
+        <a routerLink="" (click)="selectScreen($event)">
+          <div class="icons">
+            <img src="/assets/subscriptions.svg" alt="subscriptions">
+            <img src="/assets/subscriptions-active.svg" alt="subscriptions-active">
+          </div>
+          <p>Subscriptions</p>
+        </a>
+      </li>
+    </ul>
+    <div class="separator"></div>
+    <ul>
+      <li>
+        <a routerLink="" (click)="selectScreen($event)">
+          <div class="icons">
+            <img src="/assets/history.svg" alt="history">
+            <img src="/assets/history-active.svg" alt="history-active">
+          </div>
+          <p>History</p>
+        </a>
+      </li>
+      <li>
+        <a routerLink="" (click)="selectScreen($event)">
+          <div class="icons">
+            <img src="/assets/playlist.svg" alt="playlist">
+            <img src="/assets/playlist-active.svg" alt="playlist-active">
+          </div>
+          <p>Playlists</p>
+        </a>
+      </li>
+      <li class="closing">
+        <a routerLink="" (click)="selectScreen($event)">
+          <div class="icons">
+            <img src="/assets/watch-later.svg" alt="watch-later">
+            <img src="/assets/watch-later-active.svg" alt="watch-later-active">
+          </div>
+          <p>Watch later</p>
+        </a>
+      </li>
+      <li class="closing">
+        <a routerLink="" (click)="selectScreen($event)">
+          <div class="icons">
+            <img src="/assets/liked.svg" alt="liked">
+            <img src="/assets/liked-active.svg" alt="liked-active">
+          </div>
+          <p>Liked videos</p>
+        </a>
+      </li>
+    </ul>
+    <div class="separator"></div>
+    <div class="left_block">
+      <p>SUBSCRIPTION</p>
+      <ul>
+        <li class="subscriptions">
+          <a routerLink="">
+            <img src="/assets/wylsacom.jpg" alt="">
+            <p>Wylsacom</p>
+          </a>
+        </li>
+        <li class="subscriptions">
+          <a routerLink="">
+            <img src="/assets/mr-beast.jpg" alt="">
+            <p>MrBeast</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="separator"></div>
+    <ul>
+      <li>
+        <a routerLink="" (click)="selectScreen($event)">
+          <div class="icons">
+            <img src="/assets/settings.svg" alt="settings">
+            <img src="/assets/settings-active.svg" alt="settings-active">
+          </div>
+          <p>Settings</p>
+        </a>
+      </li>
+      <li class="closing">
+        <a routerLink="" (click)="selectScreen($event)">
+          <div class="icons">
+            <img src="/assets/help.svg" alt="help">
+            <img src="/assets/help-active.svg" alt="help-active">
+          </div>
+          <p>Help</p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+<div class="right">
+  <header>
+    <div class="empty"></div>
+    <div class="search">
+      <input type="text" placeholder="Search video by title">
+      <img src="/assets/search.svg" alt="search">
+    </div>
+    <div class="authorization">
+      <button>Sign in</button>
+      <button>Sign up</button>
+    </div>
+    <div class="authorized">
+      <a routerLink="">
+        <div class="icons">
+          <img src="/assets/video-add.svg" alt="video-add">
+          <img src="/assets/video-add-active.svg" alt="video-add-active">
+        </div>
+      </a>
+      <a routerLink="">
+        <div class="icons notif">
+          <img src="/assets/notifications.svg" alt="notifications">
+          <img src="/assets/notifications-active.svg" alt="notifications-active">
+        </div>
+      </a>
+      <a routerLink="/profile" class="user_link">
+        <img src="/assets/avatar.jpg" alt="">
+      </a>
+    </div>
+  </header>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
