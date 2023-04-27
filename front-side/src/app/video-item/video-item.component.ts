@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 
 @Component({
   selector: 'app-video-item',
   templateUrl: './video-item.component.html',
   styleUrls: ['./video-item.component.css']
 })
-export class VideoItemComponent {
+export class VideoItemComponent implements AfterViewInit {
 
   linkToVideo: string = ""
 
@@ -13,6 +13,10 @@ export class VideoItemComponent {
   chanel = "Wylsacom"
 
   private static menuCondition = localStorage.getItem("menu")
+
+  ngAfterViewInit() {
+    this.closeMoreWindow()
+  }
 
   public getMenuCondition() {
     return VideoItemComponent.menuCondition
@@ -22,6 +26,14 @@ export class VideoItemComponent {
   }
   openMoreWindow(e: any) {
     e.composedPath()[1].children[1].classList.toggle("open")
+  }
+  closeMoreWindow() {
+    document.addEventListener("click", e => {
+      let target = e.target as Element
+      if(target.className !== "more_open_btn") {
+        document.querySelector(".more_open").classList.remove("open")
+      }
+    })
   }
 
   openShareWindow(e: any) {
@@ -40,7 +52,6 @@ export class VideoItemComponent {
   }
 
   closeShareWindow(e: any) {
-    console.log(e.composedPath())
     if(e.composedPath()[0].className == "close_share") {
       e.composedPath()[3].classList.remove("open")
       document.body.classList.remove("lock")

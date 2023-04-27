@@ -1,10 +1,8 @@
 <div class="container">
   <div class="video_container" [ngClass]="videoCondition ? 'video_container' : 'video_container paused'" data-volume-level="high">
-    <img class="thumbnail_img">
     <div class="controls_container">
-      <div class="timeline_container" (mousemove)="handleTimelineUpdate($event)">
+      <div class="timeline_container" (mousemove)="handleTimelineUpdate($event)" (mousedown)="toggleScrubbing($event)">
         <div class="timeline">
-          <img class="preview_img">
           <div class="thumb_indicator"></div>
         </div>
       </div>
@@ -26,7 +24,18 @@
           <span>/</span>
           <p class="total_time">10:00</p>
         </div>
-        <button class="speed_btn">1</button>
+        <div class="speed_container">
+          <button class="speed_btn" (click)="openSpeedOptions()">
+            <img src="/assets/video-controls/video-speed.svg" class="speed_btn_img" alt="">
+          </button>
+          <ul class="speed_options">
+            <li data-speed="2">2x</li>
+            <li data-speed="1.5">1.5x</li>
+            <li data-speed="1" class="active">Normal</li>
+            <li data-speed="0.75">0.75x</li>
+            <li data-speed="0.5">0.5x</li>
+          </ul>
+        </div>
         <button class="mini_player_btn" (click)="toggleMiniPlayerMode()">
           <img src="/assets/video-controls/mini-player.svg" alt="">
         </button>
@@ -36,8 +45,6 @@
         </button>
       </div>
     </div>
-    <video src="/assets/video.mp4" (click)="playPauseAction()"></video>
+    <video src="/assets/video.mp4" (click)="playPauseAction()" autoplay></video>
   </div>
 </div>
-
-<!--autoplay-->

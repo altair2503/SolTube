@@ -10,6 +10,9 @@ export class VideoPageComponent implements AfterViewInit {
 
   videoCondition: boolean
 
+  isScrubbing: boolean = false
+  wasPaused: any | undefined
+
   constructor(private elementRef:ElementRef) {
     this.videoCondition = false
   }
@@ -27,6 +30,9 @@ export class VideoPageComponent implements AfterViewInit {
     this.durationTotal(video)
     this.currentTimeProgress(video)
     this.handleInputChange()
+    this.checkIsScrubbing()
+    this.checkToOpenSpeedOptions()
+    this.selectSpeed(video)
   }
 
   // Play and pause actions
@@ -119,6 +125,10 @@ export class VideoPageComponent implements AfterViewInit {
   currentTimeProgress(video: any) {
     video.addEventListener("timeupdate", () => {
       document.querySelector(".current_time").textContent = this.formatDuration(video.currentTime)
+
+      const timelineContainer: HTMLElement = document.querySelector(".timeline_container")
+      const percent = video.currentTime / video.duration // @ts-ignore
+      timelineContainer.style.setProperty("--progress-position", percent)
     })
   }
   leadingZeroFormatter(): Intl.NumberFormat {
@@ -139,6 +149,28 @@ export class VideoPageComponent implements AfterViewInit {
     document.querySelector("video").currentTime += value
   }
 
+  // Video speed options
+  openSpeedOptions() {
+    document.querySelector(".speed_options").classList.toggle("show")
+  }
+  checkToOpenSpeedOptions() {
+    document.addEventListener("click", e => {
+      let target = e.target as Element
+      if(target.className !== "speed_btn_img") {
+        document.querySelector(".speed_options").classList.remove("show")
+      }
+    })
+  }
+  selectSpeed(video: any) {
+    const speedOptions = document.querySelector(".speed_options")
+    speedOptions.querySelectorAll("li").forEach(option => {
+      option.addEventListener("click", () => {
+        video.playbackRate = option.dataset['speed']
+        speedOptions.querySelector(".active").classList.remove("active")
+        option.classList.add("active")
+      })
+    })
+  }
 
   // View models
   toggleFullScreenMode() {
@@ -163,9 +195,46 @@ export class VideoPageComponent implements AfterViewInit {
 
   // Video timeline options
   handleTimelineUpdate(e: any) {
-    const rect = document.querySelector(".timeline_container").getBoundingClientRect()
+    const timelineContainer: HTMLElement = document.querySelector(".timeline_container")
+
+    const rect = timelineContainer.getBoundingClientRect()
+    const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width // @ts-ignore
+
+    timelineContainer.style.setProperty("--preview-position", percent)
+
+    if(this.isScrubbing) {
+      e.preventDefault() // @ts-ignore
+      timelineContainer.style.setProperty("--progress-position", percent)
+    }
+  }
+  toggleScrubbing(e: any) {
+    const timelineContainer: HTMLElement = document.querySelector(".timeline_container")
+    const video = document.querySelector("video")
+
+    const rect = timelineContainer.getBoundingClientRect()
     const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width
-    const previewImgNumber = Math
+
+    this.isScrubbing = (e.buttons & 1) === 1
+    document.querySelector(".video_container").classList.toggle("scrubbing", this.isScrubbing)
+
+    if(this.isScrubbing) {
+      video.pause()
+      this.wasPaused = video.paused
+    }
+    else {
+      video.currentTime = percent * video.duration
+      if(!this.wasPaused) video.play()
+    }
+
+    this.handleTimelineUpdate(e)
+  }
+  checkIsScrubbing() {
+    document.addEventListener("mouseup", e => {
+      if(this.isScrubbing) this.toggleScrubbing(e)
+    })
+    document.addEventListener("mousemove", e => {
+      if(this.isScrubbing) this.handleTimelineUpdate(e)
+    })
   }
 
 }
