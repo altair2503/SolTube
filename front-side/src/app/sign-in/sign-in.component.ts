@@ -1,34 +1,33 @@
 import {Component, OnInit} from '@angular/core';
 
 import { Location } from "@angular/common";
-import {JwtService} from "../jwt.service";
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
+
+import { JwtService } from "../jwt.service";
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
-export class SignInComponent implements OnInit{
+export class SignInComponent implements OnInit {
 
   ngOnInit() {
-    const token = localStorage.getItem('token')
-    if(token){
-      this.router.navigate(['/home'])
-    }
+    if(localStorage.getItem('token'))  this.router.navigate(['/home']).then()
   }
 
-  constructor(private location: Location, private jwtSerivce: JwtService, private router: Router) { }
+  constructor(private location: Location, private jwtService: JwtService, private router: Router) { }
 
   signIn(value: any, e: any) {
-    console.log(value)
-    this.jwtSerivce.login(value.username, value.password).subscribe( (data) => {
-      localStorage.setItem('token', data.token);
-    })
+    this.jwtService.login(value.username, value.password).subscribe( (data) => {
+      localStorage.setItem('token', data.token)
 
-    const signIn = e.composedPath()[0] as HTMLElement
-    const error = document.querySelector(".error") as HTMLElement
-    this.checkToErrors(value, signIn, error)
+      const signIn = e.composedPath()[0] as HTMLElement
+      const error = document.querySelector(".error") as HTMLElement
+
+      this.checkToErrors(value, signIn, error)
+      this.checkToToken(data.token, signIn, error)
+    })
   }
   checkToErrors(value: any, signIn: HTMLElement, error: HTMLElement) {
     error.classList.add("show")
@@ -42,6 +41,26 @@ export class SignInComponent implements OnInit{
             error.classList.remove("show")
           }, 3000)
         }
+      })
+    }
+    return
+  }
+  checkToToken(token: string, signIn: HTMLElement, errorOrSuccess: HTMLElement) {
+    errorOrSuccess.classList.add("show")
+    if(token) {
+      errorOrSuccess.innerHTML = "Successful login to the SolTube !"
+      setTimeout(() => {
+        this.router.navigate(['/home']).then()
+      }, 3000)
+    } else {
+      errorOrSuccess.innerHTML = "Check your email or password !"
+      signIn.querySelectorAll(".input_block").forEach(inputBlock => {
+        inputBlock.classList.add("fill_all")
+        inputBlock.querySelector("input").value = ""
+        setTimeout(() => {
+          inputBlock.classList.remove("fill_all")
+          errorOrSuccess.classList.remove("show")
+        }, 500)
       })
     }
   }
