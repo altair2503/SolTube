@@ -9,8 +9,8 @@ export class VideoItemComponent implements AfterViewInit {
 
   linkToVideo: string = ""
 
-  title = '"Quantum dots from Sber - OLED TV 65" for 55K with an assistant and installation .apk. That good?'
-  chanel = "Wylsacom"
+  title = '"Beautiful nature of Kazakhstan'
+  chanel = "ABRAMOV MEDIA"
 
   private static menuCondition = localStorage.getItem("menu")
 
@@ -72,5 +72,16 @@ export class VideoItemComponent implements AfterViewInit {
         }, 3000)
       })
   }
+
+  // playVideo() {
+  //   setTimeout(() => {
+  //     document.querySelector("video").classList.add("show")
+  //     document.querySelector("video").play()
+  //   }, 1000)
+  // }
+  // stopVideo() {
+  //   document.querySelector("video").classList.remove("show")
+  //   document.querySelector("video").pause()
+  // }
 
 }

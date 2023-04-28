@@ -1,50 +1,185 @@
-<div class="container">
-  <div class="video_container" [ngClass]="videoCondition ? 'video_container' : 'video_container paused'" data-volume-level="high">
-    <div class="controls_container">
-      <div class="timeline_container" (mousemove)="handleTimelineUpdate($event)" (mousedown)="toggleScrubbing($event)">
-        <div class="timeline">
-          <div class="thumb_indicator"></div>
+<div class="block">
+  <div class="container">
+    <div class="video_container" [ngClass]="videoCondition ? 'video_container' : 'video_container paused'" data-volume-level="high">
+      <div class="controls_container">
+        <div class="timeline_container" (mousemove)="handleTimelineUpdate($event)" (mousedown)="toggleScrubbing($event)">
+          <div class="timeline">
+            <div class="thumb_indicator"></div>
+          </div>
+        </div>
+        <div class="controls">
+          <button class="play_pause_buttons" (click)="playPauseAction()">
+            <img src="/assets/video-controls/play.svg" class="play_btn" alt="play-btn">
+            <img src="/assets/video-controls/pause.svg" class="pause_btn" alt="pause-btn">
+          </button>
+          <div class="volume_container">
+            <button class="mute_btn" (click)="videoMute()">
+              <img src="/assets/video-controls/volume-high.svg" class="volume_high" alt="">
+              <img src="/assets/video-controls/volume-low.svg" class="volume_low" alt="">
+              <img src="/assets/video-controls/volume-muted.svg" class="volume_muted" alt="">
+            </button>
+            <input class="volume_slider" (input)="volumeSlider($event)" type="range" min="0" max="1" step="any" value="1">
+          </div>
+          <div class="duration_container">
+            <p class="current_time">0:00</p>
+            <span>/</span>
+            <p class="total_time">10:00</p>
+          </div>
+          <div class="speed_container">
+            <button class="speed_btn" (click)="openSpeedOptions()">
+              <img src="/assets/video-controls/video-speed.svg" class="speed_btn_img" alt="">
+            </button>
+            <ul class="speed_options">
+              <li data-speed="2">2x</li>
+              <li data-speed="1.5">1.5x</li>
+              <li data-speed="1" class="active">Normal</li>
+              <li data-speed="0.75">0.75x</li>
+              <li data-speed="0.5">0.5x</li>
+            </ul>
+          </div>
+          <button class="mini_player_btn" (click)="toggleMiniPlayerMode()">
+            <img src="/assets/video-controls/mini-player.svg" alt="">
+          </button>
+          <button class="full_screen_btn" (click)="toggleFullScreenMode()">
+            <img src="/assets/video-controls/full-screen.svg" class="full_btn" alt="">
+            <img src="/assets/video-controls/exit-full-screen.svg" class="exit_full_btn" alt="">
+          </button>
         </div>
       </div>
-      <div class="controls">
-        <button class="play_pause_buttons" (click)="playPauseAction()">
-          <img src="/assets/video-controls/play.svg" class="play_btn" alt="play-btn">
-          <img src="/assets/video-controls/pause.svg" class="pause_btn" alt="pause-btn">
-        </button>
-        <div class="volume_container">
-          <button class="mute_btn" (click)="videoMute()">
-            <img src="/assets/video-controls/volume-high.svg" class="volume_high" alt="">
-            <img src="/assets/video-controls/volume-low.svg" class="volume_low" alt="">
-            <img src="/assets/video-controls/volume-muted.svg" class="volume_muted" alt="">
+      <video src="/assets/Beautiful%20nature%20of%20Kazakhstan.mp4" (click)="playPauseAction()" autoplay></video>
+    </div>
+    <div class="video_info">
+      <p class="title">Beautiful nature of Kazakhstan</p>
+      <div class="info_controls">
+        <div class="views_and_date">
+          <p class="views_count">125 317 views</p>
+          <span>|</span>
+          <p class="upload_date">2 years ago</p>
+        </div>
+        <div class="rate_video">
+          <button class="like">
+            <img src="/assets/liked.svg" alt="">
+            <img src="/assets/liked-active.svg" alt="">
+            15K
           </button>
-          <input class="volume_slider" (input)="volumeSlider($event)" type="range" min="0" max="1" step="any" value="1">
-        </div>
-        <div class="duration_container">
-          <p class="current_time">0:00</p>
-          <span>/</span>
-          <p class="total_time">10:00</p>
-        </div>
-        <div class="speed_container">
-          <button class="speed_btn" (click)="openSpeedOptions()">
-            <img src="/assets/video-controls/video-speed.svg" class="speed_btn_img" alt="">
+          <button class="dislike">
+            <img src="/assets/liked.svg" alt="">
+            <img src="/assets/liked-active.svg" alt="">
+            390
           </button>
-          <ul class="speed_options">
-            <li data-speed="2">2x</li>
-            <li data-speed="1.5">1.5x</li>
-            <li data-speed="1" class="active">Normal</li>
-            <li data-speed="0.75">0.75x</li>
-            <li data-speed="0.5">0.5x</li>
-          </ul>
         </div>
-        <button class="mini_player_btn" (click)="toggleMiniPlayerMode()">
-          <img src="/assets/video-controls/mini-player.svg" alt="">
+        <button class="add_to_playlist">
+          <img src="/assets/playlist-add.svg" alt="">
+          <img src="/assets/playlist-active.svg" alt="">
         </button>
-        <button class="full_screen_btn" (click)="toggleFullScreenMode()">
-          <img src="/assets/video-controls/full-screen.svg" class="full_btn" alt="">
-          <img src="/assets/video-controls/exit-full-screen.svg" class="exit_full_btn" alt="">
+        <button class="share_btn" (click)="openShareWindow($event)">
+          <img src="/assets/share.svg" alt="">
         </button>
+      </div>
+      <div class="chanel_info">
+        <a routerLink="">
+          <img src="/assets/abramov.jpg" alt="">
+          <div class="right_info">
+            <p class="chanel_name">ABRAMOV MEDIA</p>
+            <p class="subscribers_count">12.7K subscribers</p>
+          </div>
+        </a>
+        <button class="subscribe_actions">SUBSCRIBE</button>
+      </div>
+      <div class="description_container">
+        <span>Description:</span>
+        <p class="description">
+          There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+        </p>
       </div>
     </div>
-    <video src="/assets/video.mp4" (click)="playPauseAction()" autoplay></video>
+  </div>
+
+  <div class="recommended">
+    <div class="recommended_item">
+      <a routerLink="" class="req_cover">
+        <img src="/assets/video-cover.webp" alt="">
+      </a>
+      <div class="rec_right">
+        <div class="req_info">
+          <a routerLink="">
+            <p class="req_title"></p>
+          </a>
+          <a routerLink="">
+            <p class="req_chanel"></p>
+            <div class="req_data">
+              125K views <p>|</p> 2 years ago
+            </div>
+          </a>
+        </div>
+        <div class="nav_right">
+          <img src="/assets/more.svg" alt="more" class="more_open_btn">
+          <div class="more_open">
+            <a routerLink="">
+              <img src="/assets/playlist-add.svg" alt="">
+              <p style="margin-top: -1px">Add to playlist</p>
+            </a>
+            <a routerLink="">
+              <img src="/assets/watch-later.svg" alt="">
+              <p style="margin-top: 1px">Watch later</p>
+            </a>
+            <a routerLink="">
+              <img src="/assets/share.svg" class="share" alt="">
+              <p style="margin-top: 1px">Share</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<div class="share_window" (click)="closeShareWindow($event)">
+  <div class="to_share">
+    <div class="share_top">
+      <p>Share</p>
+      <img src="/assets/close.svg" class="close_share" alt="close-share-window">
+    </div>
+    <div class="available_links">
+      <a href="" >
+        <div class="png_img">
+          <img src="/assets/share/to-instagram.svg" alt="to-instagram">
+        </div>
+        <p>Instagram</p>
+      </a>
+      <a href="">
+        <div>
+          <img src="/assets/share/to-whatsapp.png" alt="to-whatsapp">
+        </div>
+        <p>WhatsApp</p>
+      </a>
+      <a href="">
+        <div>
+          <img src="/assets/share/to-vk.jpg" alt="to-vk">
+        </div>
+        <p>VK</p>
+      </a>
+      <a href="">
+        <div class="png_img">
+          <img src="/assets/share/to-telegram.png" alt="to-telegram">
+        </div>
+        <p>Telegram</p>
+      </a>
+      <a href="">
+        <div>
+          <img src="/assets/share/to-mail.png" alt="to-mail">
+        </div>
+        <p>Email</p>
+      </a>
+    </div>
+    <div class="separator"></div>
+    <div class="share_link">
+      <input type="text" disabled>
+      <button (click)="copyToClipboard()">Copy</button>
+    </div>
+  </div>
+</div>
+
+<p class="successfully_copied">
+  The link is copied to the clipboard
+</p>

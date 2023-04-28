@@ -13,6 +13,8 @@ export class VideoPageComponent implements AfterViewInit {
   isScrubbing: boolean = false
   wasPaused: any | undefined
 
+  linkToVideo: string = ""
+
   constructor(private elementRef:ElementRef) {
     this.videoCondition = false
   }
@@ -235,6 +237,39 @@ export class VideoPageComponent implements AfterViewInit {
     document.addEventListener("mousemove", e => {
       if(this.isScrubbing) this.handleTimelineUpdate(e)
     })
+  }
+
+  // Share window
+  openShareWindow(e: any) {
+    const shareWindow = document.querySelector(".share_window")
+    const linkToVideo = shareWindow.querySelector("input")
+
+    shareWindow.classList.add("open")
+    document.body.classList.add("lock")
+    e.composedPath()[1].classList.remove("open")
+
+    linkToVideo.value = location.href
+    this.linkToVideo = linkToVideo.value
+  }
+  closeShareWindow(e: any) {
+    if(e.composedPath()[0].className == "close_share") {
+      e.composedPath()[3].classList.remove("open")
+      document.body.classList.remove("lock")
+    }
+    if(e.composedPath()[0].className == "share_window open") {
+      e.composedPath()[0].classList.remove("open")
+      document.body.classList.remove("lock")
+    }
+  }
+  copyToClipboard() {
+    const successfullyCopied = document.querySelector(".successfully_copied")
+    navigator.clipboard.writeText(this.linkToVideo)
+      .then(() => {
+        successfullyCopied.classList.add("show")
+        setTimeout(() => {
+          successfullyCopied.classList.remove("show")
+        }, 3000)
+      })
   }
 
 }
