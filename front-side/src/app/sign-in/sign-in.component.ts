@@ -15,6 +15,19 @@ export class SignInComponent {
     console.log(value.firstname)
   }
 
+  showHidePassword(action: boolean, e: any) {
+    const passwordInput = e.composedPath()[2].children[1]
+    action ? this.show(passwordInput) : this.hide(passwordInput)
+  }
+  show(passwordInput: HTMLInputElement) {
+    document.querySelector(".show_hide_btn").className = "show_hide_btn show"
+    passwordInput.type = "text"
+  }
+  hide(passwordInput: HTMLInputElement) {
+    document.querySelector(".show_hide_btn").className = "show_hide_btn hide"
+    passwordInput.type = "password"
+  }
+
   returnBack() {
     this.location.back()
   }
