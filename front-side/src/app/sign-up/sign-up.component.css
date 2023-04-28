@@ -14,6 +14,7 @@
   align-items: center;
 }
 
+/* Sign up form styling */
 form
 {
   width: 97%;
@@ -26,8 +27,11 @@ form
 
   background: #151719;
   border-radius: 15px;
+
+  position: relative;
 }
 
+/* Title section */
 .title
 {
   margin-bottom: 40px;
@@ -45,11 +49,21 @@ form
   font-size: 14.5px;
 }
 
+/* Inputs styling */
 .input_block
 {
   position: relative;
   margin-bottom: 30px;
 }
+.input_block:focus-within input
+{
+  border-color: #E40915;
+}
+.input_block:focus-within label
+{
+  color: #E40915;
+}
+
 input
 {
   width: 340px;
@@ -102,8 +116,15 @@ button
   color: #FFF;
 
   margin-top: 5px;
+
+  transition: .2s;
 }
-.link_sign_in
+button:hover
+{
+  background: #ff000e;
+}
+/* Link to Sign In styles */
+.link
 {
   width: 340px;
   display: flex;
@@ -114,14 +135,46 @@ button
   margin-top: 12px;
   gap: 7px;
 }
-.link_sign_in p
+.link p
 {
   color: #E40915;
 
   font-weight: 600;
   font-size: 14px;
 }
-.link_sign_in:hover p
+.link:hover p
 {
   text-decoration: underline;
+}
+
+/* Return back button styling */
+.return_back
+{
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+
+  padding: 30px 15px 15px 30px;
+  gap: 10px;
+
+  font-size: 14px;
+  cursor: pointer;
+
+  opacity: .85;
+  color: #FFF;
+
+  transition: .15s;
+}
+.return_back img
+{
+  width: 13px;
+}
+.return_back:hover
+{
+  opacity: 1;
 }

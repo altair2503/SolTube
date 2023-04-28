@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { Location } from '@angular/common'
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -7,8 +9,14 @@ import { Component } from '@angular/core';
 })
 export class SignUpComponent {
 
-  signUp(value: any, e: any) {
+  constructor(private location: Location) { }
 
+  signUp(value: any, e: any) {
+    console.log(value.firstname)
+  }
+
+  returnBack() {
+    this.location.back()
   }
 
 }
