@@ -1,4 +1,4 @@
-<div class="video-item" [ngClass]="(getMenuCondition() == 'left close') ? 'video-item' : 'video-item close'">
+<div *ngIf="videoType" class="video-item" [ngClass]="(getMenuCondition() == 'left close') ? 'video-item' : 'video-item close'">
   <a routerLink="/watch">
     <img src="/assets/video-item.png" class="preview" alt="">
     <p class="duration">17:48</p>
@@ -29,6 +29,42 @@
           <p style="margin-top: 1px">Watch later</p>
         </a>
         <a routerLink="" (click)="openShareWindow($event)">
+          <img src="/assets/share.svg" class="share" alt="">
+          <p style="margin-top: 1px">Share</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!videoType" class="recommended_item">
+  <a routerLink="" class="req_cover">
+    <img src="/assets/video-cover.webp" alt="">
+  </a>
+  <div class="rec_right">
+    <div class="req_info">
+      <a routerLink="">
+        <p class="req_title">{{title2.substring(0, 42)}} ...</p>
+      </a>
+      <a routerLink="">
+        <p class="req_chanel">{{chanel2.substring(0, 8)}}</p>
+        <div class="req_data">
+          125K views <p>|</p> 2 years ago
+        </div>
+      </a>
+    </div>
+    <div class="nav_right">
+      <img src="/assets/more.svg" alt="more" class="more_open_btn" (click)="openMoreWindow($event)">
+      <div class="more_open">
+        <a routerLink="">
+          <img src="/assets/playlist-add.svg" alt="">
+          <p style="margin-top: -1px">Add to playlist</p>
+        </a>
+        <a routerLink="">
+          <img src="/assets/watch-later.svg" alt="">
+          <p style="margin-top: 1px">Watch later</p>
+        </a>
+        <a (click)="openShareWindow($event)" style="cursor: pointer">
           <img src="/assets/share.svg" class="share" alt="">
           <p style="margin-top: 1px">Share</p>
         </a>

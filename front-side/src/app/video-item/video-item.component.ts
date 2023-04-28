@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-video-item',
@@ -7,10 +7,15 @@ import {AfterViewInit, Component} from '@angular/core';
 })
 export class VideoItemComponent implements AfterViewInit {
 
+  @Input() videoType: boolean
+
   linkToVideo: string = ""
 
-  title = '"Beautiful nature of Kazakhstan'
+  title = 'Beautiful nature of Kazakhstan'
   chanel = "ABRAMOV MEDIA"
+
+  title2 = '"Quantum dots from Sber - OLED TV 65" for 55K with assistant and installation .apk. That good?'
+  chanel2 = "Wylsacom"
 
   private static menuCondition = localStorage.getItem("menu")
 
@@ -24,6 +29,7 @@ export class VideoItemComponent implements AfterViewInit {
   public static setMenuCondition(condition: string) {
     this.menuCondition = condition
   }
+
   openMoreWindow(e: any) {
     e.composedPath()[1].children[1].classList.toggle("open")
   }

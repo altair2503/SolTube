@@ -15,6 +15,9 @@ export class VideoPageComponent implements AfterViewInit {
 
   linkToVideo: string = ""
 
+  title = '"Quantum dots from Sber - OLED TV 65" for 55K with assistant and installation .apk. That good?'
+  chanel = "Wylsacom"
+
   constructor(private elementRef:ElementRef) {
     this.videoCondition = false
   }
@@ -35,6 +38,7 @@ export class VideoPageComponent implements AfterViewInit {
     this.checkIsScrubbing()
     this.checkToOpenSpeedOptions()
     this.selectSpeed(video)
+    this.closeMoreWindow()
   }
 
   // Play and pause actions
@@ -203,7 +207,6 @@ export class VideoPageComponent implements AfterViewInit {
     const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width // @ts-ignore
 
     timelineContainer.style.setProperty("--preview-position", percent)
-
     if(this.isScrubbing) {
       e.preventDefault() // @ts-ignore
       timelineContainer.style.setProperty("--progress-position", percent)
@@ -239,10 +242,24 @@ export class VideoPageComponent implements AfterViewInit {
     })
   }
 
+  openMoreWindow(e: any) {
+    e.composedPath()[1].children[1].classList.toggle("open")
+  }
+  closeMoreWindow() {
+    document.addEventListener("click", e => {
+      let target = e.target as Element
+      if(target.className !== "more_open_btn") {
+        document.querySelector(".more_open").classList.remove("open")
+      }
+    })
+  }
+
   // Share window
   openShareWindow(e: any) {
     const shareWindow = document.querySelector(".share_window")
     const linkToVideo = shareWindow.querySelector("input")
+
+    document.querySelector("video").pause()
 
     shareWindow.classList.add("open")
     document.body.classList.add("lock")
@@ -260,7 +277,9 @@ export class VideoPageComponent implements AfterViewInit {
       e.composedPath()[0].classList.remove("open")
       document.body.classList.remove("lock")
     }
+    document.querySelector("video").play().then()
   }
+  // Copying video to the clipboard
   copyToClipboard() {
     const successfullyCopied = document.querySelector(".successfully_copied")
     navigator.clipboard.writeText(this.linkToVideo)
@@ -270,6 +289,19 @@ export class VideoPageComponent implements AfterViewInit {
           successfullyCopied.classList.remove("show")
         }, 3000)
       })
+  }
+
+  // Like and dislike video
+  likeOrDislikeVideo(condition: boolean) {
+    condition ? this.like() : this.dislike()
+  }
+  like() {
+    document.querySelector(".dislike").classList.remove("disliked")
+    document.querySelector(".like").classList.add("liked")
+  }
+  dislike() {
+    document.querySelector(".like").classList.remove("liked")
+    document.querySelector(".dislike").classList.add("disliked")
   }
 
 }

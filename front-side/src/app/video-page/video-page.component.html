@@ -57,12 +57,12 @@
           <p class="upload_date">2 years ago</p>
         </div>
         <div class="rate_video">
-          <button class="like">
+          <button class="like" (click)="likeOrDislikeVideo(true)">
             <img src="/assets/liked.svg" alt="">
             <img src="/assets/liked-active.svg" alt="">
             15K
           </button>
-          <button class="dislike">
+          <button class="dislike" (click)="likeOrDislikeVideo(false)">
             <img src="/assets/liked.svg" alt="">
             <img src="/assets/liked-active.svg" alt="">
             390
@@ -94,43 +94,8 @@
       </div>
     </div>
   </div>
-
   <div class="recommended">
-    <div class="recommended_item">
-      <a routerLink="" class="req_cover">
-        <img src="/assets/video-cover.webp" alt="">
-      </a>
-      <div class="rec_right">
-        <div class="req_info">
-          <a routerLink="">
-            <p class="req_title"></p>
-          </a>
-          <a routerLink="">
-            <p class="req_chanel"></p>
-            <div class="req_data">
-              125K views <p>|</p> 2 years ago
-            </div>
-          </a>
-        </div>
-        <div class="nav_right">
-          <img src="/assets/more.svg" alt="more" class="more_open_btn">
-          <div class="more_open">
-            <a routerLink="">
-              <img src="/assets/playlist-add.svg" alt="">
-              <p style="margin-top: -1px">Add to playlist</p>
-            </a>
-            <a routerLink="">
-              <img src="/assets/watch-later.svg" alt="">
-              <p style="margin-top: 1px">Watch later</p>
-            </a>
-            <a routerLink="">
-              <img src="/assets/share.svg" class="share" alt="">
-              <p style="margin-top: 1px">Share</p>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <app-video-item [videoType]="false"></app-video-item>
   </div>
 </div>
 
