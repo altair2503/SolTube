@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, Input} from '@angular/core';
+import {MenuConditionService} from "../menu-condition.service";
 
 @Component({
   selector: 'app-video-item',
@@ -16,18 +17,15 @@ export class VideoItemComponent implements AfterViewInit {
 
   title2 = '"Quantum dots from Sber - OLED TV 65" for 55K with assistant and installation .apk. That good?'
   chanel2 = "Wylsacom"
-
-  private static menuCondition = localStorage.getItem("menu")
+  
+  constructor(private menuConditionService: MenuConditionService) { }
 
   ngAfterViewInit() {
     this.closeMoreWindow()
   }
 
-  public getMenuCondition() {
-    return VideoItemComponent.menuCondition
-  }
-  public static setMenuCondition(condition: string) {
-    this.menuCondition = condition
+  getMenuCondition() {
+    return this.menuConditionService.getMenuCondition()
   }
 
   openMoreWindow(e: any) {

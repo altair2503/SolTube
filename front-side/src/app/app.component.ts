@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeComponent } from "./home/home.component";
-import {VideoItemComponent} from "./video-item/video-item.component";
+import { VideoItemComponent } from "./video-item/video-item.component";
+import { MenuConditionService } from "./menu-condition.service";
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,8 @@ import {VideoItemComponent} from "./video-item/video-item.component";
 export class AppComponent implements OnInit {
 
   activePage: string = location.pathname.slice(1)
+
+  constructor(private menuConditionService: MenuConditionService) { }
 
   ngOnInit(): void {
     const menu = document.querySelector(".left")
@@ -25,8 +28,7 @@ export class AppComponent implements OnInit {
     const menu = e.composedPath()[2]
     menu.classList.toggle("close")
     localStorage.setItem("menu", menu.className) // @ts-ignore
-    VideoItemComponent.setMenuCondition(localStorage.getItem("menu")) // @ts-ignore
-    HomeComponent.setMenuCondition(localStorage.getItem("menu"))
+    this.menuConditionService.setMenuCondition(localStorage.getItem("menu"))
   }
 
   selectScreen(e: any) {

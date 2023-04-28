@@ -1,4 +1,5 @@
 <div class="container">
+  <p class="error"></p>
   <form #signInForm="ngForm" (ngSubmit)="signIn(signInForm.value, $event)">
     <div class="return_back" (click)="returnBack()">
       <img src="/assets/arrow.svg" alt="arrow">

@@ -10,7 +10,7 @@
 .video-item .preview
 {
   width: 100%;
-  height: 210px;
+  height: 205px;
 
   border-radius: 12px;
   object-fit: cover;
@@ -168,7 +168,7 @@
 }
 .video-item.close .preview
 {
-  height: 205px;
+  height: 190px;
 }
 .video-item.close .nav_left img
 {
@@ -205,6 +205,7 @@
 .recommended_item
 {
   display: flex;
+  margin-bottom: 20px;
 }
 .recommended_item .req_cover img
 {
@@ -215,6 +216,11 @@
   object-fit: cover;
 
   margin-right: 12px;
+}
+.recommended_item.close .req_cover img
+{
+  width: 160px;
+  height: 100px;
 }
 .rec_right
 {

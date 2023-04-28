@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MenuConditionService} from "../menu-condition.service";
 
 @Component({
   selector: 'app-home',
@@ -10,13 +11,10 @@ export class HomeComponent {
   title = '"Quantum dots from Sber - OLED TV 65" for 55K with an assistant and installation .apk. That good?'
   chanel = "Wylsacom"
 
-  private static menuCondition = localStorage.getItem("menu")
+  constructor(private menuConditionService: MenuConditionService) { }
 
-  public getMenuCondition() {
-    return HomeComponent.menuCondition
-  }
-  public static setMenuCondition(condition: string) {
-    this.menuCondition = condition
+  getMenuCondition() {
+    return this.menuConditionService.getMenuCondition()
   }
 
   chooseNav(e: any) {

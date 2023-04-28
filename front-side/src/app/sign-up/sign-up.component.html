@@ -1,4 +1,5 @@
 <div class="container">
+  <p class="error"></p>
   <form #signUpForm="ngForm" (ngSubmit)="signUp(signUpForm.value, $event)">
     <div class="return_back" (click)="returnBack()">
       <img src="/assets/arrow.svg" alt="arrow">
@@ -18,9 +19,14 @@
     </div>
     <div class="input_block">
       <label>Username</label>
-      <input name="username" type="text" ngModel placeholder="Enter username">
+      <input name="username" class="username_input" (keyup)="existUsername()" type="text" ngModel placeholder="Enter username">
+      <p class="username_exist">
+        A user with this
+        <span style="text-decoration: underline;">username</span>
+        already exists
+      </p>
     </div>
-    <div class="input_block">
+    <div class="input_block password">
       <label>Password</label>
       <input name="password" type="password" ngModel placeholder="Enter password">
       <div class="show_hide_btn hide">
@@ -28,7 +34,7 @@
         <img src="/assets/hide-password.svg" (click)="showHidePassword(true, $event)" class="hide_btn" alt="hide-password">
       </div>
     </div>
-    <div class="input_block">
+    <div class="input_block password">
       <label>Password verification</label>
       <input name="passwordVerify" type="password" placeholder="Enter password again">
       <div class="show_hide_btn hide">

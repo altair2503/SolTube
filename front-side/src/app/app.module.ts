@@ -20,6 +20,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import {AuthInterceptor} from "./Authinterceptor";
 import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {JwtService} from "./jwt.service";
+import { MenuConditionService } from "./menu-condition.service";
+
 
 @NgModule({
   declarations: [

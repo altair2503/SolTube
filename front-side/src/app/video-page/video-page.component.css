@@ -1,6 +1,12 @@
 .block
 {
+  height: calc(100% + 34px);
+
   display: flex;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
   padding-bottom: 30px;
 }
 
@@ -28,6 +34,7 @@
 
   display: flex;
   justify-content: center;
+
   margin-inline: auto;
 }
 .video_container.full_screen
@@ -764,6 +771,8 @@ input[type=range]::-webkit-slider-runnable-track
 /* Recommended videos section */
 .recommended
 {
+  height: fit-content;
+
   background: #151719;
   border-radius: 15px;
 

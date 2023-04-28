@@ -63,6 +63,14 @@ form
 {
   color: #E40915;
 }
+.input_block.fill_all input
+{
+  border-color: #E40915;
+}
+.input_block.fill_all label
+{
+  color: #E40915;
+}
 
 input
 {
@@ -214,5 +222,35 @@ button:hover
 }
 .return_back:hover
 {
+  opacity: 1;
+}
+
+/* Error message styling */
+.error
+{
+  position: fixed;
+  bottom: -60px;
+  left: 0;
+  z-index: 12;
+
+  margin: 60px 55px;
+  padding: 17px 20px;
+
+  background: #F1F2F3;
+  border-radius: 9px;
+  color: #000;
+
+  font-size: 14.5px;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: .2s;
+  cursor: default;
+}
+.error.show
+{
+  bottom: 0;
+  visibility: visible;
   opacity: 1;
 }
