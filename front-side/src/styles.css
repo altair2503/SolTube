@@ -32,8 +32,12 @@ a {
 button
 {
   cursor: pointer;
-  border: none;
   outline: none;
+
+  background: none;
+  border: none;
+
+  font-family: 'Montserrat', sans-serif;
 }
 
 ul {

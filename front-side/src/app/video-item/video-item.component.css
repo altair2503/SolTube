@@ -236,6 +236,8 @@
 {
   font-size: 13px;
   color: #bdbdbd;
+
+  transition: .2s;
 }
 .req_data
 {
@@ -244,6 +246,13 @@
 
   font-size: 12.5px;
   color: #bdbdbd;
+
+  transition: .2s;
+}
+.req_chanel:hover,
+.req_data:hover
+{
+  color: #d5d5d5;
 }
 .req_data p
 {

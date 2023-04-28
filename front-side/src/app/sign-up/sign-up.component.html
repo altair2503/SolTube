@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="return_back">
+  </div>
+  <form #signUpForm="ngForm" (ngSubmit)="signUp(signUpForm.value, $event)">
+    <div class="title">
+      <p>Sign Up</p>
+      <p>to continue to SolTube</p>
+    </div>
+    <div class="input_block">
+      <label>First name</label>
+      <input name="firstname" ngModel placeholder="Enter first name">
+    </div>
+    <div class="input_block">
+      <label>Last name</label>
+      <input name="lastname" ngModel placeholder="Enter last name">
+    </div>
+    <div class="input_block">
+      <label>Username</label>
+      <input name="username" ngModel placeholder="Enter username">
+    </div>
+    <div class="input_block">
+      <label>Password</label>
+      <input name="password" ngModel placeholder="Enter password">
+    </div>
+    <div class="input_block">
+      <label>Password verification</label>
+      <input name="passwordVerify" placeholder="Enter password again">
+    </div>
+    <button type="submit">Sign up</button>
+    <a routerLink="" class="link_sign_in">Already have an account? <p>Sign in</p></a>
+  </form>
+</div>
