@@ -17,6 +17,7 @@ import { VideoItemComponent } from './video-item/video-item.component';
 
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { MenuConditionService } from "./menu-condition.service";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { SignInComponent } from './sign-in/sign-in.component';
         AppRoutingModule,
         FormsModule
     ],
-  providers: [],
+  providers: [
+    MenuConditionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

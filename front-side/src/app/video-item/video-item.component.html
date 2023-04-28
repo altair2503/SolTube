@@ -37,14 +37,15 @@
   </div>
 </div>
 
-<div *ngIf="!videoType" class="recommended_item">
+<div *ngIf="!videoType" class="recommended_item" [ngClass]="(getMenuCondition() == 'left close') ? 'recommended_item' : 'recommended_item close'">
   <a routerLink="" class="req_cover">
     <img src="/assets/video-cover.webp" alt="">
   </a>
   <div class="rec_right">
     <div class="req_info">
       <a routerLink="">
-        <p class="req_title">{{title2.substring(0, 42)}} ...</p>
+        <p *ngIf="getMenuCondition() == 'left close'" class="req_title">{{title2.substring(0, 42)}} ...</p>
+        <p *ngIf="getMenuCondition() == 'left'" class="req_title">{{title2.substring(0, 38)}} ...</p>
       </a>
       <a routerLink="">
         <p class="req_chanel">{{chanel2.substring(0, 8)}}</p>

@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef} from '@angular/core';
-import {skip} from "rxjs";
+import { MenuConditionService } from "../menu-condition.service";
 
 @Component({
   selector: 'app-video-page',
@@ -18,7 +18,7 @@ export class VideoPageComponent implements AfterViewInit {
   title = '"Quantum dots from Sber - OLED TV 65" for 55K with assistant and installation .apk. That good?'
   chanel = "Wylsacom"
 
-  constructor(private elementRef:ElementRef) {
+  constructor(private elementRef:ElementRef, private menuConditionService: MenuConditionService) {
     this.videoCondition = false
   }
 
@@ -39,6 +39,10 @@ export class VideoPageComponent implements AfterViewInit {
     this.checkToOpenSpeedOptions()
     this.selectSpeed(video)
     this.closeMoreWindow()
+  }
+
+  getMenuCondition() {
+    return this.menuConditionService.getMenuCondition()
   }
 
   // Play and pause actions
