@@ -17,6 +17,9 @@ import { VideoItemComponent } from './video-item/video-item.component';
 
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import {AuthInterceptor} from "./Authinterceptor";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
+import {JwtService} from "./jwt.service";
 
 @NgModule({
   declarations: [
@@ -32,9 +35,17 @@ import { SignInComponent } from './sign-in/sign-in.component';
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule
     ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    JwtService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

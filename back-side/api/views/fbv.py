@@ -14,3 +14,4 @@ def register_user(request):
             return Response(serializer.data)
         return Response(data={"Invalid data"}, status=status.HTTP_400_BAD_REQUEST)
 
+
