@@ -36,7 +36,7 @@
     </div>
     <div class="input_block password">
       <label>Password verification</label>
-      <input name="passwordVerify" type="password" placeholder="Enter password again">
+      <input name="passwordVerify" ngModel type="password" placeholder="Enter password again">
       <div class="show_hide_btn hide">
         <img src="/assets/show-password.svg" (click)="showHidePassword(false, $event)" class="show_btn" alt="show-password">
         <img src="/assets/hide-password.svg" (click)="showHidePassword(true, $event)" class="hide_btn" alt="hide-password">

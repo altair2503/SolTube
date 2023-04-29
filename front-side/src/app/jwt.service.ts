@@ -19,6 +19,13 @@ export class JwtService {
     )
   }
 
+  register(username: string, password: string, first_name: string, last_name: string): Observable<User>{
+    return this.client.post<User>(
+      `${this.BASE_URL}/api/register/`,
+      {username, password, first_name, last_name}
+    )
+  }
+
   decodeToken(token: string): User {
     let user = {} as User
     try {
