@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {AuthToken} from "./models";
+
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+
+import { AuthToken } from "./models";
 import jwt_decode from 'jwt-decode';
 
 

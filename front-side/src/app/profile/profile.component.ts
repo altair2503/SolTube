@@ -1,6 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {JwtService} from "../jwt.service";
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+
+import { JwtService } from "../jwt.service";
+import { Router } from "@angular/router";
+
+import { User } from "../models";
+import { MenuConditionService } from "../menu-condition.service";
 
 
 @Component({
@@ -8,27 +12,28 @@ import {Router} from "@angular/router";
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit{
-  user: {username: string}
+export class ProfileComponent implements OnInit {
+
+  user: User
 
   ngOnInit() {
     const token = localStorage.getItem('token')
     this.user = this.jwtService.decodeToken(token)
-    if(this.user){
-      console.log(this.user)
-    } else{
-      console.log("Not")
-    }
-
   }
 
-  constructor(private jwtService: JwtService, private router: Router) {
+  constructor (
+    private jwtService: JwtService,
+    private router: Router,
+    private menuConditionService: MenuConditionService
+  ) { }
+
+  getMenuCondition() {
+    return this.menuConditionService.getMenuCondition()
   }
 
-
-  logout(){
+  logout() {
     localStorage.removeItem('token')
-    this.router.navigate(['/home'])
+    this.router.navigate(['/home']).then()
   }
 
 }
