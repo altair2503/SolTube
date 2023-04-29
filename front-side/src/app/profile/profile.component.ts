@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {JwtService} from "../jwt.service";
+import {Router} from "@angular/router";
+import {User} from "../models";
+import { MenuConditionService } from '../menu-condition.service';
 
-import { JwtService } from "../jwt.service";
-import { Router } from "@angular/router";
 
-import { User } from "../models";
-import { MenuConditionService } from "../menu-condition.service";
 
 
 @Component({
@@ -12,6 +12,8 @@ import { MenuConditionService } from "../menu-condition.service";
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
+
 export class ProfileComponent implements OnInit {
 
   user: User

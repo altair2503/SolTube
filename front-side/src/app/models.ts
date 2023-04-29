@@ -1,4 +1,3 @@
-
 export interface AuthToken {
   user_id: number
   token: string
@@ -11,7 +10,7 @@ export interface User {
   username: string
 }
 
-export interface Subscriptions {
+export interface Subscription {
   chanelId: User,
   followerId: number
 }
@@ -33,10 +32,6 @@ export interface Video {
 }
 
 export interface VideoAndUser {
-  userId: number,
-  videoId: number,
-  isLiked: number,
-  isViewed: boolean,
-  isInPlaylist: boolean,
-  isInWatchLater: boolean
+  user: User,
+  video: Video,
 }
