@@ -51,7 +51,7 @@ export class SignInComponent implements OnInit {
       errorOrSuccess.innerHTML = "Successful login to the SolTube !"
       setTimeout(() => {
         this.router.navigate(['/home']).then()
-      }, 3000)
+      }, 1500)
     } else {
       errorOrSuccess.innerHTML = "Check your email or password !"
       signIn.querySelectorAll(".input_block").forEach(inputBlock => {
@@ -60,7 +60,7 @@ export class SignInComponent implements OnInit {
         setTimeout(() => {
           inputBlock.classList.remove("fill_all")
           errorOrSuccess.classList.remove("show")
-        }, 500)
+        }, 3000)
       })
     }
   }

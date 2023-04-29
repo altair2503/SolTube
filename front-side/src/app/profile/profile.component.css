@@ -1,0 +1,166 @@
+/* Background image of profile */
+.background_image
+{
+  background: #151719;
+  height: 230px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 12px;
+}
+.background_image.close
+{
+  height: 260px;
+}
+.background_image img
+{
+  width: 180px;
+}
+
+/* Profile info section */
+.profile
+{
+  display: flex;
+  justify-content: space-between;
+
+  padding: 30px 50px;
+}
+
+/* User styling */
+.user
+{
+  display: flex;
+  align-items: center;
+}
+.avatar
+{
+  width: 130px;
+  height: 130px;
+
+  border-radius: 50%;
+  object-fit: cover;
+
+  margin-right: 25px;
+}
+.username
+{
+  font-size: 23px;
+  font-weight: 600;
+
+  color: #fff;
+
+  margin-bottom: 7px;
+}
+.counts
+{
+  display: flex;
+
+  font-size: 14.5px;
+  gap: 15px;
+
+  color: #b2b2b2;
+
+  margin-bottom: 13px;
+}
+.more_about
+{
+  display: flex;
+  align-items: center;
+
+  opacity: .7;
+
+  font-weight: 400;
+  font-size: 14px;
+
+  gap: 8px;
+}
+.more_about img
+{
+  width: 13px;
+  transform: rotate(-180deg);
+}
+
+/* Log out button styling */
+button
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 40px;
+  width: 120px;
+
+  color: #F1F2F3;
+
+  background: #727272;
+  border-radius: 7px;
+
+  font-weight: 500;
+  gap: 10px;
+
+  margin-top: 30px;
+
+  transition: .2s;
+}
+button:hover
+{
+  background: #7c7c7c;
+}
+button img
+{
+  width: 20px;
+}
+
+
+.navigation
+{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+  margin-bottom: 10px;
+
+  font-size: 14.5px;
+  font-weight: 550;
+
+  color: #b2b2b2;
+}
+.navigation p
+{
+  position: relative;
+  padding: 0 30px;
+
+  transition: .2s;
+  cursor: pointer;
+}
+.navigation p:hover
+{
+  color: #F1F2F3;
+}
+.navigation p.active
+ {
+   color: #ffffff;
+ }
+.navigation p.active::after
+{
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+
+  width: 100%;
+  border-bottom: 2px solid #E40915;
+
+  content: "";
+  display: block;
+
+  margin-bottom: -12px;
+}
+.separator
+{
+  border-bottom: 2px solid #2a2d31;
+  /*margin: -3.5px auto 25px;*/
+}

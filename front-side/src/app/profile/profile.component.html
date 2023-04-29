@@ -1,3 +1,30 @@
-{{user.username}}
-
-<button (click)="logout()">Log out</button>
+<div class="background_image" [ngClass]="getMenuCondition() == 'left' ? 'background_image' : 'background_image close'">
+  <img src="/assets/soltube.gif" alt="background_img">
+</div>
+<div class="profile">
+  <div class="user">
+    <img src="/assets/avatar.jpg" class="avatar" alt="avatar">
+    <div class="user_info">
+      <p class="username">{{user.username}}</p>
+      <div class="counts">
+        <p class="followers_count">2K followers</p>
+        <p class="videos_count">28 videos</p>
+      </div>
+      <div class="more_about">
+        <p>More about chanel</p>
+        <img src="/assets/arrow.svg" alt="arrow">
+      </div>
+    </div>
+  </div>
+  <button (click)="logout()">
+    <img src="/assets/log-out.svg" alt="log-out">
+    Log out
+  </button>
+</div>
+<div class="navigation">
+  <p class="active">HOME</p>
+  <p>VIDEO</p>
+  <p>CHANNELS</p>
+  <p>ABOUT</p>
+</div>
+<div class="separator"></div>
