@@ -62,7 +62,7 @@
 
   color: #b2b2b2;
 
-  margin-bottom: 13px;
+  margin-bottom: 15px;
 }
 .more_about
 {
@@ -72,13 +72,13 @@
   opacity: .7;
 
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13.5px;
 
   gap: 8px;
 }
 .more_about img
 {
-  width: 13px;
+  width: 12.5px;
   transform: rotate(-180deg);
 }
 
@@ -110,7 +110,7 @@ button:hover
 }
 button img
 {
-  width: 20px;
+  width: 19px;
 }
 
 
@@ -123,7 +123,7 @@ button img
   margin-bottom: 10px;
 
   font-size: 14.5px;
-  font-weight: 550;
+  font-weight: 500;
 
   color: #b2b2b2;
 }
@@ -140,9 +140,10 @@ button img
   color: #F1F2F3;
 }
 .navigation p.active
- {
-   color: #ffffff;
- }
+{
+  color: #ffffff;
+  font-weight: 550;
+}
 .navigation p.active::after
 {
   position: absolute;

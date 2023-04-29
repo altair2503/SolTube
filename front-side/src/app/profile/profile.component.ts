@@ -31,6 +31,10 @@ export class ProfileComponent implements OnInit {
     return this.menuConditionService.getMenuCondition()
   }
 
+  chooseNav() {
+
+  }
+
   logout() {
     localStorage.removeItem('token')
     this.router.navigate(['/home']).then()
