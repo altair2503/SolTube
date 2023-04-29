@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {AuthToken} from "./models";
+import {AuthToken, User} from "./models";
 import jwt_decode from 'jwt-decode';
 
 
@@ -19,11 +19,13 @@ export class JwtService {
     )
   }
 
-  decodeToken(token: string): any {
+  decodeToken(token: string): User {
+    let user = {} as User
     try {
-      return(jwt_decode(token));
+      user = jwt_decode(token)
+      return(user);
     } catch(Error) {
-      return({})
+      return({username: ""} as User)
     }
   }
 

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {JwtService} from "../jwt.service";
 import {Router} from "@angular/router";
+import {User} from "../models";
 
 
 @Component({
@@ -9,12 +10,11 @@ import {Router} from "@angular/router";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit{
-  user: {username: string}
-
+  user: User
   ngOnInit() {
     const token = localStorage.getItem('token')
     this.user = this.jwtService.decodeToken(token)
-    if(this.user){
+    if(this.user.username != ""){
       console.log(this.user)
     } else{
       console.log("Not")
