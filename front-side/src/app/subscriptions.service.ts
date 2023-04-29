@@ -15,23 +15,4 @@ export class SubscriptionsService {
     return this.client.get<Subscription[]>(`${this.BASE_URL}/api/subscriptions/`)
   }
 
-  createVideo(video: Subscription): Observable<Subscription>{
-    return this.client.post<Subscription>(
-      `${this.BASE_URL}/api/subscriptions/`,
-      video
-    )
-  }
-
-  updateVideo(subscription_id: number, video: Subscription): Observable<Subscription>{
-    return this.client.put<Subscription>(
-      `${this.BASE_URL}/api/subscriptions/${subscription_id}`,
-      video
-    )
-  }
-
-  deleteVideo(subscription_id: number, video: Subscription): Observable<Subscription>{
-    return this.client.delete<any>(
-      `${this.BASE_URL}/api/subscriptions/${subscription_id}`
-    )
-  }
 }

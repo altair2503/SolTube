@@ -10,7 +10,7 @@
         <p class="followers_count">2K followers</p>
         <p class="videos_count">28 videos</p>
       </div>
-      <div class="more_about">
+      <div class="more_about" (click)="navigateToAbout()">
         <p>More about chanel</p>
         <img src="/assets/arrow.svg" alt="arrow">
       </div>
@@ -21,10 +21,11 @@
     Log out
   </button>
 </div>
-<div class="navigation" (click)="chooseNav()">
-  <p class="active">HOME</p>
-  <p>VIDEO</p>
-  <p>CHANNELS</p>
-  <p>ABOUT</p>
+<div class="navigation">
+  <p class="active" (click)="chooseNav($event)">HOME</p>
+  <p (click)="chooseNav($event)">VIDEO</p>
+  <p (click)="chooseNav($event)">CHANNELS</p>
+  <p (click)="chooseNav($event)">ABOUT</p>
 </div>
 <div class="separator"></div>
+<div class="container"></div>

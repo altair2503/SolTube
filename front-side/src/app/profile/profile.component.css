@@ -74,7 +74,14 @@
   font-weight: 400;
   font-size: 13.5px;
 
+  cursor: pointer;
   gap: 8px;
+
+  transition: .2s;
+}
+.more_about:hover
+{
+  opacity: .9;
 }
 .more_about img
 {
@@ -97,10 +104,11 @@ button
   background: #727272;
   border-radius: 7px;
 
+  font-size: 14.5px;
   font-weight: 500;
-  gap: 10px;
 
   margin-top: 30px;
+  gap: 10px;
 
   transition: .2s;
 }
@@ -113,7 +121,7 @@ button img
   width: 19px;
 }
 
-
+/* Navigation styling */
 .navigation
 {
   display: flex;
@@ -163,5 +171,10 @@ button img
 .separator
 {
   border-bottom: 2px solid #2a2d31;
-  /*margin: -3.5px auto 25px;*/
+  margin-bottom: 25px;
+}
+
+.container
+{
+  padding: 0 50px;
 }

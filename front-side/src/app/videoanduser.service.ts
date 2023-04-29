@@ -12,23 +12,23 @@ export class VideoanduserService {
 
   // @ts-ignore
   getVideosAndUser(option: number): Observable<VideoAndUser[]>{
-    if(option == 0){
+    if(option == 0) {
       return this.client.get<VideoAndUser[]>(`${this.BASE_URL}/api/videos/viewed`)
-    } else if(option == 1){
+    } else if(option == 1) {
       return this.client.get<VideoAndUser[]>(`${this.BASE_URL}/api/videos/liked`)
-    } else if(option == 2){
+    } else if(option == 2) {
       return this.client.get<VideoAndUser[]>(`${this.BASE_URL}/api/videos/playlist`)
-    } else if(option == 3){
+    } else if(option == 3) {
       return this.client.get<VideoAndUser[]>(`${this.BASE_URL}/api/videos/watchlater`)
     }
   }
 
   // @ts-ignore
   updateVideo(option: number, videoAndUserID: number, update: any): Observable<VideoAndUser>{
-    if(option == 0){
+    if(option == 0) {
       return this.client.put<VideoAndUser>(
         `${this.BASE_URL}/api/videos/${videoAndUserID}`, update)
-    } else if(option == 1){
+    } else if(option == 1) {
       return this.client.put<VideoAndUser>(
         `${this.BASE_URL}/api/videos/${videoAndUserID}`, update)
     } else if(option == 2) {

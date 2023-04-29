@@ -33,8 +33,15 @@ export class ProfileComponent implements OnInit {
     return this.menuConditionService.getMenuCondition()
   }
 
-  chooseNav() {
-
+  chooseNav(e: any) {
+    document.querySelectorAll(".navigation p").forEach(p => {
+      p.classList.remove("active")
+    }); e.composedPath()[0].classList.add("active")
+  }
+  navigateToAbout() {
+    document.querySelectorAll(".navigation p").forEach(p => {
+      p.classList.remove("active")
+    }); document.querySelector(".navigation p:last-child").classList.add("active")
   }
 
   logout() {
