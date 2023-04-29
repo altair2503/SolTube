@@ -113,11 +113,11 @@
       <input type="text" placeholder="Search video by title">
       <img src="/assets/search.svg" alt="search">
     </div>
-    <div class="authorization">
-      <button>Sign in</button>
-      <button>Sign up</button>
+    <div *ngIf="isAuthorized == null" class="authorization">
+      <a routerLink="/sign-in">Sign in</a>
+      <a routerLink="/sign-up">Sign up</a>
     </div>
-    <div class="authorized">
+    <div *ngIf="isAuthorized != null" class="authorized">
       <a routerLink="">
         <div class="icons">
           <img src="/assets/video-add.svg" alt="video-add">

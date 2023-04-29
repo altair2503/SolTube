@@ -258,25 +258,29 @@ header .search
 
   margin-right: 28px;
 }
-header .authorization
+.authorization
 {
-  display: none;
+  display: flex;
 }
-.authorization button
+.authorization a
 {
   font-size: 14.5px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
 
-  color: #F1F2F3;
-
   background: #E40915;
   border-radius: 8px;
+
+  color: #F1F2F3;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   width: 110px;
   height: 41px;
 }
-.authorization button:first-child
+.authorization a:first-child
 {
   border: 2px solid #E40915;
   background: transparent;

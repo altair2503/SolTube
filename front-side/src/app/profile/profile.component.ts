@@ -36,12 +36,17 @@ export class ProfileComponent implements OnInit {
   chooseNav(e: any) {
     document.querySelectorAll(".navigation p").forEach(p => {
       p.classList.remove("active")
-    }); e.composedPath()[0].classList.add("active")
+    })
+    e.composedPath()[0].classList.add("active")
+    console.log(e.composedPath()[0].dataset["nav"])
+    document.querySelector(".pages_container").className = `pages_container ${e.composedPath()[0].dataset["nav"]}`
   }
   navigateToAbout() {
     document.querySelectorAll(".navigation p").forEach(p => {
       p.classList.remove("active")
-    }); document.querySelector(".navigation p:last-child").classList.add("active")
+    });
+    document.querySelector(".navigation p:last-child").classList.add("active")
+    document.querySelector(".pages_container").className = "pages_container data_about"
   }
 
   logout() {
