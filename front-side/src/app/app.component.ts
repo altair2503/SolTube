@@ -24,6 +24,8 @@ export class AppComponent implements OnInit {
 
     this.activePage = location.pathname.slice(1)
     this.setActivePageLink()
+
+    this.isAuthorized = localStorage.getItem("token")
   }
 
   menuClose(e: any) {

@@ -11,7 +11,6 @@ export class VideoPageComponent implements AfterViewInit {
   videoCondition: boolean
 
   isScrubbing: boolean = false
-  wasPaused: any | undefined
 
   linkToVideo: string = ""
 
@@ -228,11 +227,10 @@ export class VideoPageComponent implements AfterViewInit {
 
     if(this.isScrubbing) {
       video.pause()
-      this.wasPaused = video.paused
     }
     else {
       video.currentTime = percent * video.duration
-      if(!this.wasPaused) video.play()
+      video.play().then()
     }
 
     this.handleTimelineUpdate(e)
@@ -246,9 +244,6 @@ export class VideoPageComponent implements AfterViewInit {
     })
   }
 
-  openMoreWindow(e: any) {
-    e.composedPath()[1].children[1].classList.toggle("open")
-  }
   closeMoreWindow() {
     document.addEventListener("click", e => {
       let target = e.target as Element

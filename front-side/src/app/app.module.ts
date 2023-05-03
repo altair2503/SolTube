@@ -21,6 +21,7 @@ import {AuthInterceptor} from "./Authinterceptor";
 import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {JwtService} from "./jwt.service";
 import { MenuConditionService } from "./menu-condition.service";
+import { VideoUploadComponent } from './video-upload/video-upload.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { MenuConditionService } from "./menu-condition.service";
     ChanelComponent,
     VideoItemComponent,
     SignUpComponent,
-    SignInComponent
+    SignInComponent,
+    VideoUploadComponent
   ],
     imports: [
         BrowserModule,

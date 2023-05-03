@@ -51,7 +51,9 @@ export class ProfileComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token')
-    this.router.navigate(['/home']).then()
+    this.router.navigate(['/home']).then(() => {
+      location.reload()
+    })
   }
 
 }

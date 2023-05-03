@@ -50,7 +50,9 @@ export class SignInComponent implements OnInit {
     if(token) {
       errorOrSuccess.innerHTML = "Successful login to the SolTube !"
       setTimeout(() => {
-        this.router.navigate(['/home']).then()
+        this.router.navigate(['/home']).then(() => {
+          location.reload()
+        })
       }, 1500)
     } else {
       errorOrSuccess.innerHTML = "Check your email or password !"
