@@ -1,1 +1,34 @@
-<p>video-upload works!</p>
+<div class="container">
+  <p class="error"></p>
+  <form #videoUploadForm="ngForm" (ngSubmit)="videoUpload(videoUploadForm.value, $event)">
+    <div class="return_back" (click)="returnBack()">
+      <img src="/assets/arrow.svg" alt="arrow">
+      Return back
+    </div>
+    <div class="navigation">
+      <button (click)="chooseNav($event)" data-nav="data_video" class="active">
+        <p>Video</p>
+        <span></span>
+      </button>
+      <button (click)="chooseNav($event)" data-nav="data_information">
+        <p>Information</p>
+        <span></span>
+      </button>
+      <button (click)="chooseNav($event)" data-nav="data_uploading">
+        <p>Uploading</p>
+        <span></span>
+      </button>
+    </div>
+    <div class="pages_container data_video">
+      <div class="page video">
+        video page works!
+      </div>
+      <div class="page information">
+        information page works!
+      </div>
+      <div class="page uploading">
+        uploading page works!
+      </div>
+    </div>
+  </form>
+</div>
