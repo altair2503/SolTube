@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
 
   activePage: string = location.pathname.slice(1)
 
+  isAuthorized = localStorage.getItem("token")
+
   constructor(private menuConditionService: MenuConditionService) { }
 
   ngOnInit(): void {
@@ -22,6 +24,8 @@ export class AppComponent implements OnInit {
 
     this.activePage = location.pathname.slice(1)
     this.setActivePageLink()
+
+    this.isAuthorized = localStorage.getItem("token")
   }
 
   menuClose(e: any) {

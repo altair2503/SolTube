@@ -22,10 +22,110 @@
   </button>
 </div>
 <div class="navigation">
-  <p class="active" (click)="chooseNav($event)">HOME</p>
-  <p (click)="chooseNav($event)">VIDEO</p>
-  <p (click)="chooseNav($event)">CHANNELS</p>
-  <p (click)="chooseNav($event)">ABOUT</p>
+  <p class="active" (click)="chooseNav($event)" data-nav="data_home">HOME</p>
+  <p (click)="chooseNav($event)" data-nav="data_videos">VIDEO</p>
+  <p (click)="chooseNav($event)" data-nav="data_channels">CHANNELS</p>
+  <p (click)="chooseNav($event)" data-nav="data_about">ABOUT</p>
 </div>
 <div class="separator"></div>
-<div class="container"></div>
+<div class="pages_container data_home">
+  <div class="page home">
+    home page works!
+  </div>
+  <div class="page videos">
+    videos page works!
+  </div>
+  <div class="page channels">
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/wylsacom.jpg" alt="">
+        <p class="channel_name">Wylsacom</p>
+        <p class="channel_subscribers_count">10.3M subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/abramov.jpg" alt="">
+        <p class="channel_name">ABRAMOV MEDIA</p>
+        <p class="channel_subscribers_count">12.7K subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/wylsacom.jpg" alt="">
+        <p class="channel_name">Wylsacom</p>
+        <p class="channel_subscribers_count">10.3M subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/abramov.jpg" alt="">
+        <p class="channel_name">ABRAMOV MEDIA</p>
+        <p class="channel_subscribers_count">12.7K subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/wylsacom.jpg" alt="">
+        <p class="channel_name">Wylsacom</p>
+        <p class="channel_subscribers_count">10.3M subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/abramov.jpg" alt="">
+        <p class="channel_name">ABRAMOV MEDIA</p>
+        <p class="channel_subscribers_count">12.7K subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/wylsacom.jpg" alt="">
+        <p class="channel_name">Wylsacom</p>
+        <p class="channel_subscribers_count">10.3M subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/abramov.jpg" alt="">
+        <p class="channel_name">ABRAMOV MEDIA</p>
+        <p class="channel_subscribers_count">12.7K subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/wylsacom.jpg" alt="">
+        <p class="channel_name">Wylsacom</p>
+        <p class="channel_subscribers_count">10.3M subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/abramov.jpg" alt="">
+        <p class="channel_name">ABRAMOV MEDIA</p>
+        <p class="channel_subscribers_count">12.7K subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/wylsacom.jpg" alt="">
+        <p class="channel_name">Wylsacom</p>
+        <p class="channel_subscribers_count">10.3M subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+  </div>
+  <div class="page about">
+    about page works!
+  </div>
+</div>

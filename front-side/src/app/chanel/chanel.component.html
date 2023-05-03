@@ -1,1 +1,128 @@
-<p>chanel works!</p>
+<div class="background_image" [ngClass]="getMenuCondition() == 'left' ? 'background_image' : 'background_image close'">
+  <img src="/assets/soltube.gif" alt="background_img">
+</div>
+<div class="profile">
+  <div class="user">
+    <img src="/assets/abramov.jpg" class="avatar" alt="avatar">
+    <div class="user_info">
+      <p class="username">ABRAMOV MEDIA</p>
+      <div class="counts">
+        <p class="followers_count">12.1K followers</p>
+        <p class="videos_count">68 videos</p>
+      </div>
+      <div class="more_about" (click)="navigateToAbout()">
+        <p>More about chanel</p>
+        <img src="/assets/arrow.svg" alt="arrow">
+      </div>
+    </div>
+  </div>
+  <button>SUBSCRIBE</button>
+</div>
+<div class="navigation">
+  <p class="active" (click)="chooseNav($event)" data-nav="data_home">HOME</p>
+  <p (click)="chooseNav($event)" data-nav="data_videos">VIDEO</p>
+  <p (click)="chooseNav($event)" data-nav="data_channels">CHANNELS</p>
+  <p (click)="chooseNav($event)" data-nav="data_about">ABOUT</p>
+</div>
+<div class="separator"></div>
+<div class="pages_container data_home">
+  <div class="page home">
+    home page works!
+  </div>
+  <div class="page videos">
+    videos page works!
+  </div>
+  <div class="page channels">
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/wylsacom.jpg" alt="">
+        <p class="channel_name">Wylsacom</p>
+        <p class="channel_subscribers_count">10.3M subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/abramov.jpg" alt="">
+        <p class="channel_name">ABRAMOV MEDIA</p>
+        <p class="channel_subscribers_count">12.7K subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/wylsacom.jpg" alt="">
+        <p class="channel_name">Wylsacom</p>
+        <p class="channel_subscribers_count">10.3M subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/abramov.jpg" alt="">
+        <p class="channel_name">ABRAMOV MEDIA</p>
+        <p class="channel_subscribers_count">12.7K subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/wylsacom.jpg" alt="">
+        <p class="channel_name">Wylsacom</p>
+        <p class="channel_subscribers_count">10.3M subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/abramov.jpg" alt="">
+        <p class="channel_name">ABRAMOV MEDIA</p>
+        <p class="channel_subscribers_count">12.7K subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/wylsacom.jpg" alt="">
+        <p class="channel_name">Wylsacom</p>
+        <p class="channel_subscribers_count">10.3M subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/abramov.jpg" alt="">
+        <p class="channel_name">ABRAMOV MEDIA</p>
+        <p class="channel_subscribers_count">12.7K subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/wylsacom.jpg" alt="">
+        <p class="channel_name">Wylsacom</p>
+        <p class="channel_subscribers_count">10.3M subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/abramov.jpg" alt="">
+        <p class="channel_name">ABRAMOV MEDIA</p>
+        <p class="channel_subscribers_count">12.7K subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+    <div class="channel">
+      <a routerLink="">
+        <img src="/assets/wylsacom.jpg" alt="">
+        <p class="channel_name">Wylsacom</p>
+        <p class="channel_subscribers_count">10.3M subscribers</p>
+      </a>
+      <button class="subscribe">Subscribe</button>
+    </div>
+  </div>
+  <div class="page about">
+    about page works!
+  </div>
+</div>

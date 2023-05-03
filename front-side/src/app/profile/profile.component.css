@@ -171,10 +171,83 @@ button img
 .separator
 {
   border-bottom: 2px solid #2a2d31;
-  margin-bottom: 25px;
 }
 
-.container
+.pages_container
 {
-  padding: 0 50px;
+  padding: 30px 50px;
+}
+.page
+{
+  display: none;
+}
+.pages_container.data_home .home
+{
+  display: block;
+}
+.pages_container.data_videos .videos
+{
+  display: block;
+}
+.pages_container.data_channels .channels
+{
+  display: grid !important;
+}
+.pages_container.data_about .about
+{
+  display: block;
+}
+
+/* Channels section styling */
+.channels
+{
+  grid-template-columns: repeat(7, 0fr);
+  justify-content: space-between;
+}
+.channel
+{
+  width: 150px;
+  text-align: center;
+
+  margin-bottom: 40px;
+}
+.channel a
+{
+  color: #F1F2F3;
+}
+.channel img
+{
+  width: 110px;
+  height: 110px;
+
+  border-radius: 50%;
+  object-fit: cover;
+
+  margin-bottom: 8px;
+}
+.channel p.channel_name
+{
+  font-size: 15.5px;
+}
+.channel p.channel_subscribers_count
+{
+  font-size: 13.5px;
+  color: #ababab;
+
+  margin-top: 5px;
+}
+.channel button
+{
+  margin: 13px auto 0;
+
+  width: 110px;
+  height: 35px;
+
+  font-size: 14px;
+
+  background: #505050;
+}
+.channel button:hover
+{
+  background: #5d5d5d;
 }

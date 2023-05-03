@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {MenuConditionService} from "../menu-condition.service";
+import {category, Category} from "../models";
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,8 @@ import {MenuConditionService} from "../menu-condition.service";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+
+  categories: Category[] = category
 
   title = '"Quantum dots from Sber - OLED TV 65" for 55K with an assistant and installation .apk. That good?'
   chanel = "Wylsacom"
