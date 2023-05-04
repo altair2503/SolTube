@@ -159,7 +159,6 @@ button img
   position: relative;
   padding: 0 30px;
 
-  transition: .2s;
   cursor: pointer;
 }
 .navigation p:hover

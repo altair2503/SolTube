@@ -2,7 +2,7 @@
   <p class="error"></p>
   <form #signInForm="ngForm" (ngSubmit)="signIn(signInForm.value, $event)">
     <div class="return_back" (click)="returnBack()">
-      <img src="/assets/arrow.svg" alt="arrow">
+      <img src="/assets/svg/arrow.svg" alt="arrow">
       Return back
     </div>
     <div class="title">
@@ -17,8 +17,8 @@
       <label>Password</label>
       <input name="password" type="password" ngModel placeholder="Enter password" class="password_input">
       <div class="show_hide_btn hide">
-        <img src="/assets/show-password.svg" (click)="showHidePassword(false, $event)" class="show_btn" alt="show-password">
-        <img src="/assets/hide-password.svg" (click)="showHidePassword(true, $event)" class="hide_btn" alt="hide-password">
+        <img src="/assets/svg/show-password.svg" (click)="showHidePassword(false, $event)" class="show_btn" alt="show-password">
+        <img src="/assets/svg/hide-password.svg" (click)="showHidePassword(true, $event)" class="hide_btn" alt="hide-password">
       </div>
     </div>
     <div class="separator"></div>
