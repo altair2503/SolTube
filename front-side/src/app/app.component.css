@@ -328,18 +328,32 @@ header .authorized
 }
 .authorized .user_link
 {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #b4b4b4;
+  box-shadow: 0 0 10px rgba(131, 131, 131, 0.2);
+  border-radius: 5px;
+
   margin-top: 1px;
 }
 .authorized .user_link img
 {
-  width: 32px;
-  height: 32px;
+  width: 100%;
+  height: 100%;
 
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(131, 131, 131, 0.2);
   object-fit: cover;
 }
-
+.authorized .user_link.default img
+{
+  width: 78%;
+  height: 78%;
+}
 
 .container
 {

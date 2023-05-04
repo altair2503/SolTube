@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HomeComponent } from "./home/home.component";
 import { VideoItemComponent } from "./video-item/video-item.component";
 import { MenuConditionService } from "./menu-condition.service";
+import {JwtService} from "./jwt.service";
+import {User} from "./models";
 
 @Component({
   selector: 'app-root',
@@ -10,11 +12,13 @@ import { MenuConditionService } from "./menu-condition.service";
 })
 export class AppComponent implements OnInit {
 
+  user: User
+
   activePage: string = location.pathname.slice(1)
 
   isAuthorized = localStorage.getItem("token")
 
-  constructor(private menuConditionService: MenuConditionService) { }
+  constructor(private menuConditionService: MenuConditionService, private jwtService: JwtService) { }
 
   ngOnInit(): void {
     const menu = document.querySelector(".left")
@@ -26,6 +30,13 @@ export class AppComponent implements OnInit {
     this.setActivePageLink()
 
     this.isAuthorized = localStorage.getItem("token")
+    this.getUser()
+  }
+
+  getUser() {
+    this.jwtService.getUser().subscribe((user) => {
+      this.user = user
+    })
   }
 
   menuClose(e: any) {
