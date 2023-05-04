@@ -15,8 +15,9 @@ class Category(models.Model):
 
 class Video(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    description = models.TextField(default="")
     video_url = models.CharField(max_length=500)
     image_url = models.CharField(max_length=500)
     total_views = models.IntegerField(default=0)
