@@ -2,7 +2,7 @@
   <p class="error"></p>
   <form #videoUploadForm="ngForm" (ngSubmit)="videoUpload(videoUploadForm.value, $event)">
     <div class="return_back" (click)="returnBack()">
-      <img src="/assets/arrow.svg" alt="arrow">
+      <img src="/assets/svg/arrow.svg" alt="arrow">
       Return back
     </div>
     <div class="navigation">
@@ -24,14 +24,14 @@
         <input type="file" id="video_file">
         <label class="video_container" for="video_file">
           <div class="upload">
-            <img src="/assets/upload.svg" alt="">
+            <img src="/assets/svg/upload.svg" alt="">
           </div>
           <p>Select your video</p>
         </label>
         <input type="file" id="preview_file">
         <label class="preview_container" for="preview_file">
           <div class="upload">
-            <img src="/assets/upload.svg" alt="">
+            <img src="/assets/svg/upload.svg" alt="">
           </div>
           <p>Select a preview image for your video</p>
         </label>
@@ -48,7 +48,7 @@
         <div class="input_block choose">
           <input name="category" type="text" ngModel placeholder="Choose category of video" disabled>
           <label>Video category</label>
-          <img src="/assets/choose-arrow.svg" alt="">
+          <img src="/assets/svg/choose-arrow.svg" alt="">
           <ul (click)="selectCategory($event)" class="select_category">
             <li>Music</li>
             <li>Learning</li>

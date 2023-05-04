@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { HomeComponent } from "./home/home.component";
 import { VideoItemComponent } from "./video-item/video-item.component";
 import { MenuConditionService } from "./menu-condition.service";

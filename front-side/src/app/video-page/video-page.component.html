@@ -46,7 +46,7 @@
           </button>
         </div>
       </div>
-      <video src="/assets/Beautiful%20nature%20of%20Kazakhstan.mp4" (click)="playPauseAction()" ></video>
+      <video src="/assets/Beautiful%20nature%20of%20Kazakhstan.mp4" (click)="playPauseAction()" autoplay></video>
     </div>
     <div class="video_info">
       <p class="title">Beautiful nature of Kazakhstan</p>
@@ -58,22 +58,22 @@
         </div>
         <div class="rate_video">
           <button class="like" (click)="likeOrDislikeVideo(true)">
-            <img src="/assets/liked.svg" alt="">
-            <img src="/assets/liked-active.svg" alt="">
+            <img src="/assets/svg/liked.svg" alt="">
+            <img src="/assets/svg/liked-active.svg" alt="">
             15K
           </button>
           <button class="dislike" (click)="likeOrDislikeVideo(false)">
-            <img src="/assets/liked.svg" alt="">
-            <img src="/assets/liked-active.svg" alt="">
+            <img src="/assets/svg/liked.svg" alt="">
+            <img src="/assets/svg/liked-active.svg" alt="">
             390
           </button>
         </div>
         <button class="add_to_playlist">
-          <img src="/assets/playlist-add.svg" alt="">
-          <img src="/assets/playlist-active.svg" alt="">
+          <img src="/assets/svg/playlist-add.svg" alt="">
+          <img src="/assets/svg/playlist-active.svg" alt="">
         </button>
         <button class="share_btn" (click)="openShareWindow($event)">
-          <img src="/assets/share.svg" alt="">
+          <img src="/assets/svg/share.svg" alt="">
         </button>
       </div>
       <div class="chanel_info">
@@ -113,7 +113,7 @@
   <div class="to_share">
     <div class="share_top">
       <p>Share</p>
-      <img src="/assets/close.svg" class="close_share" alt="close-share-window">
+      <img src="/assets/svg/close.svg" class="close_share" alt="close-share-window">
     </div>
     <div class="available_links">
       <a href="" >
