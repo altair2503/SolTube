@@ -1,9 +1,10 @@
+import datetime
 from abc import ABC
 
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
-from api.models import Category
+from api.models import Category, Video
 
 
 class DynamicFieldsModelSerializer(serializers.ModelSerializer):
@@ -56,3 +57,28 @@ class CategorySerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
         return instance
+
+
+class VideoSerializerModel(serializers.ModelSerializer):
+    owner = UserSerializer()
+    category = CategorySerializer()
+
+    class Meta:
+        model = Video
+        fields = "__all__"
+
+
+class VideoSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    owner_id = serializers.IntegerField()
+    category_id = serializers.IntegerField()
+    title = serializers.CharField(max_length=255)
+    description = serializers.CharField(min_length=0)
+    video_url = serializers.CharField(max_length=500)
+    image_url = serializers.CharField(max_length=500)
+    total_views = serializers.IntegerField(read_only=True)
+    upload_time = serializers.DateTimeField(read_only=True)
+
+    def create(self, validated_data):
+        video = Video.objects.create(**validated_data)
+        return video
