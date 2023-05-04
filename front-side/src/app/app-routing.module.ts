@@ -8,6 +8,7 @@ import { ProfileComponent } from "./profile/profile.component";
 import { ChanelComponent } from "./chanel/chanel.component";
 import { SignUpComponent } from "./sign-up/sign-up.component";
 import { SignInComponent } from "./sign-in/sign-in.component";
+import { VideoUploadComponent } from "./video-upload/video-upload.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'chanel', component: ChanelComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
+  { path: 'video-upload', component: VideoUploadComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

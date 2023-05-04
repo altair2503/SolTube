@@ -1,1 +1,77 @@
-<p>video-upload works!</p>
+<div class="container">
+  <p class="error"></p>
+  <form #videoUploadForm="ngForm" (ngSubmit)="videoUpload(videoUploadForm.value, $event)">
+    <div class="return_back" (click)="returnBack()">
+      <img src="/assets/arrow.svg" alt="arrow">
+      Return back
+    </div>
+    <div class="navigation">
+      <button (click)="chooseNav($event)" data-nav="data_video" class="active">
+        <p>Video</p>
+        <span></span>
+      </button>
+      <button (click)="chooseNav($event)" data-nav="data_information">
+        <p>Information</p>
+        <span></span>
+      </button>
+      <button (click)="chooseNav($event)" data-nav="data_uploading">
+        <p>Uploading</p>
+        <span></span>
+      </button>
+    </div>
+    <div class="pages_container data_video">
+      <div class="page video_page">
+        <input type="file" id="video_file">
+        <label class="video_container" for="video_file">
+          <div class="upload">
+            <img src="/assets/upload.svg" alt="">
+          </div>
+          <p>Select your video</p>
+        </label>
+        <input type="file" id="preview_file">
+        <label class="preview_container" for="preview_file">
+          <div class="upload">
+            <img src="/assets/upload.svg" alt="">
+          </div>
+          <p>Select a preview image for your video</p>
+        </label>
+      </div>
+      <div class="page information_page">
+        <div class="input_block">
+          <input name="title" type="text" ngModel placeholder="Enter title of video">
+          <label>Video title</label>
+        </div>
+        <div class="input_block">
+          <textarea name="description" type="text" ngModel placeholder="Enter description of video"></textarea>
+          <label>Video description</label>
+        </div>
+        <div class="input_block choose">
+          <input name="category" type="text" ngModel placeholder="Choose category of video" disabled>
+          <label>Video category</label>
+          <img src="/assets/choose-arrow.svg" alt="">
+          <ul (click)="selectCategory($event)" class="select_category">
+            <li>Music</li>
+            <li>Learning</li>
+            <li>Gaming</li>
+            <li>Sports</li>
+            <li>Films</li>
+            <li>Travelling</li>
+            <li>Cook</li>
+            <li>Transport</li>
+            <li>Humor</li>
+          </ul>
+        </div>
+      </div>
+      <div class="page uploading_page">
+        <div class="percentage_container">
+          <p>Uploading progress:</p>
+          <p class="percent_value">0%</p>
+        </div>
+        <div class="progress_container">
+          <div class="progress_bar"></div>
+        </div>
+        <button type="submit" class="video_uploading_btn">Upload video</button>
+      </div>
+    </div>
+  </form>
+</div>
