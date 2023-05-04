@@ -130,8 +130,8 @@
           <img src="/assets/notifications-active.svg" alt="notifications-active">
         </div>
       </a>
-      <a routerLink="/profile" class="user_link">
-        <img src="/assets/avatar.jpg" alt="">
+      <a routerLink="/profile" class="user_link" [ngClass]="user.avatar == '/assets/avatar.png' ? 'user_link default' : 'user_link'">
+        <img src="{{user.avatar}}" alt="">
       </a>
     </div>
   </header>

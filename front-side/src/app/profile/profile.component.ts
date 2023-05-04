@@ -14,16 +14,21 @@ export class ProfileComponent implements OnInit {
 
   user: User
 
-  ngOnInit() {
-    const token = localStorage.getItem('token')
-    this.user = this.jwtService.decodeToken(token)
-  }
-
   constructor (
     private jwtService: JwtService,
     private router: Router,
     private menuConditionService: MenuConditionService
   ) { }
+
+  ngOnInit() {
+    this.getUser()
+  }
+
+  getUser() {
+    this.jwtService.getUser().subscribe((user) => {
+      this.user = user
+    })
+  }
 
   getMenuCondition() {
     return this.menuConditionService.getMenuCondition()
