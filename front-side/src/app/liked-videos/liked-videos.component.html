@@ -1,0 +1,57 @@
+<div *ngIf="isAuthorized == null" class="container_unauthorized">
+  <p class="title">Enjoy Your Favorite Videos</p>
+  <p class="subtitle">Sign in to access videos that you've liked</p>
+  <a href="/sign-in">Sign in</a>
+</div>
+<div *ngIf="isAuthorized != null" class="container">
+  <p class="title">Liked Videos</p>
+  <div class="liked_top">
+    <div class="liked_info">
+      <p>• 50 videos</p>
+      <p>• Updated at 27.04.2023</p>
+    </div>
+    <button class="clear_liked_btn" (click)="clearAllLiked()">
+      <img src="/assets/svg/trash.svg" alt="clear-liked">
+      Clear All Liked Videos
+    </button>
+  </div>
+  <div class="separator"></div>
+  <div class="liked_container">
+    <div class="liked_item_container">
+      <p class="index">1</p>
+      <div class="liked_item">
+        <a routerLink="" class="req_cover">
+          <img src="/assets/video-cover.webp" alt="">
+        </a>
+        <div class="req_info">
+          <a routerLink="">
+            <p class="req_title">{{title2}}</p>
+          </a>
+          <a routerLink="">
+            <p class="req_chanel">{{chanel2}}</p>
+            <div class="req_data">
+              125K views <p>|</p> 2 years ago
+            </div>
+          </a>
+        </div>
+        <div class="nav_right">
+          <img src="/assets/svg/more.svg" alt="more" class="more_open_btn">
+          <ul class="more_open">
+            <li>
+              <img src="/assets/svg/playlist-add.svg" alt="">
+              <p style="margin-top: -1px">Add to playlist</p>
+            </li>
+            <li>
+              <img src="/assets/svg/watch-later.svg" alt="">
+              <p style="margin-top: 1px">Watch later</p>
+            </li>
+            <li>
+              <img src="/assets/svg/share.svg" class="share" alt="">
+              <p style="margin-top: 1px">Share</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

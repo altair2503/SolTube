@@ -11,6 +11,8 @@ import { SignInComponent } from "./sign-in/sign-in.component";
 import { VideoUploadComponent } from "./video-upload/video-upload.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { HistoryComponent } from "./history/history.component";
+import { SubscriptionsComponent } from "./subscriptions/subscriptions.component";
+import { LikedVideosComponent } from "./liked-videos/liked-videos.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: 'video-upload', component: VideoUploadComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'history', component: HistoryComponent },
+  { path: 'subscriptions', component: SubscriptionsComponent },
+  { path: 'liked', component: LikedVideosComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

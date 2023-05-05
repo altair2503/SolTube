@@ -1,0 +1,451 @@
+/* Unauthorized container */
+.container_unauthorized
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: calc(100% + 34px);
+  margin-bottom: 0;
+
+  background: #151719;
+  border-radius: 15px;
+}
+.container_unauthorized .title
+{
+  font-size: 35px;
+  font-weight: 650;
+
+  margin-bottom: 10px;
+}
+.container_unauthorized .subtitle
+{
+  font-weight: 400;
+  font-size: 15px;
+
+  margin-bottom: 35px;
+}
+.container_unauthorized a
+{
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 550;
+
+  background: #E40915;
+  border-radius: 8px;
+
+  color: #F1F2F3;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 110px;
+  height: 41px;
+
+  transition: .15s;
+}
+.container_unauthorized a:hover
+{
+  background: #ff000e;
+}
+
+/* Authorized container */
+.container
+{
+  position: relative;
+}
+
+/* Title styles */
+.title
+{
+  font-size: 26px;
+  font-weight: 600;
+
+  margin-bottom: 15px;
+}
+
+/* Liked top styling */
+.liked_top
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.liked_info
+{
+  display: flex;
+  gap: 20px;
+
+  font-size: 14px;
+  font-weight: 400;
+  color: #F1F2F3;
+
+  opacity: .85;
+}
+/* Clear All History button styling */
+.clear_liked_btn
+{
+  position: relative;
+
+  display: flex;
+  align-items: end;
+
+  color: #F1F2F3;
+  font-weight: 500;
+  font-size: 13.5px;
+
+  opacity: .85;
+  gap: 8px;
+
+  transition: .15s;
+}
+.clear_liked_btn::after
+{
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  display: block;
+  content: "";
+}
+.clear_liked_btn:hover
+{
+  opacity: 1;
+}
+.clear_liked_btn img
+{
+  width: 17px;
+}
+
+/* Separator styling */
+.separator
+{
+  border-bottom: 2px solid #2a2d31;
+  margin: 8px auto 15px;
+}
+
+/* Liked videos container */
+.liked_container
+{
+  width: 100%;
+}
+.video-item
+{
+  width: 330px;
+  margin-bottom: 40px;
+}
+.video-item a
+{
+  position: relative;
+}
+.video-item .preview
+{
+  width: 100%;
+  height: 205px;
+
+  border-radius: 12px;
+  object-fit: cover;
+}
+.duration
+{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 4px;
+
+  background: rgba(29, 31, 34, 0.65);
+  border-bottom-right-radius: 12px;
+  border-top-left-radius: 7px;
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 12px;
+  height: 25px;
+
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #FFFF;
+}
+.item_nav
+{
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 15px;
+}
+.nav_left
+{
+  display: flex;
+}
+.nav_left img
+{
+  width: 38px;
+  height: 38px;
+
+  border-radius: 7px;
+  object-fit: cover;
+
+  margin-right: 10px;
+}
+.nav_left .chanel_info
+{
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+.nav_left .chanel_info a:first-child
+{
+  font-size: 14.5px;
+  color: #F1F2F3;
+
+  margin-top: -1px;
+  margin-bottom: 5px;
+}
+.nav_left .chanel_info .chanel_link
+{
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 13px;
+  color: #d2d2d2;
+}
+.video_data
+{
+  display: flex;
+  margin-top: 1px;
+
+  font-size: 12.5px;
+  color: #c2c2c2;
+}
+.video_data p
+{
+  margin: -1px 6px 0 6px;
+}
+.nav_right
+{
+  position: relative;
+}
+.nav_right img
+{
+  width: 20px;
+  padding: 0 5px 10px 5px;
+  margin-right: -5px;
+
+  cursor: pointer;
+}
+.nav_right .more_open
+{
+  position: absolute;
+  top: 30px;
+  right: -10px;
+  z-index: 2;
+
+  background: #3b3d42;
+  padding: 23px 16px 10px 14px;
+  box-shadow: 0 0 10px rgba(66, 66, 66, 0.2);
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  display: none;
+}
+.more_open.hist
+{
+  width: 350px;
+}
+.more_open.open
+{
+  display: flex !important;
+  flex-direction: column;
+}
+.more_open li
+{
+  display: flex;
+  margin-bottom: 13px;
+
+  position: relative;
+  cursor: pointer;
+
+  gap: 10px;
+}
+.more_open li.history_item
+{
+  gap: 7px;
+  border-top: 2px solid rgba(150, 150, 150, .2);
+  padding-top: 14px;
+  margin-top: -8px;
+}
+.more_open li::after
+{
+  width: 100%;
+  height: 100%;
+
+  content: "";
+  display: block;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.more_open li:last-child
+{
+  margin-bottom: 0;
+}
+.more_open li .share
+{
+  width: 18px;
+}
+.more_open li p
+{
+  font-size: 14px;
+  color: #F1F2F3;
+
+  white-space: nowrap;
+}
+.video-item.close
+{
+  width: 300px;
+}
+.video-item.close .preview
+{
+  height: 190px;
+}
+.video-item.close .nav_left img
+{
+  width: 36px;
+  height: 36px;
+
+  border-radius: 6px;
+}
+.video-item.close .nav_left .chanel_info a:first-child
+{
+  font-size: 14px;
+}
+.video-item.close .nav_left .chanel_info .chanel_link
+{
+  font-size: 12.5px;
+}
+.video_data
+{
+  margin-top: 0;
+  font-size: 12px;
+}
+.video_data p
+{
+  margin: -1px 4px 0 4px;
+}
+.video-item.close .nav_right img
+{
+  width: 18px;
+  padding: 0 3px 8px 3px;
+  margin-right: -6px;
+}
+
+/* Recommended video item */
+.liked_item_container
+{
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 20px;
+  gap: 10px;
+}
+.liked_item_container .index
+{
+  opacity: .6;
+}
+.liked_item
+{
+  flex-grow: 1;
+
+  display: flex;
+  align-items: center;
+
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 15px 15px 10px;
+
+  transition: .15s;
+}
+.liked_item:hover
+{
+  background: #26282c;
+}
+.liked_item .req_cover img
+{
+  width: 175px;
+  height: 105px;
+
+  border-radius: 6px;
+  object-fit: cover;
+
+  margin-right: 12px;
+}
+.liked_item.close .req_cover img
+{
+  width: 160px;
+  height: 100px;
+}
+.req_info
+{
+  height: 105px;
+  box-sizing: border-box;
+  padding-top: 5px;
+
+  flex-grow: 1;
+}
+.req_title
+{
+  width: fit-content;
+
+  font-size: 15px;
+  color: #F1F2F3;
+
+  margin-bottom: 10px;
+}
+.req_chanel
+{
+  width: fit-content;
+
+  font-size: 14px;
+  color: #bdbdbd;
+
+  transition: .2s;
+}
+.req_data
+{
+  width: fit-content;
+
+  display: flex;
+  margin-top: 10px;
+
+  font-size: 12.5px;
+  color: #bdbdbd;
+
+  transition: .2s;
+}
+.req_chanel:hover,
+.req_data:hover
+{
+  color: #d5d5d5;
+}
+.req_data p
+{
+  margin: -1px 6px 0 6px;
+}
+.liked_item .nav_right
+{
+  margin-top: 10px;
+}
+.liked_item .nav_right img
+{
+  width: 22px;
+}

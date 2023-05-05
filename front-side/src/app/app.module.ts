@@ -28,6 +28,8 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
+import { LikedVideosComponent } from './liked-videos/liked-videos.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     SignInComponent,
     VideoUploadComponent,
     SettingsComponent,
-    HistoryComponent
+    HistoryComponent,
+    SubscriptionsComponent,
+    LikedVideosComponent
   ],
     imports: [
         BrowserModule,
