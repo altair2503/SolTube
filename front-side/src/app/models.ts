@@ -26,10 +26,10 @@ export interface Video {
   owner: User,
   category: Category,
   title: string,
-  videoUrl: string,
-  imageUrl: string,
-  totalViews: number,
-  uploadTime: string
+  video_url: string,
+  image_url: string,
+  total_views: number,
+  upload_time: Date
 }
 
 export interface VideoAndUser {
