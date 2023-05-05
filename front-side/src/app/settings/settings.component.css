@@ -262,3 +262,34 @@ textarea::placeholder
 {
   background: #ff000e;
 }
+
+/* Notification message styling */
+.notification
+{
+  position: fixed;
+  bottom: -30px;
+  left: 0;
+  z-index: 12;
+
+  margin: 60px 55px;
+  padding: 17px 20px;
+
+  background: #F1F2F3;
+  border-radius: 9px;
+  color: #000;
+
+  font-size: 14.5px;
+
+  /*visibility: hidden;*/
+  /*opacity: 0;*/
+
+  transition: .2s;
+  cursor: default;
+}
+.notification.show
+{
+  bottom: 0;
+  visibility: visible;
+  opacity: 1;
+}
+
