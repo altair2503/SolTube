@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { JwtService } from "../jwt.service";
+import { JwtService } from "../services/jwt.service";
 import { Router } from "@angular/router";
 import { User } from "../models";
-import { MenuConditionService } from '../menu-condition.service';
+import { MenuConditionService } from '../services/menu-condition.service';
 
 
 @Component({

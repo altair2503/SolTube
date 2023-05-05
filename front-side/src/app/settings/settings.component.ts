@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 
 import { User } from "../models";
-import { JwtService } from "../jwt.service";
-import {UserService} from "../user.service";
+import { JwtService } from "../services/jwt.service";
+import {UserService} from "../services/user.service";
 
 
 @Component({

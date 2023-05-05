@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 
 import { Location } from '@angular/common'
 import {Router} from "@angular/router";
-import {JwtService} from "../jwt.service";
+import {JwtService} from "../services/jwt.service";
 import {User} from "../models";
 
 @Component({

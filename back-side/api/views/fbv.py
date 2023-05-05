@@ -47,7 +47,6 @@ def video_list(request):
         return Response(serializer.data)
     if request.method == 'POST':
         request.data['owner_id'] = request.user.id
-        request.data['upload_time'] = datetime.datetime.now()
         serializer = VideoSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

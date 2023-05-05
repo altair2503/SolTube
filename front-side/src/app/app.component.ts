@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { HomeComponent } from "./home/home.component";
 import { VideoItemComponent } from "./video-item/video-item.component";
-import { MenuConditionService } from "./menu-condition.service";
-import {JwtService} from "./jwt.service";
+import { MenuConditionService } from "./services/menu-condition.service";
+import {JwtService} from "./services/jwt.service";
 import {User} from "./models";
 
 @Component({
