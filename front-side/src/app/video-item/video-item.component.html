@@ -1,17 +1,17 @@
 <div *ngIf="videoType" class="video-item" [ngClass]="(getMenuCondition() == 'left close') ? 'video-item' : 'video-item close'">
   <a routerLink="/watch">
-    <img src="/assets/video-item.png" class="preview" alt="">
+    <img src="{{video.image_url}}g" class="preview" alt="">
     <p class="duration">17:48</p>
   </a>
   <div class="item_nav">
     <div class="nav_left">
-      <a routerLink="/chanel"><img src="/assets/abramov.jpg" alt=""></a>
+      <a routerLink="/chanel/{{video.owner.username}}"><img src="{{video.owner.avatar}}" alt=""></a>
       <div class="chanel_info">
-        <a *ngIf="getMenuCondition() == 'left close'" routerLink="">{{title.substring(0, 29)}} ...</a>
-        <a *ngIf="getMenuCondition() == 'left'" routerLink="">{{title.substring(0, 28)}}...</a>
+        <a *ngIf="getMenuCondition() == 'left close'" routerLink="">{{video.title.substring(0, 29)}} ...</a>
+        <a *ngIf="getMenuCondition() == 'left'" routerLink="">{{video.title.substring(0, 28)}}...</a>
         <a routerLink="/chanel" class="chanel_link">
-          <p *ngIf="getMenuCondition() == 'left close'">{{chanel.substring(0, 8)}}</p>
-          <p *ngIf="getMenuCondition() == 'left'">{{chanel.substring(0, 5)}}</p>
+          <p *ngIf="getMenuCondition() == 'left close'">{{video.owner.username.substring(0, 8)}}</p>
+          <p *ngIf="getMenuCondition() == 'left'">{{video.owner.username.substring(0, 5)}}</p>
           <div class="video_data">
             125K views <p>|</p> 2 years ago
           </div>

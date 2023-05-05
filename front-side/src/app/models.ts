@@ -4,11 +4,12 @@ export interface AuthToken {
 }
 
 export interface User {
-  user_id: number,
+  id: number,
+  username: string,
   first_name: string,
   last_name: string,
-  username: string,
   avatar: string,
+  description: string,
 }
 
 export interface Subscription {
