@@ -23,17 +23,21 @@
       <div class="page video_page">
         <input name="videoFile" type="file" id="video_file" (change)="chooseVideo($event)">
         <label class="video_container" for="video_file">
+          <video *ngIf="previewVideo != ''" src="{{previewVideo}}" class="preview_video" controls></video>
           <div class="upload">
             <img src="/assets/svg/upload.svg" alt="">
           </div>
           <p>Select your video</p>
+          <div *ngIf="previewVideo != ''" class="also_select">Select new video file</div>
         </label>
         <input name="previewFile" type="file" id="preview_file" (change)="choosePreview($event)">
         <label class="preview_container" for="preview_file">
+          <img *ngIf="previewImg != ''" src="{{previewImg}}" class="preview_image" alt="">
           <div class="upload">
             <img src="/assets/svg/upload.svg" alt="">
           </div>
           <p>Select a preview image for your video</p>
+          <div *ngIf="previewImg != ''" class="also_select">Select new image file</div>
         </label>
       </div>
       <div class="page information_page">
@@ -70,7 +74,3 @@
     </div>
   </form>
 </div>
-
-
-<img src="https://firebasestorage.googleapis.com/v0/b/soltube.appspot.com/o/preview%2Fhq720.webp?alt=media&token=f084131a-64b3-47d3-8fb1-5aab42e6cd0d" alt="">
-<!--<video [src]="previewVideo" controls></video>-->

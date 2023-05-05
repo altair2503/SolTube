@@ -1,9 +1,12 @@
-import {AfterViewInit, Component} from '@angular/core';
-import {Location} from "@angular/common";
-import {Storage, ref, uploadBytesResumable, getDownloadURL, deleteObject} from '@angular/fire/storage'
-import {Router} from "@angular/router";
-import {Observable} from "rxjs";
-import {category} from "../models";
+import { AfterViewInit, Component } from '@angular/core';
+
+import { Location } from "@angular/common";
+import { Router } from "@angular/router";
+
+import { Storage, ref, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage'
+
+import { category } from "../models";
+
 
 @Component({
   selector: 'app-video-upload',
@@ -17,78 +20,87 @@ export class VideoUploadComponent implements AfterViewInit {
   public videoSource: any = {}
   public previewSource: any = {}
 
-  public previewIMG: any = ""
+  public previewImg: any = ""
   public previewVideo: any = ""
 
-  private totalProg: number = 0
+  private totalProgress: number = 0
 
   constructor(private location: Location, private router: Router, private storage: Storage) { }
-
-  chooseVideo(event: any){
-    this.videoSource = event.target.files[0]
-    var reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (event: any) => {
-      this.previewVideo = event.target.result
-    }
-  }
-
-  UploadVideo(value: any){
-    const storageRef = ref(this.storage, 'videos/' + this.videoSource.name)
-    const uploadTask = uploadBytesResumable(storageRef, this.videoSource) // @ts-ignore
-    uploadTask.on('state_changed', (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 80;
-      this.totalProg += Math.abs(this.totalProg - progress)
-        console.log('Upload is ' + this.totalProg + '% done');
-      }, () => {
-
-      }, () => { // @ts-ignore
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          value.video_url  = downloadURL
-          this.UploadPreview(value)
-        })
-      }
-    )
-  }
-
-  choosePreview(event: any){
-    this.previewSource = event.target.files[0]
-    var reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (event: any) => {
-      this.previewIMG = event.target.result
-    }
-  }
-
-  UploadPreview(value: any){
-    const storageRef = ref(this.storage, 'preview/' + this.previewSource.name)
-    const uploadTask = uploadBytesResumable(storageRef, this.previewSource) // @ts-ignore
-    uploadTask.on('state_changed', (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 20;
-        this.totalProg += Math.abs((this.totalProg - 80) - progress)
-        console.log('Upload is ' + this.totalProg + '% done');
-      }, () => {
-
-      }, () => { // @ts-ignore
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          value.image_url = downloadURL
-          console.log(value)
-        })
-      }
-    )
-  }
-
 
   ngAfterViewInit() {
     this.openChooseCategory()
   }
 
+  // Video loading
+  chooseVideo(event: any){
+    this.videoSource = event.target.files[0]
+    const reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (event: any) => {
+      this.previewVideo = event.target.result
+    }
+  }
+  uploadVideo(value: any) {
+    const storageRef = ref(this.storage, 'videos/' + this.videoSource.name)
+    const uploadTask = uploadBytesResumable(storageRef, this.videoSource)
+    const progressBar = document.querySelector(".progress_bar") as HTMLElement // @ts-ignore
+
+    uploadTask.on('state_changed', (snapshot) => {
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 93;
+      this.totalProgress += Math.abs(this.totalProgress - progress)
+      console.log('Upload is ' + this.totalProgress + '% done')
+
+      document.querySelector(".percent_value").innerHTML = `${Math.floor(this.totalProgress)}%`
+      progressBar.style.width = `${this.totalProgress}%`
+    },
+    () => {},
+    () => { // @ts-ignore
+      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        value.video_url = downloadURL
+        this.uploadPreview(value)
+      })
+    })
+  }
+
+  // Preview loading
+  choosePreview(event: any){
+    this.previewSource = event.target.files[0]
+    const reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (event: any) => {
+      this.previewImg = event.target.result
+    }
+  }
+  uploadPreview(value: any){
+    const storageRef = ref(this.storage, 'preview/' + this.previewSource.name)
+    const uploadTask = uploadBytesResumable(storageRef, this.previewSource)
+    const progressBar = document.querySelector(".progress_bar") as HTMLElement // @ts-ignore
+
+    uploadTask.on('state_changed', (snapshot) => {
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 7;
+      this.totalProgress += Math.abs((this.totalProgress - 93) - progress)
+      console.log('Upload is ' + this.totalProgress + '% done');
+
+      document.querySelector(".percent_value").innerHTML = `${Math.floor(this.totalProgress)}%`
+      progressBar.style.width = `${this.totalProgress}%`
+    },
+    () => {},
+    () => { // @ts-ignore
+      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        value.image_url = downloadURL
+        console.log(value)
+      })
+    })
+  }
+
+  // Sending data to the back-side
   videoUpload(value: any, e: any) {
     const videoUpload = e.composedPath()[0]
     value.categoryId = videoUpload.querySelector(".video_category_input").dataset["id"]
-    this.UploadVideo(value)
+    this.uploadVideo(value)
   }
 
+  // Navigation
   chooseNav(e: any) {
     document.querySelectorAll(".navigation div").forEach(p => {
       p.classList.remove("active")
@@ -97,6 +109,7 @@ export class VideoUploadComponent implements AfterViewInit {
     document.querySelector(".pages_container").className = `pages_container ${e.composedPath()[0].dataset["nav"]}`
   }
 
+  // Choose category selector
   openChooseCategory() {
     document.addEventListener("click", e => {
       let target = e.target as Element // @ts-ignore
@@ -111,6 +124,7 @@ export class VideoUploadComponent implements AfterViewInit {
     categoryValue.dataset["id"] = e.composedPath()[0].children[0].innerHTML
   }
 
+  // Return back function
   returnBack() {
     this.location.back()
   }

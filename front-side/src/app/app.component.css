@@ -288,7 +288,10 @@ header .search
 {
   border: 2px solid #E40915;
   background: transparent;
+
   margin-right: 12px;
+
+  height: 38px;
 
   font-weight: 600;
   color: #E40915;

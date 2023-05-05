@@ -10,7 +10,7 @@ import { SignUpComponent } from "./sign-up/sign-up.component";
 import { SignInComponent } from "./sign-in/sign-in.component";
 import { VideoUploadComponent } from "./video-upload/video-upload.component";
 import { SettingsComponent } from "./settings/settings.component";
-import {HistoryComponent} from "./history/history.component";
+import { HistoryComponent } from "./history/history.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
