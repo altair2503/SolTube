@@ -1,18 +1,20 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Location} from "@angular/common";
 import {Storage, ref, uploadBytesResumable, getDownloadURL, deleteObject} from '@angular/fire/storage'
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
-import {category} from "../models";
+import {CategoryService} from "../services/category.service";
+import {VideoService} from "../services/video.service";
+
 
 @Component({
   selector: 'app-video-upload',
   templateUrl: './video-upload.component.html',
   styleUrls: ['./video-upload.component.css']
 })
-export class VideoUploadComponent implements AfterViewInit {
+export class VideoUploadComponent implements AfterViewInit, OnInit {
 
-  categories = category
+  categories: any = []
 
   public videoSource: any = {}
   public previewSource: any = {}
@@ -22,7 +24,21 @@ export class VideoUploadComponent implements AfterViewInit {
 
   private totalProg: number = 0
 
-  constructor(private location: Location, private router: Router, private storage: Storage) { }
+  ngOnInit() {
+    this.getCategories()
+  }
+
+  constructor(private location: Location,
+              private router: Router,
+              private storage: Storage,
+              private categoryService: CategoryService,
+              private videoService: VideoService) { }
+
+  getCategories(){
+    this.categoryService.getCategories().subscribe((categories)=>{
+      this.categories = categories
+    })
+  }
 
   chooseVideo(event: any){
     this.videoSource = event.target.files[0]
@@ -72,7 +88,7 @@ export class VideoUploadComponent implements AfterViewInit {
       }, () => { // @ts-ignore
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           value.image_url = downloadURL
-          console.log(value)
+          this.createVideo(value)
         })
       }
     )
@@ -113,6 +129,12 @@ export class VideoUploadComponent implements AfterViewInit {
 
   returnBack() {
     this.location.back()
+  }
+
+  createVideo(video: any){
+    this.videoService.postVideo(video).subscribe( ()=> {
+      this.totalProg = 0
+    })
   }
 
 }

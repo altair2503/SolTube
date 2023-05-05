@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Video} from "./models";
+import {Video} from "../models";
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +14,16 @@ export class VideoService {
     return this.client.get<Video[]>(`${this.BASE_URL}/api/videos/`)
   }
 
-  createVideo(video: Video): Observable<Video>{
+  postVideo(video: any): Observable<Video>{
     return this.client.post<Video>(
       `${this.BASE_URL}/api/videos/`,
-          video
+      {
+        "category_id": video.categoryId,
+        "title": video.title,
+        "description": video.description,
+        "video_url": video.video_url,
+        "image_url": video.image_url
+      }
       )
   }
 

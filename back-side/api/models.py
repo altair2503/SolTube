@@ -23,7 +23,7 @@ class Video(models.Model):
     video_url = models.CharField(max_length=500)
     image_url = models.CharField(max_length=500)
     total_views = models.IntegerField(default=0)
-    upload_time = models.DateTimeField(default=datetime.datetime.now())
+    upload_time = models.DateTimeField(default=datetime.datetime.now)
 
     def __str__(self):
         return f'{self.owner} - {self.name}'

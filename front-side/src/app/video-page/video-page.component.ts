@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef} from '@angular/core';
-import { MenuConditionService } from "../menu-condition.service";
+import { MenuConditionService } from "../services/menu-condition.service";
 
 @Component({
   selector: 'app-video-page',
