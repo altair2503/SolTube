@@ -3,12 +3,12 @@
 </div>
 <div class="profile">
   <div class="user">
-    <img src="/assets/abramov.jpg" class="avatar" alt="avatar">
+    <img [src]="channel.avatar" class="avatar" alt="avatar">
     <div class="user_info">
-      <p class="username">ABRAMOV MEDIA</p>
+      <p class="username">{{this.channel.username}}</p>
       <div class="counts">
         <p class="followers_count">12.1K followers</p>
-        <p class="videos_count">68 videos</p>
+        <p class="videos_count">{{channelVideos.length}} videos</p>
       </div>
       <div class="more_about" (click)="navigateToAbout()">
         <p>More about chanel</p>
@@ -123,6 +123,6 @@
     </div>
   </div>
   <div class="page about">
-    about page works!
+    {{this.channel.description}}
   </div>
 </div>

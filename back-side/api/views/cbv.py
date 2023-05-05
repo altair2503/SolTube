@@ -4,7 +4,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from api.models import Category
-from api.serializers import CategorySerializer
+from api.serializers import CategorySerializer, UserSerializer
+from django.contrib.auth.models import User
 
 
 class CategoryListAPIView(APIView):
@@ -58,3 +59,13 @@ class CustomObtainAuthToken(ObtainAuthToken):
         response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
         token = Token.objects.get(key=response.data['token'])
         return Response({'token': token.key, 'id': token.user_id})
+
+
+class UserSearchAPIView(APIView):
+    def get(self, request, username):
+        try:
+            user = User.objects.filter(username=username).get()
+        except Category.DoesNotExist as e:
+            return Response({"Error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        serializer = UserSerializer(user, fields=['id', 'username', 'first_name', 'last_name', 'avatar', 'description'])
+        return Response(serializer.data)
