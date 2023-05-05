@@ -6,29 +6,29 @@
       Return back
     </div>
     <div class="navigation">
-      <button (click)="chooseNav($event)" data-nav="data_video" class="active">
+      <div (click)="chooseNav($event)" data-nav="data_video" class="active">
         <p>Video</p>
         <span></span>
-      </button>
-      <button (click)="chooseNav($event)" data-nav="data_information">
+      </div>
+      <div (click)="chooseNav($event)" data-nav="data_information">
         <p>Information</p>
         <span></span>
-      </button>
-      <button (click)="chooseNav($event)" data-nav="data_uploading">
+      </div>
+      <div (click)="chooseNav($event)" data-nav="data_uploading">
         <p>Uploading</p>
         <span></span>
-      </button>
+      </div>
     </div>
     <div class="pages_container data_video">
       <div class="page video_page">
-        <input type="file" id="video_file">
+        <input name="videoFile" type="file" id="video_file" (change)="chooseVideo($event)">
         <label class="video_container" for="video_file">
           <div class="upload">
             <img src="/assets/svg/upload.svg" alt="">
           </div>
           <p>Select your video</p>
         </label>
-        <input type="file" id="preview_file">
+        <input name="previewFile" type="file" id="preview_file" (change)="choosePreview($event)">
         <label class="preview_container" for="preview_file">
           <div class="upload">
             <img src="/assets/svg/upload.svg" alt="">
@@ -46,19 +46,14 @@
           <label>Video description</label>
         </div>
         <div class="input_block choose">
-          <input name="category" type="text" ngModel placeholder="Choose category of video" disabled>
+          <input name="categoryId" type="text" data-id="" ngModel placeholder="Choose category of video" class="video_category_input" disabled>
           <label>Video category</label>
           <img src="/assets/svg/choose-arrow.svg" alt="">
           <ul (click)="selectCategory($event)" class="select_category">
-            <li>Music</li>
-            <li>Learning</li>
-            <li>Gaming</li>
-            <li>Sports</li>
-            <li>Films</li>
-            <li>Travelling</li>
-            <li>Cook</li>
-            <li>Transport</li>
-            <li>Humor</li>
+            <li *ngFor="let category of categories">
+              {{category.name}}
+              <p>{{category.id}}</p>
+            </li>
           </ul>
         </div>
       </div>
@@ -75,3 +70,7 @@
     </div>
   </form>
 </div>
+
+
+<img src="https://firebasestorage.googleapis.com/v0/b/soltube.appspot.com/o/preview%2Fhq720.webp?alt=media&token=f084131a-64b3-47d3-8fb1-5aab42e6cd0d" alt="">
+<!--<video [src]="previewVideo" controls></video>-->

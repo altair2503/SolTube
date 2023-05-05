@@ -40,50 +40,38 @@ export interface VideoAndUser {
 export const category = [
   {
     id: 1,
-    name: "All"
-  },
-  {
-    id: 2,
-    name: "Trending"
-  },
-  {
-    id: 3,
     name: "Music"
   },
   {
-    id: 4,
+    id: 2,
     name: "Learning"
   },
   {
-    id: 5,
+    id: 3,
     name: "Gaming"
   },
   {
+    id: 4,
+    name: "Sport"
+  },
+  {
+    id: 5,
+    name: "Films"
+  },
+  {
     id: 6,
-    name: "Sports"
-  },
-  {
-    id: 7,
-    name: "Film"
-  },
-  {
-    id: 8,
     name: "Travelling"
   },
   {
-    id: 9,
+    id: 7,
     name: "Cook"
   },
   {
-    id: 10,
-    name: "Fishing"
+    id: 8,
+    name: "Transport"
   },
   {
-    id: 11,
-    name: "Building"
-  },
-  {
-    id: 12,
-    name: "Live streams"
-  },
+    id: 9,
+    name: "Humor"
+  }
 ]
