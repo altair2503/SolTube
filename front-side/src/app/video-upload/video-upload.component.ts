@@ -1,11 +1,12 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 import { Location } from "@angular/common";
 import { Router } from "@angular/router";
 
 import { Storage, ref, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage'
 
-import { category } from "../models";
+import { CategoryService } from "../services/category.service";
+import { VideoService } from "../services/video.service";
 
 
 @Component({
@@ -13,9 +14,9 @@ import { category } from "../models";
   templateUrl: './video-upload.component.html',
   styleUrls: ['./video-upload.component.css']
 })
-export class VideoUploadComponent implements AfterViewInit {
+export class VideoUploadComponent implements AfterViewInit, OnInit {
 
-  categories = category
+  categories: any = []
 
   public videoSource: any = {}
   public previewSource: any = {}
@@ -25,7 +26,23 @@ export class VideoUploadComponent implements AfterViewInit {
 
   private totalProgress: number = 0
 
-  constructor(private location: Location, private router: Router, private storage: Storage) { }
+  ngOnInit() {
+    this.getCategories()
+  }
+
+  constructor (
+    private location: Location,
+    private router: Router,
+    private storage: Storage,
+    private categoryService: CategoryService,
+    private videoService: VideoService
+  ) { }
+
+  getCategories() {
+    this.categoryService.getCategories().subscribe((categories)=>{
+      this.categories = categories
+    })
+  }
 
   ngAfterViewInit() {
     this.openChooseCategory()
@@ -88,16 +105,18 @@ export class VideoUploadComponent implements AfterViewInit {
     () => { // @ts-ignore
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         value.image_url = downloadURL
-        console.log(value)
+        this.createVideo(value)
       })
     })
   }
 
   // Sending data to the back-side
   videoUpload(value: any, e: any) {
-    const videoUpload = e.composedPath()[0]
-    value.categoryId = videoUpload.querySelector(".video_category_input").dataset["id"]
-    this.uploadVideo(value)
+    const videoUploadForm = e.composedPath()[0]
+    value.categoryId = videoUploadForm.querySelector(".video_category_input").dataset["id"]
+    if(videoUploadForm.querySelector(".video_uploading_btn").className == "video_uploading_btn active") {
+      this.uploadVideo(value)
+    }
   }
 
   // Navigation
@@ -107,6 +126,8 @@ export class VideoUploadComponent implements AfterViewInit {
     })
     e.composedPath()[0].classList.add("active")
     document.querySelector(".pages_container").className = `pages_container ${e.composedPath()[0].dataset["nav"]}`
+
+    this.makeButtonActive()
   }
 
   // Choose category selector
@@ -127,6 +148,33 @@ export class VideoUploadComponent implements AfterViewInit {
   // Return back function
   returnBack() {
     this.location.back()
+  }
+
+  createVideo(video: any) {
+    const success = document.querySelector(".notification") as HTMLElement
+    this.videoService.postVideo(video).subscribe( ()=> {
+      this.totalProgress = 0
+    },
+    () => {},
+    () => {
+      success.classList.add("show")
+      setTimeout(() => {
+        success.classList.remove("show")
+        this.router.navigate(['/home']).then(() => {
+          location.reload()
+        })
+      }, 2000)
+    })
+  }
+
+  makeButtonActive() {
+    const title = document.querySelector(".video_title_input") as HTMLInputElement
+    const description = document.querySelector(".video_description_input") as HTMLInputElement
+    const category = document.querySelector(".video_category_input") as HTMLInputElement
+
+    if(title.value != "" && description.value != "" && category.value != "" && this.previewVideo != "" && this.previewImg != "") {
+      document.querySelector(".video_uploading_btn").classList.add("active")
+    } else document.querySelector(".video_uploading_btn").classList.remove("active")
   }
 
 }

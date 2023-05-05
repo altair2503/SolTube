@@ -1,5 +1,5 @@
 <div class="container">
-  <p class="error"></p>
+  <p class="notification">Video successfully uploaded to SolTube!</p>
   <form #videoUploadForm="ngForm" (ngSubmit)="videoUpload(videoUploadForm.value, $event)">
     <div class="return_back" (click)="returnBack()">
       <img src="/assets/svg/arrow.svg" alt="arrow">
@@ -42,11 +42,11 @@
       </div>
       <div class="page information_page">
         <div class="input_block">
-          <input name="title" type="text" ngModel placeholder="Enter title of video">
+          <input name="title" type="text" ngModel placeholder="Enter title of video" class="video_title_input">
           <label>Video title</label>
         </div>
         <div class="input_block">
-          <textarea name="description" type="text" ngModel placeholder="Enter description of video"></textarea>
+          <textarea name="description" type="text" ngModel placeholder="Enter description of video" class="video_description_input"></textarea>
           <label>Video description</label>
         </div>
         <div class="input_block choose">
