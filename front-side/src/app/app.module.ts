@@ -23,6 +23,10 @@ import {JwtService} from "./jwt.service";
 import { MenuConditionService } from "./menu-condition.service";
 import { VideoUploadComponent } from './video-upload/video-upload.component';
 import { SettingsComponent } from './settings/settings.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
 @NgModule({
@@ -42,7 +46,10 @@ import { SettingsComponent } from './settings/settings.component';
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideFirestore(() => getFirestore()),
+        provideStorage(() => getStorage())
     ],
   providers: [
     {

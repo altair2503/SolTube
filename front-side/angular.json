@@ -91,6 +91,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "sol-tube:build:production",
+            "firebaseProject": "soltube",
+            "firebaseHostingSite": "soltube"
+          }
         }
       }
     }

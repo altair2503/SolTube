@@ -65,7 +65,7 @@ form
 
   z-index: 2;
 }
-.navigation button
+.navigation div
 {
   color: #d3d3d3;
   font-size: 12.5px;
@@ -81,8 +81,9 @@ form
   padding: 10px 0;
 
   position: relative;
+  cursor: pointer;
 }
-.navigation button::after
+.navigation div::after
 {
   position: absolute;
   bottom: 0;
@@ -95,7 +96,7 @@ form
   content: "";
   display: block;
 }
-.navigation button:hover
+.navigation div:hover
 {
   background: #1D1F22;
 }
@@ -112,14 +113,14 @@ form
 
   z-index: 3;
 }
-.navigation button.active span
+.navigation div.active span
 {
   width: 13px;
   height: 13px;
   border: 4px solid #E40915;
   background: #b7b7b7;
 }
-.navigation button.active
+.navigation div.active
 {
   font-weight: 500;
   font-size: 13px;
@@ -306,6 +307,10 @@ textarea::placeholder
 {
   padding: 10px 24px;
   font-size: 15px;
+}
+.select_category li p
+{
+  display: none;
 }
 .select_category li:hover
 {
