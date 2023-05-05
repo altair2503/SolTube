@@ -23,6 +23,7 @@ import {JwtService} from "./jwt.service";
 import { MenuConditionService } from "./menu-condition.service";
 import { VideoUploadComponent } from './video-upload/video-upload.component';
 import { SettingsComponent } from './settings/settings.component';
+import { HistoryComponent } from './history/history.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { SettingsComponent } from './settings/settings.component';
     SignUpComponent,
     SignInComponent,
     VideoUploadComponent,
-    SettingsComponent
+    SettingsComponent,
+    HistoryComponent
   ],
     imports: [
         BrowserModule,

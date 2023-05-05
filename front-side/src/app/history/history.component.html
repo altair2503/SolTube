@@ -1,0 +1,14 @@
+<div class="container">
+  <p class="title">Watch History</p>
+  <button class="clear_history_btn" (click)="clearAllHistory()">
+    <img src="/assets/svg/trash.svg" alt="clear-history">
+    Clear All Watch History
+  </button>
+  <div class="history_container">
+    <app-video-item [videoType]="true" [historyItem]="true"></app-video-item>
+    <app-video-item [videoType]="true" [historyItem]="true"></app-video-item>
+    <app-video-item [videoType]="true" [historyItem]="true"></app-video-item>
+    <app-video-item [videoType]="true" [historyItem]="true"></app-video-item>
+    <app-video-item [videoType]="true" [historyItem]="true"></app-video-item>
+  </div>
+</div>

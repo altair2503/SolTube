@@ -1,0 +1,67 @@
+.container
+{
+  position: relative;
+}
+
+/* Title styles */
+.title
+{
+  font-size: 26px;
+  font-weight: 600;
+
+  margin-bottom: 25px;
+}
+
+/* Clear All History button styling */
+.clear_history_btn
+{
+  display: flex;
+  align-items: end;
+
+  position: absolute;
+  right: 0;
+  top: 6px;
+
+  color: #F1F2F3;
+  font-weight: 500;
+  font-size: 13.5px;
+
+  opacity: .85;
+  gap: 8px;
+
+  transition: .15s;
+}
+.clear_history_btn::after
+{
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  display: block;
+  content: "";
+}
+.clear_history_btn:hover
+{
+  opacity: 1;
+}
+.clear_history_btn img
+{
+  width: 17px;
+}
+
+/* History container styling */
+.history_container
+{
+  height: calc(100vh - 156px);
+
+  display: grid;
+  grid-template-columns: repeat(4, 0fr);
+  justify-content: space-between;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+

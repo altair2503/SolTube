@@ -9,6 +9,7 @@ import {MenuConditionService} from "../menu-condition.service";
 export class VideoItemComponent implements AfterViewInit {
 
   @Input() videoType: boolean
+  @Input() historyItem: boolean
 
   linkToVideo: string = ""
 
@@ -17,7 +18,7 @@ export class VideoItemComponent implements AfterViewInit {
 
   title2 = '"Quantum dots from Sber - OLED TV 65" for 55K with assistant and installation .apk. That good?'
   chanel2 = "Wylsacom"
-  
+
   constructor(private menuConditionService: MenuConditionService) { }
 
   ngAfterViewInit() {
@@ -34,8 +35,10 @@ export class VideoItemComponent implements AfterViewInit {
   closeMoreWindow() {
     document.addEventListener("click", e => {
       let target = e.target as Element
-      if(target.className !== "more_open_btn") {
-        document.querySelector(".more_open").classList.remove("open")
+      if(target.className != "more_open_btn") {
+        document.querySelectorAll(".more_open").forEach(moreOpen => {
+          moreOpen.classList.remove("open")
+        })
       }
     })
   }
@@ -52,6 +55,8 @@ export class VideoItemComponent implements AfterViewInit {
 
       linkToVideo.value = location.href
       this.linkToVideo = linkToVideo.value
+
+      if(document.querySelector("video")) document.querySelector("video").pause()
     }
   }
 
@@ -77,15 +82,8 @@ export class VideoItemComponent implements AfterViewInit {
       })
   }
 
-  // playVideo() {
-  //   setTimeout(() => {
-  //     document.querySelector("video").classList.add("show")
-  //     document.querySelector("video").play()
-  //   }, 1000)
-  // }
-  // stopVideo() {
-  //   document.querySelector("video").classList.remove("show")
-  //   document.querySelector("video").pause()
-  // }
+  deleteFromHistory() {
+
+  }
 
 }

@@ -77,7 +77,8 @@
 /* Account page styling */
 .account
 {
-  gap: 140px;
+  gap: 120px;
+  position: relative;
 }
 
 /* Block styling */
@@ -267,8 +268,8 @@ textarea::placeholder
 .notification
 {
   position: fixed;
-  bottom: -30px;
-  left: 0;
+  bottom: -80px;
+  left: 55px;
   z-index: 12;
 
   margin: 60px 55px;
@@ -280,16 +281,38 @@ textarea::placeholder
 
   font-size: 14.5px;
 
-  /*visibility: hidden;*/
-  /*opacity: 0;*/
+  visibility: hidden;
+  opacity: 0;
 
   transition: .2s;
   cursor: default;
 }
 .notification.show
 {
-  bottom: 0;
+  bottom: -30px;
   visibility: visible;
   opacity: 1;
 }
 
+/* Delete account button styling */
+.delete_account_btn
+{
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  padding: 8px 15px;
+
+  color: #F1F2F3;
+  font-weight: 500;
+  font-size: 13.5px;
+
+  background: #E40915;
+  border-radius: 7px;
+
+  transition: .15s;
+}
+.delete_account_btn:hover
+{
+  background: #ff000e;
+}

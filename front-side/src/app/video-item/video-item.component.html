@@ -10,7 +10,8 @@
         <a *ngIf="getMenuCondition() == 'left close'" routerLink="">{{title.substring(0, 29)}} ...</a>
         <a *ngIf="getMenuCondition() == 'left'" routerLink="">{{title.substring(0, 28)}}...</a>
         <a routerLink="/chanel" class="chanel_link">
-          <p>{{chanel.substring(0, 8)}}</p>
+          <p *ngIf="getMenuCondition() == 'left close'">{{chanel.substring(0, 8)}}</p>
+          <p *ngIf="getMenuCondition() == 'left'">{{chanel.substring(0, 5)}}</p>
           <div class="video_data">
             125K views <p>|</p> 2 years ago
           </div>
@@ -19,20 +20,24 @@
     </div>
     <div class="nav_right">
       <img src="/assets/svg/more.svg" alt="more" class="more_open_btn" (click)="openMoreWindow($event)">
-      <div class="more_open">
-        <a routerLink="">
+      <ul class="more_open">
+        <li>
           <img src="/assets/svg/playlist-add.svg" alt="">
           <p style="margin-top: -1px">Add to playlist</p>
-        </a>
-        <a routerLink="">
+        </li>
+        <li>
           <img src="/assets/svg/watch-later.svg" alt="">
           <p style="margin-top: 1px">Watch later</p>
-        </a>
-        <a routerLink="" (click)="openShareWindow($event)">
+        </li>
+        <li (click)="openShareWindow($event)">
           <img src="/assets/svg/share.svg" class="share" alt="">
           <p style="margin-top: 1px">Share</p>
-        </a>
-      </div>
+        </li>
+        <li *ngIf="historyItem" class="history_item" (click)="deleteFromHistory()">
+          <img src="/assets/svg/trash.svg" alt="">
+          <p style="margin-top: 3px">Delete from history</p>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
@@ -56,20 +61,20 @@
     </div>
     <div class="nav_right">
       <img src="/assets/svg/more.svg" alt="more" class="more_open_btn" (click)="openMoreWindow($event)">
-      <div class="more_open">
-        <a routerLink="">
+      <ul class="more_open">
+        <li>
           <img src="/assets/svg/playlist-add.svg" alt="">
           <p style="margin-top: -1px">Add to playlist</p>
-        </a>
-        <a routerLink="">
+        </li>
+        <li>
           <img src="/assets/svg/watch-later.svg" alt="">
           <p style="margin-top: 1px">Watch later</p>
-        </a>
-        <a (click)="openShareWindow($event)" style="cursor: pointer">
+        </li>
+        <li (click)="openShareWindow($event)">
           <img src="/assets/svg/share.svg" class="share" alt="">
           <p style="margin-top: 1px">Share</p>
-        </a>
-      </div>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

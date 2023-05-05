@@ -51,6 +51,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
 
   updateUser(value: any, e: any) {
     const updateUserForm = e.composedPath()[0]
+    const success = document.querySelector(".notification")
 
     if(value.username == "") value.username = updateUserForm.querySelector(".update_username").value
     if(value.firstname == "") value.firstname = updateUserForm.querySelector(".update_fname").value
@@ -61,6 +62,14 @@ export class SettingsComponent implements OnInit, AfterViewInit {
         this.user.username = user.username
         this.user.first_name = user.first_name
         this.user.last_name = user.last_name
+      },
+      () => {},
+      () => {
+        success.classList.add("show")
+        setTimeout(() => {
+          success.classList.remove("show")
+          location.reload()
+        }, 2000)
       })
     }
   }

@@ -110,7 +110,7 @@
 {
   position: absolute;
   top: 30px;
-  right: -140px;
+  right: -10px;
   z-index: 2;
 
   background: #3b3d42;
@@ -119,22 +119,35 @@
   box-sizing: border-box;
   border-radius: 10px;
 
-  width: 170px;
   display: none;
+}
+.more_open.hist
+{
+  width: 350px;
 }
 .more_open.open
 {
   display: flex !important;
   flex-direction: column;
 }
-.more_open a
+.more_open li
 {
   display: flex;
   margin-bottom: 13px;
 
   position: relative;
+  cursor: pointer;
+
+  gap: 10px;
 }
-.more_open a::after
+.more_open li.history_item
+{
+  gap: 7px;
+  border-top: 2px solid rgba(150, 150, 150, .2);
+  padding-top: 14px;
+  margin-top: -8px;
+}
+.more_open li::after
 {
   width: 100%;
   height: 100%;
@@ -146,20 +159,20 @@
   left: 0;
   top: 0;
 }
-.more_open a:last-child
+.more_open li:last-child
 {
   margin-bottom: 0;
 }
-.more_open a .share
+.more_open li .share
 {
   width: 18px;
 }
-.more_open a p
+.more_open li p
 {
   font-size: 14px;
   color: #F1F2F3;
 
-  margin-left: 12px;
+  white-space: nowrap;
 }
 .video-item.close
 {

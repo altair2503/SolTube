@@ -77,6 +77,10 @@ ul li
 
   cursor: pointer;
 }
+ul li.subscriptions
+{
+  margin-bottom: 10px;
+}
 ul li a
 {
   display: flex;

@@ -29,7 +29,7 @@
     <div class="separator"></div>
     <ul>
       <li>
-        <a href="" (click)="selectScreen($event)">
+        <a href="/history" (click)="selectScreen($event)">
           <div class="icons">
             <img src="/assets/svg/history.svg" alt="history">
             <img src="/assets/svg/history-active.svg" alt="history-active">
@@ -122,12 +122,6 @@
         <div class="icons">
           <img src="/assets/svg/video-add.svg" alt="video-add">
           <img src="/assets/svg/video-add-active.svg" alt="video-add-active">
-        </div>
-      </a>
-      <a href="">
-        <div class="icons notif">
-          <img src="/assets/svg/notifications.svg" alt="notifications">
-          <img src="/assets/svg/notifications-active.svg" alt="notifications-active">
         </div>
       </a>
       <a href="/profile" class="user_link" [ngClass]="user.avatar == '/assets/avatar.png' ? 'user_link default' : 'user_link'">

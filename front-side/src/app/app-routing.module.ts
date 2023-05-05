@@ -10,6 +10,7 @@ import { SignUpComponent } from "./sign-up/sign-up.component";
 import { SignInComponent } from "./sign-in/sign-in.component";
 import { VideoUploadComponent } from "./video-upload/video-upload.component";
 import { SettingsComponent } from "./settings/settings.component";
+import {HistoryComponent} from "./history/history.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'video-upload', component: VideoUploadComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'history', component: HistoryComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
