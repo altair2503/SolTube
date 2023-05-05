@@ -3,6 +3,8 @@ import {JwtService} from "../services/jwt.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MenuConditionService} from "../services/menu-condition.service";
 import {user} from "@angular/fire/auth";
+import {UserService} from "../services/user.service";
+import {User, Video} from "../models";
 
 @Component({
   selector: 'app-chanel',
@@ -10,12 +12,13 @@ import {user} from "@angular/fire/auth";
   styleUrls: ['./chanel.component.css']
 })
 export class ChanelComponent implements OnInit{
-
+  channel: User
+  channelVideos: Video[]
 
   ngOnInit() {
     let username: string
     username = this.route.snapshot.paramMap.get('username') ;
-    console.log(username)
+    this.getChannel(username)
   }
 
   constructor (
@@ -23,6 +26,7 @@ export class ChanelComponent implements OnInit{
     private router: Router,
     private menuConditionService: MenuConditionService,
     private route: ActivatedRoute,
+    private userService: UserService
   ) { }
 
   getMenuCondition() {
@@ -43,6 +47,21 @@ export class ChanelComponent implements OnInit{
     });
     document.querySelector(".navigation p:last-child").classList.add("active")
     document.querySelector(".pages_container").className = "pages_container data_about"
+  }
+
+
+  getChannel(username: string){
+   this.userService.search(username).subscribe( (channel) => {
+     this.channel = channel
+     this.getChannelVideos(this.channel.id)
+   })
+  }
+
+  getChannelVideos(id: number){
+    this.userService.getUserVideos(id).subscribe((data)=>{
+      this.channelVideos = data
+      console.log(this.channelVideos)
+    })
   }
 
 }

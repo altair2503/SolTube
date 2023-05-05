@@ -69,3 +69,9 @@ def video_details(request, video_id):
         return Response({"Message": "You don't have permission to delete"}, status=status.HTTP_403_FORBIDDEN)
 
 
+@api_view(['GET'])
+def user_videos(request, user_id):
+    videos = Video.objects.filter(owner_id=user_id).all()
+    if request.method == 'GET':
+        serializer = VideoSerializerModel(videos, many=True)
+        return Response(serializer.data)

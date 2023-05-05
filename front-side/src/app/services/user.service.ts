@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {User} from "../models";
+import {User, Video} from "../models";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,14 @@ export class UserService {
         last_name: lastName
       }
     )
+  }
+
+  search(username: string): Observable<User>{
+    return this.client.get<User>(`${this.BASE_URL}/api/search/${username}`)
+  }
+
+  getUserVideos(id: number): Observable<Video[]>{
+    return this.client.get<Video[]>(`${this.BASE_URL}/api/videos/user/${id}`)
   }
 
 }
