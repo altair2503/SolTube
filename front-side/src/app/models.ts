@@ -31,7 +31,8 @@ export interface Video {
   video_url: string,
   image_url: string,
   total_views: number,
-  upload_time: Date
+  upload_time: Date,
+  total_duration: string
 }
 
 export interface VideoAndUser {

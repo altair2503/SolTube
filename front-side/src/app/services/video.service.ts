@@ -19,16 +19,17 @@ export class VideoService {
   }
 
   postVideo(video: any): Observable<Video> {
-    return this.client.post<Video>(
+    return this.client.post<Video> (
       `${this.BASE_URL}/api/videos/`,
       {
         "category_id": video.categoryId,
         "title": video.title,
         "description": video.description,
         "video_url": video.video_url,
-        "image_url": video.image_url
+        "image_url": video.image_url,
+        "total_duration": video.totalDuration
       }
-      )
+    )
   }
 
   updateVideo(video_id: number, video: Video): Observable<Video> {

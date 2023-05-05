@@ -219,6 +219,33 @@
   display: flex;
   margin-bottom: 20px;
 }
+.req_cover
+{
+  position: relative;
+}
+.req_cover .duration
+{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 4px;
+
+  background: rgba(29, 31, 34, 0.65);
+  border-bottom-right-radius: 6px;
+  border-top-left-radius: 7px;
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 7px 0 12px;
+  height: 25px;
+
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFFF;
+}
 .recommended_item .req_cover img
 {
   width: 175px;
@@ -226,8 +253,6 @@
 
   border-radius: 6px;
   object-fit: cover;
-
-  margin-right: 12px;
 }
 .recommended_item.close .req_cover img
 {
@@ -237,6 +262,8 @@
 .recommended_item .rec_right
 {
   display: flex;
+
+  margin-left: 12px;
   padding-top: 5px;
 }
 .recommended_item .req_info
@@ -300,8 +327,6 @@
 
   border-radius: 6px;
   object-fit: cover;
-
-  margin-right: 12px;
 }
 .liked_item.close .req_cover img
 {
@@ -314,6 +339,8 @@
 
   height: 105px;
   box-sizing: border-box;
+
+  margin-left: 12px;
   padding-top: 5px;
 
   flex-grow: 1;

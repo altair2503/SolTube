@@ -118,8 +118,11 @@ export class VideoUploadComponent implements AfterViewInit, OnInit {
   // Sending data to the back-side
   videoUpload(value: any, e: any) {
     const videoUploadForm = e.composedPath()[0]
+
     value.categoryId = videoUploadForm.querySelector(".video_category_input").dataset["id"]
-    if (videoUploadForm.querySelector(".video_uploading_btn").className == "video_uploading_btn active") {
+    value.totalDuration = this.formatDuration(videoUploadForm.querySelector(".preview_video").duration)
+
+    if(videoUploadForm.querySelector(".video_uploading_btn").className == "video_uploading_btn active") {
       this.uploadVideo(value)
     }
   }
@@ -183,4 +186,20 @@ export class VideoUploadComponent implements AfterViewInit, OnInit {
       document.querySelector(".video_uploading_btn").classList.add("active")
     } else document.querySelector(".video_uploading_btn").classList.remove("active")
   }
+
+  leadingZeroFormatter(): Intl.NumberFormat {
+    return new Intl.NumberFormat(undefined, {
+      minimumIntegerDigits: 2
+    })
+  }
+  formatDuration(time: any): any {
+    const seconds = Math.floor(time % 60)
+    const minutes = Math.floor(time / 60) % 60
+    const hours = Math.floor(time / 3600)
+
+    if(hours === 0) return `${minutes}:${this.leadingZeroFormatter.call("").format(seconds)}`
+    else return `${hours}:${this.leadingZeroFormatter.call("").format(minutes)}
+                :${this.leadingZeroFormatter.call("").format(seconds)}`
+  }
+
 }
