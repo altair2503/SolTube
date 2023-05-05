@@ -19,39 +19,7 @@
   <div class="liked_container">
     <div class="liked_item_container">
       <p class="index">1</p>
-      <div class="liked_item">
-        <a routerLink="" class="req_cover">
-          <img src="/assets/video-cover.webp" alt="">
-        </a>
-        <div class="req_info">
-          <a routerLink="">
-            <p class="req_title">{{title2}}</p>
-          </a>
-          <a routerLink="">
-            <p class="req_chanel">{{chanel2}}</p>
-            <div class="req_data">
-              125K views <p>|</p> 2 years ago
-            </div>
-          </a>
-        </div>
-        <div class="nav_right">
-          <img src="/assets/svg/more.svg" alt="more" class="more_open_btn">
-          <ul class="more_open">
-            <li>
-              <img src="/assets/svg/playlist-add.svg" alt="">
-              <p style="margin-top: -1px">Add to playlist</p>
-            </li>
-            <li>
-              <img src="/assets/svg/watch-later.svg" alt="">
-              <p style="margin-top: 1px">Watch later</p>
-            </li>
-            <li>
-              <img src="/assets/svg/share.svg" class="share" alt="">
-              <p style="margin-top: 1px">Share</p>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <app-video-item [videoType]="3"></app-video-item>
     </div>
   </div>
 </div>

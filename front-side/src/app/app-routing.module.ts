@@ -16,7 +16,7 @@ import { LikedVideosComponent } from "./liked-videos/liked-videos.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'watch', component: VideoPageComponent },
+  { path: 'watch/:id', component: VideoPageComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'chanel/:username', component: ChanelComponent },
   { path: 'sign-up', component: SignUpComponent },
