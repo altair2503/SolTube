@@ -30,16 +30,17 @@ export class VideoUploadComponent implements AfterViewInit, OnInit {
     this.getCategories()
   }
 
-  constructor (
+  constructor(
     private location: Location,
     private router: Router,
     private storage: Storage,
     private categoryService: CategoryService,
     private videoService: VideoService
-  ) { }
+  ) {
+  }
 
   getCategories() {
-    this.categoryService.getCategories().subscribe((categories)=>{
+    this.categoryService.getCategories().subscribe((categories) => {
       this.categories = categories
     })
   }
@@ -49,7 +50,7 @@ export class VideoUploadComponent implements AfterViewInit, OnInit {
   }
 
   // Video loading
-  chooseVideo(event: any){
+  chooseVideo(event: any) {
     this.videoSource = event.target.files[0]
     const reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
@@ -57,30 +58,32 @@ export class VideoUploadComponent implements AfterViewInit, OnInit {
       this.previewVideo = event.target.result
     }
   }
+
   uploadVideo(value: any) {
     const storageRef = ref(this.storage, 'videos/' + this.videoSource.name)
     const uploadTask = uploadBytesResumable(storageRef, this.videoSource)
     const progressBar = document.querySelector(".progress_bar") as HTMLElement // @ts-ignore
 
     uploadTask.on('state_changed', (snapshot) => {
-      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 93;
-      this.totalProgress += Math.abs(this.totalProgress - progress)
-      console.log('Upload is ' + this.totalProgress + '% done')
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 93;
+        this.totalProgress += Math.abs(this.totalProgress - progress)
+        console.log('Upload is ' + this.totalProgress + '% done')
 
-      document.querySelector(".percent_value").innerHTML = `${Math.floor(this.totalProgress)}%`
-      progressBar.style.width = `${this.totalProgress}%`
-    },
-    () => {},
-    () => { // @ts-ignore
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        value.video_url = downloadURL
-        this.uploadPreview(value)
+        document.querySelector(".percent_value").innerHTML = `${Math.floor(this.totalProgress)}%`
+        progressBar.style.width = `${this.totalProgress}%`
+      },
+      () => {
+      },
+      () => { // @ts-ignore
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          value.video_url = downloadURL
+          this.uploadPreview(value)
+        })
       })
-    })
   }
 
   // Preview loading
-  choosePreview(event: any){
+  choosePreview(event: any) {
     this.previewSource = event.target.files[0]
     const reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
@@ -88,33 +91,35 @@ export class VideoUploadComponent implements AfterViewInit, OnInit {
       this.previewImg = event.target.result
     }
   }
-  uploadPreview(value: any){
+
+  uploadPreview(value: any) {
     const storageRef = ref(this.storage, 'preview/' + this.previewSource.name)
     const uploadTask = uploadBytesResumable(storageRef, this.previewSource)
     const progressBar = document.querySelector(".progress_bar") as HTMLElement // @ts-ignore
 
     uploadTask.on('state_changed', (snapshot) => {
-      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 7;
-      this.totalProgress += Math.abs((this.totalProgress - 93) - progress)
-      console.log('Upload is ' + this.totalProgress + '% done');
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 7;
+        this.totalProgress += Math.abs((this.totalProgress - 93) - progress)
+        console.log('Upload is ' + this.totalProgress + '% done');
 
-      document.querySelector(".percent_value").innerHTML = `${Math.floor(this.totalProgress)}%`
-      progressBar.style.width = `${this.totalProgress}%`
-    },
-    () => {},
-    () => { // @ts-ignore
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        value.image_url = downloadURL
-        this.createVideo(value)
+        document.querySelector(".percent_value").innerHTML = `${Math.floor(this.totalProgress)}%`
+        progressBar.style.width = `${this.totalProgress}%`
+      },
+      () => {
+      },
+      () => { // @ts-ignore
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          value.image_url = downloadURL
+          this.createVideo(value)
+        })
       })
-    })
   }
 
   // Sending data to the back-side
   videoUpload(value: any, e: any) {
     const videoUploadForm = e.composedPath()[0]
     value.categoryId = videoUploadForm.querySelector(".video_category_input").dataset["id"]
-    if(videoUploadForm.querySelector(".video_uploading_btn").className == "video_uploading_btn active") {
+    if (videoUploadForm.querySelector(".video_uploading_btn").className == "video_uploading_btn active") {
       this.uploadVideo(value)
     }
   }
@@ -134,11 +139,12 @@ export class VideoUploadComponent implements AfterViewInit, OnInit {
   openChooseCategory() {
     document.addEventListener("click", e => {
       let target = e.target as Element // @ts-ignore
-      if(target.className !== "input_block choose") {
+      if (target.className !== "input_block choose") {
         document.querySelector(".select_category").classList.remove("open")
       } else document.querySelector(".select_category").classList.add("open")
     })
   }
+
   selectCategory(e: any) {
     const categoryValue = document.querySelector(".input_block.choose input") as HTMLInputElement
     categoryValue.value = e.composedPath()[0].innerText
@@ -152,19 +158,20 @@ export class VideoUploadComponent implements AfterViewInit, OnInit {
 
   createVideo(video: any) {
     const success = document.querySelector(".notification") as HTMLElement
-    this.videoService.postVideo(video).subscribe( ()=> {
-      this.totalProgress = 0
-    },
-    () => {},
-    () => {
-      success.classList.add("show")
-      setTimeout(() => {
-        success.classList.remove("show")
-        this.router.navigate(['/home']).then(() => {
-          location.reload()
-        })
-      }, 2000)
-    })
+    this.videoService.postVideo(video).subscribe(() => {
+        this.totalProgress = 0
+      },
+      () => {
+      },
+      () => {
+        success.classList.add("show")
+        setTimeout(() => {
+          success.classList.remove("show")
+          this.router.navigate(['/home']).then(() => {
+            location.reload()
+          })
+        }, 2000)
+      })
   }
 
   makeButtonActive() {
@@ -172,9 +179,8 @@ export class VideoUploadComponent implements AfterViewInit, OnInit {
     const description = document.querySelector(".video_description_input") as HTMLInputElement
     const category = document.querySelector(".video_category_input") as HTMLInputElement
 
-    if(title.value != "" && description.value != "" && category.value != "" && this.previewVideo != "" && this.previewImg != "") {
+    if (title.value != "" && description.value != "" && category.value != "" && this.previewVideo != "" && this.previewImg != "") {
       document.querySelector(".video_uploading_btn").classList.add("active")
     } else document.querySelector(".video_uploading_btn").classList.remove("active")
   }
-
 }

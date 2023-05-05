@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'watch', component: VideoPageComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'chanel', component: ChanelComponent },
+  { path: 'chanel/:username', component: ChanelComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'video-upload', component: VideoUploadComponent },

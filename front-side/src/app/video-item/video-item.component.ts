@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, Input} from '@angular/core';
 import {MenuConditionService} from "../services/menu-condition.service";
+import {Video} from "../models";
 
 @Component({
   selector: 'app-video-item',
@@ -10,6 +11,7 @@ export class VideoItemComponent implements AfterViewInit {
 
   @Input() videoType: boolean
   @Input() historyItem: boolean
+  @Input() video: Video = {} as Video
 
   linkToVideo: string = ""
 

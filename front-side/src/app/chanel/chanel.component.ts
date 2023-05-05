@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {JwtService} from "../services/jwt.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MenuConditionService} from "../services/menu-condition.service";
+import {user} from "@angular/fire/auth";
 
 @Component({
   selector: 'app-chanel',
@@ -10,15 +11,18 @@ import {MenuConditionService} from "../services/menu-condition.service";
 })
 export class ChanelComponent implements OnInit{
 
+
   ngOnInit() {
-    // const token = localStorage.getItem('token')
-    // this.user = this.jwtService.decodeToken(token)
+    let username: string
+    username = this.route.snapshot.paramMap.get('username') ;
+    console.log(username)
   }
 
   constructor (
     private jwtService: JwtService,
     private router: Router,
-    private menuConditionService: MenuConditionService
+    private menuConditionService: MenuConditionService,
+    private route: ActivatedRoute,
   ) { }
 
   getMenuCondition() {

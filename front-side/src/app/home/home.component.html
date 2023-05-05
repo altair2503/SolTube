@@ -4,9 +4,9 @@
 </div>
 <div class="separator"></div>
 <div class="container">
-  <app-video-item [videoType]="true"></app-video-item>
-  <app-video-item [videoType]="true"></app-video-item>
-  <app-video-item [videoType]="true"></app-video-item>
-  <app-video-item [videoType]="true"></app-video-item>
-  <app-video-item [videoType]="true"></app-video-item>
+  <app-video-item *ngFor="let video of videos" [videoType]="true" [video]="video"></app-video-item>
+<!--  <app-video-item [videoType]="true"></app-video-item>-->
+<!--  <app-video-item [videoType]="true"></app-video-item>-->
+<!--  <app-video-item [videoType]="true"></app-video-item>-->
+<!--  <app-video-item [videoType]="true"></app-video-item>-->
 </div>

@@ -60,7 +60,7 @@ class CategorySerializer(serializers.Serializer):
 
 
 class VideoSerializerModel(serializers.ModelSerializer):
-    owner = UserSerializer()
+    owner = UserSerializer(fields=['id', 'username', 'first_name', 'last_name', 'avatar', 'description'])
     category = CategorySerializer()
 
     class Meta:

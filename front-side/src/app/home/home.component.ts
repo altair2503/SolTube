@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuConditionService} from "../services/menu-condition.service";
 import {CategoryService} from "../services/category.service";
+import {VideoService} from "../services/video.service";
 
 @Component({
   selector: 'app-home',
@@ -10,19 +11,31 @@ import {CategoryService} from "../services/category.service";
 export class HomeComponent implements OnInit{
 
   categories: any = []
+  public videos: any = []
 
   title = '"Quantum dots from Sber - OLED TV 65" for 55K with an assistant and installation .apk. That good?'
   chanel = "Wylsacom"
 
   ngOnInit() {
     this.getCategories()
+    this.getVideos()
   }
 
-  constructor(private menuConditionService: MenuConditionService, private categoryService: CategoryService) { }
+  constructor(
+    private menuConditionService: MenuConditionService,
+    private categoryService: CategoryService,
+    private videoService: VideoService
+  ) { }
 
   getCategories(){
     this.categoryService.getCategories().subscribe((categories)=>{
       this.categories = categories
+    })
+  }
+
+  getVideos(){
+    this.videoService.getVideos().subscribe((videos) => {
+      this.videos = videos
     })
   }
 
