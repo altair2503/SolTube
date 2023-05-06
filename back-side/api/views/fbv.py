@@ -4,9 +4,9 @@ from django.contrib.auth.hashers import make_password
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from api.serializers import UserSerializer, VideoSerializerModel, VideoSerializer
+from api.serializers import UserSerializer, VideoSerializerModel, VideoSerializer, UserVideoInterSerializer
 from django.contrib.auth.models import User
-from api.models import Video
+from api.models import Video, UserVideoIntermediate
 
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
@@ -54,13 +54,27 @@ def video_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'DELETE'])
+@api_view(['GET', 'PUT', 'DELETE'])
 def video_details(request, video_id):
     video = Video.objects.get(pk=video_id)
     if request.method == 'GET':
+        try:
+            userVideoInter = UserVideoIntermediate.objects.get(user_id=request.user.id, video_id=video.id)
+        except UserVideoIntermediate.DoesNotExist as e:
+            userVideoInter = UserVideoIntermediate(user_id=request.user.id, video_id=video.id)
+            userVideoInter.save()
         video.total_views += 1
         video.save()
         serializer = VideoSerializerModel(video)
+        return Response(serializer.data)
+    if request.method == 'PUT':
+        userVideoInter = UserVideoIntermediate.objects.get(user_id=request.user.id, video_id=video.id)
+        if 'isLiked' in request.data:
+            userVideoInter.isLiked = request.data['isLiked']
+        if 'isViewed' in request.data:
+            userVideoInter.isViewed = request.data['isViewed']
+        userVideoInter.save()
+        serializer = UserVideoInterSerializer(userVideoInter)
         return Response(serializer.data)
     if request.method == 'DELETE':
         if video.owner_id == request.user.id:

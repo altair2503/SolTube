@@ -34,6 +34,6 @@ class UserVideoIntermediate(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
     isLiked = models.IntegerField(default=0)
-    isViewed = models.BooleanField(default=False)
+    isViewed = models.BooleanField(default=True)
 
 
