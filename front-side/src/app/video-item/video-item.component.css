@@ -327,7 +327,10 @@
 
   border-radius: 6px;
   object-fit: cover;
+<<<<<<< HEAD
   margin-right: 12px;
+=======
+>>>>>>> ecb6c1c4368ae93dc5072c0f2b9fc8dc7525403c
 }
 .liked_item.close .req_cover img
 {
@@ -342,7 +345,10 @@
   box-sizing: border-box;
 
   margin-left: 12px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> ecb6c1c4368ae93dc5072c0f2b9fc8dc7525403c
   padding-top: 5px;
 
   flex-grow: 1;
