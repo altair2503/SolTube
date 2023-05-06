@@ -17,6 +17,7 @@ import { VideoService } from "../services/video.service";
 export class VideoUploadComponent implements AfterViewInit, OnInit {
 
   categories: any = []
+  public que: number
 
   public videoSource: any = {}
   public previewSource: any = {}

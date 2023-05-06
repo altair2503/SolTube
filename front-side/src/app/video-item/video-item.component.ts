@@ -93,8 +93,4 @@ export class VideoItemComponent implements AfterViewInit {
 
   }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ecb6c1c4368ae93dc5072c0f2b9fc8dc7525403c
 }

@@ -17,10 +17,7 @@ export class VideoService {
   filterVideos(id: number): Observable<Video[]> {
     return this.client.get<Video[]>(`${this.BASE_URL}/api/categories/${id}/videos`)
   }
-<<<<<<< HEAD
-=======
 
->>>>>>> ecb6c1c4368ae93dc5072c0f2b9fc8dc7525403c
   getVideo(id: number): Observable<Video> {
     return this.client.get<Video>(`${this.BASE_URL}/api/videos/${id}`)
   }
