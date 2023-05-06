@@ -14,6 +14,7 @@ export class UserService {
 
   updateUser (
     username: string,
+    description: string,
     firstName: string,
     lastName: string
   ) {
@@ -21,6 +22,7 @@ export class UserService {
       `${this.BASE_URL}/api/user/`,
       {
         username: username,
+        description: description,
         first_name: firstName,
         last_name: lastName
       }

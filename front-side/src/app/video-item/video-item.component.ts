@@ -85,11 +85,11 @@ export class VideoItemComponent implements AfterViewInit {
       })
   }
 
-  deleteFromHistory() {
+  deleteFromHistory(id: number) {
 
   }
 
-  deleteFromLiked() {
+  deleteFromLiked(id: number) {
 
   }
 

@@ -39,6 +39,12 @@ export class HomeComponent implements OnInit{
     })
   }
 
+  getVideosByCategory(id: number) {
+    this.videoService.filterVideos(id).subscribe((videos) => {
+      this.videos = videos
+    })
+  }
+
   getMenuCondition() {
     return this.menuConditionService.getMenuCondition()
   }
@@ -47,6 +53,9 @@ export class HomeComponent implements OnInit{
     for(let element of e.composedPath()[1].querySelectorAll("p")) {
       element.classList.remove("active")
     } e.composedPath()[0].classList.add("active")
+
+    if(e.composedPath()[0].innerText == "All") this.getVideos()
+    else this.getVideosByCategory(e.composedPath()[0].children[0].innerHTML)
   }
 
 

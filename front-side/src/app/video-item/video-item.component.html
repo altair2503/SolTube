@@ -33,7 +33,7 @@
           <img src="/assets/svg/share.svg" class="share" alt="">
           <p style="margin-top: 1px">Share</p>
         </li>
-        <li *ngIf="historyItem" class="history_item" (click)="deleteFromHistory()">
+        <li *ngIf="historyItem" class="history_item" (click)="deleteFromHistory(video.id)">
           <img src="/assets/svg/trash.svg" alt="">
           <p style="margin-top: 3px">Delete from history</p>
         </li>
@@ -111,7 +111,7 @@
         <img src="/assets/svg/share.svg" class="share" alt="">
         <p style="margin-top: 3px">Share</p>
       </li>
-      <li class="history_item" (click)="deleteFromLiked()">
+      <li class="history_item" (click)="deleteFromLiked(video.id)">
         <img src="/assets/svg/trash.svg" alt="">
         <p style="margin-top: 3px">Delete from liked</p>
       </li>

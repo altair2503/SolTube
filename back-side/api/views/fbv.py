@@ -12,7 +12,7 @@ from api.models import Video
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 def user_details(request):
     if request.method == 'GET':
-        serializer = UserSerializer(request.user, fields=('username', 'first_name', 'last_name', 'avatar'))
+        serializer = UserSerializer(request.user, fields=('username', 'first_name', 'last_name', 'avatar', 'description'))
         return Response(serializer.data)
     if request.method == 'PUT':
         user = User.objects.get(id=request.user.id)
@@ -72,6 +72,14 @@ def video_details(request, video_id):
 @api_view(['GET'])
 def user_videos(request, user_id):
     videos = Video.objects.filter(owner_id=user_id).all()
+    if request.method == 'GET':
+        serializer = VideoSerializerModel(videos, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def category_videos_list(request, category_id):
+    videos = Video.objects.filter(category_id=category_id).all()
     if request.method == 'GET':
         serializer = VideoSerializerModel(videos, many=True)
         return Response(serializer.data)

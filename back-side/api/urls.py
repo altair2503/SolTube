@@ -12,6 +12,7 @@ urlpatterns = [
     path('categories/', CategoryListAPIView.as_view()),
     path('categories/<int:category_id>', CategoryDetailsAPIView.as_view()),
     path('videos/', video_list),
+    path('categories/<int:category_id>/videos', category_videos_list),
     path('videos/<int:video_id>', video_details),
     path('videos/user/<int:user_id>', user_videos)
 ]
