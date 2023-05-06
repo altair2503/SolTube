@@ -1,2 +1,2 @@
-from .fbv import user_details, video_list, video_details, user_videos
+from .fbv import user_details, video_list, video_details, user_videos, category_videos_list
 from .cbv import CategoryListAPIView, CategoryDetailsAPIView, CustomObtainAuthToken, UserSearchAPIView

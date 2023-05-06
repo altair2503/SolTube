@@ -14,21 +14,33 @@ export class VideoService {
     return this.client.get<Video[]>(`${this.BASE_URL}/api/videos/`)
   }
 
+<<<<<<< HEAD
+=======
+  filterVideos(id: number): Observable<Video[]> {
+    return this.client.get<Video[]>(`${this.BASE_URL}/api/categories/${id}/videos`)
+  }
+
+>>>>>>> 1a2aa9209be1ee1f5b618d0f0b1c95ca94a66b99
   getVideo(id: number): Observable<Video> {
     return this.client.get<Video>(`${this.BASE_URL}/api/videos/${id}`)
   }
 
   postVideo(video: any): Observable<Video> {
+<<<<<<< HEAD
     return this.client.post<Video>(
+=======
+    return this.client.post<Video> (
+>>>>>>> 1a2aa9209be1ee1f5b618d0f0b1c95ca94a66b99
       `${this.BASE_URL}/api/videos/`,
       {
         "category_id": video.categoryId,
         "title": video.title,
         "description": video.description,
         "video_url": video.video_url,
-        "image_url": video.image_url
+        "image_url": video.image_url,
+        "total_duration": video.totalDuration
       }
-      )
+    )
   }
 
   updateVideo(video_id: number, video: Video): Observable<Video> {

@@ -1,12 +1,18 @@
 <div class="navigator" [ngClass]="(getMenuCondition() == 'left close') ? 'navigator' : 'navigator closed'">
   <p class="active" (click)="chooseNav($event)">All</p>
-  <p *ngFor="let category of categories.slice(1, 13)" (click)="chooseNav($event)">{{category.name}}</p>
+  <p *ngFor="let category of categories" (click)="chooseNav($event)">
+    <span style="display: none">{{category.id}}</span>
+    {{category.name}}
+  </p>
 </div>
 <div class="separator"></div>
 <div class="container">
   <app-video-item *ngFor="let video of videos" [videoType]="1" [video]="video"></app-video-item>
+<<<<<<< HEAD
 <!--  <app-video-item [videoType]="true"></app-video-item>-->
 <!--  <app-video-item [videoType]="true"></app-video-item>-->
 <!--  <app-video-item [videoType]="true"></app-video-item>-->
 <!--  <app-video-item [videoType]="true"></app-video-item>-->
+=======
+>>>>>>> 1a2aa9209be1ee1f5b618d0f0b1c95ca94a66b99
 </div>

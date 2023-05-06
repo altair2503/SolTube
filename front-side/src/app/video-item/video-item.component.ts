@@ -11,6 +11,7 @@ export class VideoItemComponent implements AfterViewInit {
 
   @Input() videoType: number
   @Input() historyItem: boolean
+  @Input() isChanel: boolean
   @Input() video: Video = {} as Video
 
   linkToVideo: string = ""
@@ -84,7 +85,11 @@ export class VideoItemComponent implements AfterViewInit {
       })
   }
 
-  deleteFromHistory() {
+  deleteFromHistory(id: number) {
+
+  }
+
+  deleteFromLiked(id: number) {
 
   }
 

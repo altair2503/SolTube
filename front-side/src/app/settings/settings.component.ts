@@ -22,6 +22,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.setUserUpdateInputValues (
       document.querySelector(".update_username"),
+      document.querySelector(".update_description"),
       document.querySelector(".update_fname"),
       document.querySelector(".update_lname")
     )
@@ -41,9 +42,10 @@ export class SettingsComponent implements OnInit, AfterViewInit {
     document.querySelector(".pages_container").className = `pages_container ${e.composedPath()[0].dataset["nav"]}`
   }
 
-  setUserUpdateInputValues(username: HTMLInputElement, firstName: HTMLInputElement, lastName: HTMLInputElement) {
+  setUserUpdateInputValues(username: HTMLInputElement, description: HTMLInputElement, firstName: HTMLInputElement, lastName: HTMLInputElement) {
     setTimeout(() => {
       username.value = this.user.username
+      description.value = this.user.description
       firstName.value = this.user.first_name
       lastName.value = this.user.last_name
     }, 0)
@@ -54,12 +56,14 @@ export class SettingsComponent implements OnInit, AfterViewInit {
     const success = document.querySelector(".notification")
 
     if(value.username == "") value.username = updateUserForm.querySelector(".update_username").value
+    if(value.description == "") value.description = updateUserForm.querySelector(".update_description").value
     if(value.firstname == "") value.firstname = updateUserForm.querySelector(".update_fname").value
     if(value.lastname == "") value.lastname = updateUserForm.querySelector(".update_lname").value
 
     if(updateUserForm.querySelector(".user_update_btn").className == "user_update_btn active") {
-      this.userService.updateUser(value.username, value.firstname, value.lastname).subscribe((user) => {
+      this.userService.updateUser(value.username, value.description, value.firstname, value.lastname).subscribe((user) => {
         this.user.username = user.username
+        this.user.description = user.username
         this.user.first_name = user.first_name
         this.user.last_name = user.last_name
       },
@@ -80,7 +84,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
     const firstName = document.querySelector(".update_fname") as HTMLInputElement
     const lastName = document.querySelector(".update_lname") as HTMLInputElement
 
-    if(username.value != this.user.username || firstName.value != this.user.first_name || lastName.value != this.user.last_name) {
+    if(username.value != this.user.username || description.value != this.user.description || firstName.value != this.user.first_name || lastName.value != this.user.last_name) {
       document.querySelector(".user_update_btn").classList.add("active")
     } else document.querySelector(".user_update_btn").classList.remove("active")
   }

@@ -16,8 +16,7 @@ export class ChanelComponent implements OnInit{
   channelVideos: Video[]
 
   ngOnInit() {
-    let username: string
-    username = this.route.snapshot.paramMap.get('username') ;
+    const username = this.route.snapshot.paramMap.get('username');
     this.getChannel(username)
   }
 

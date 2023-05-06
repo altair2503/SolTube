@@ -1,3 +1,11 @@
+/* Container styling */
+.container
+{
+  height: calc(100vh - 100px);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 /* Background image of profile */
 .background_image
 {
@@ -39,10 +47,29 @@
   width: 130px;
   height: 130px;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   border-radius: 50%;
-  object-fit: cover;
+  background: #b4b4b4;
 
   margin-right: 25px;
+}
+.avatar img
+{
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+  object-fit: cover;
+}
+.avatar.default img
+{
+  width: 75%;
+  height: 75%;
+
+  border-radius: 0;
 }
 .username
 {
@@ -166,7 +193,7 @@ button:hover
 
 .pages_container
 {
-  padding: 30px 50px;
+  padding: 30px 0;
 }
 .page
 {
@@ -175,18 +202,29 @@ button:hover
 .pages_container.data_home .home
 {
   display: block;
+  padding: 0 50px;
 }
 .pages_container.data_videos .videos
 {
-  display: block;
+  display: grid;
 }
 .pages_container.data_channels .channels
 {
   display: grid !important;
+  padding: 0 50px;
 }
 .pages_container.data_about .about
 {
   display: block;
+  padding: 0 50px;
+}
+
+/* Videos section styling */
+.videos
+{
+  padding-right: 5px;
+  grid-template-columns: repeat(4, 0fr);
+  justify-content: space-between;
 }
 
 /* Channels section styling */

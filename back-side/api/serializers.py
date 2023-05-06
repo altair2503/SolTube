@@ -78,6 +78,7 @@ class VideoSerializer(serializers.Serializer):
     image_url = serializers.CharField(max_length=500)
     total_views = serializers.IntegerField(read_only=True)
     upload_time = serializers.DateTimeField(read_only=True)
+    total_duration = serializers.CharField(max_length=255)
 
     def create(self, validated_data):
         video = Video.objects.create(**validated_data)
