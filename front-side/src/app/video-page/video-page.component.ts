@@ -1,12 +1,17 @@
-import {AfterViewInit, Component, ElementRef} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 import { MenuConditionService } from "../services/menu-condition.service";
+import {Video} from "../models";
+import {ActivatedRoute} from "@angular/router";
+import {VideoService} from "../services/video.service";
 
 @Component({
   selector: 'app-video-page',
   templateUrl: './video-page.component.html',
   styleUrls: ['./video-page.component.css']
 })
-export class VideoPageComponent implements AfterViewInit {
+export class VideoPageComponent implements AfterViewInit, OnInit {
+
+  video: Video = {} as Video
 
   videoCondition: boolean
 
@@ -17,10 +22,13 @@ export class VideoPageComponent implements AfterViewInit {
   title = '"Quantum dots from Sber - OLED TV 65" for 55K with assistant and installation .apk. That good?'
   chanel = "Wylsacom"
 
-  constructor(private elementRef:ElementRef, private menuConditionService: MenuConditionService) {
+  constructor(private elementRef:ElementRef, private route: ActivatedRoute, private videoService: VideoService) {
     this.videoCondition = false
   }
 
+  ngOnInit() {
+    this.getVideo()
+  }
   ngAfterViewInit() {
     // Initialize video documents
     const video = this.elementRef.nativeElement.querySelector("video")
@@ -40,8 +48,11 @@ export class VideoPageComponent implements AfterViewInit {
     this.closeMoreWindow()
   }
 
-  getMenuCondition() {
-    return this.menuConditionService.getMenuCondition()
+  getVideo() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.videoService.getVideo(id).subscribe((video) => {
+      this.video = video
+    })
   }
 
   // Play and pause actions
@@ -271,23 +282,24 @@ export class VideoPageComponent implements AfterViewInit {
     if(e.composedPath()[0].className == "close_share") {
       e.composedPath()[3].classList.remove("open")
       document.body.classList.remove("lock")
+      document.querySelector("video").play().then()
     }
-    if(e.composedPath()[0].className == "share_window open") {
+    else if(e.composedPath()[0].className == "share_window open") {
       e.composedPath()[0].classList.remove("open")
       document.body.classList.remove("lock")
+      document.querySelector("video").play().then()
     }
-    document.querySelector("video").play().then()
   }
   // Copying video to the clipboard
   copyToClipboard() {
     const successfullyCopied = document.querySelector(".successfully_copied")
     navigator.clipboard.writeText(this.linkToVideo)
-      .then(() => {
-        successfullyCopied.classList.add("show")
-        setTimeout(() => {
-          successfullyCopied.classList.remove("show")
-        }, 3000)
-      })
+    .then(() => {
+      successfullyCopied.classList.add("show")
+      setTimeout(() => {
+        successfullyCopied.classList.remove("show")
+      }, 3000)
+    })
   }
 
   // Like and dislike video
@@ -297,6 +309,7 @@ export class VideoPageComponent implements AfterViewInit {
   like() {
     document.querySelector(".dislike").classList.remove("disliked")
     document.querySelector(".like").classList.add("liked")
+    console.log(this.video)
   }
   dislike() {
     document.querySelector(".like").classList.remove("liked")

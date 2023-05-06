@@ -27,6 +27,7 @@ export interface Video {
   owner: User,
   category: Category,
   title: string,
+  description: string,
   video_url: string,
   image_url: string,
   total_views: number,

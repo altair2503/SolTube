@@ -50,3 +50,25 @@
 {
   background: #ff000e;
 }
+
+/* Title styles */
+.title
+{
+  font-size: 26px;
+  font-weight: 600;
+
+  margin-bottom: 25px;
+}
+
+/* Subscriptions container styling */
+.subscriptions_container
+{
+  height: calc(100vh - 156px);
+
+  display: grid;
+  grid-template-columns: repeat(4, 0fr);
+  justify-content: space-between;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}

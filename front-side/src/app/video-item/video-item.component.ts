@@ -9,7 +9,7 @@ import {Video} from "../models";
 })
 export class VideoItemComponent implements AfterViewInit {
 
-  @Input() videoType: boolean
+  @Input() videoType: number
   @Input() historyItem: boolean
   @Input() video: Video = {} as Video
 
@@ -85,6 +85,10 @@ export class VideoItemComponent implements AfterViewInit {
   }
 
   deleteFromHistory() {
+
+  }
+
+  deleteFromLiked() {
 
   }
 

@@ -4,7 +4,7 @@ from abc import ABC
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
-from api.models import Category, Video
+from api.models import Category, Video, UserVideoIntermediate
 
 
 class DynamicFieldsModelSerializer(serializers.ModelSerializer):
@@ -82,3 +82,20 @@ class VideoSerializer(serializers.Serializer):
     def create(self, validated_data):
         video = Video.objects.create(**validated_data)
         return video
+
+
+class UserVideoInterSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    isLiked = serializers.IntegerField()
+    isViewed = serializers.BooleanField()
+    user_id = serializers.IntegerField()
+    video_id = serializers.IntegerField()
+
+    def create(self, validated_data):
+        userVideoIntermediate = UserVideoIntermediate.objects.create(**validated_data)
+        return userVideoIntermediate
+
+    def update(self, instance, validated_data):
+        instance.isLiked = validated_data.get('isLiked', instance.isLiked)
+        instance.isViewed = validated_data.get('isViewed', instance.isViewed)
+        return instance

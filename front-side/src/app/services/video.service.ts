@@ -10,11 +10,15 @@ export class VideoService {
   BASE_URL = 'http://localhost:8000'
   constructor(private client: HttpClient) { }
 
-  getVideos(): Observable<Video[]>{
+  getVideos(): Observable<Video[]> {
     return this.client.get<Video[]>(`${this.BASE_URL}/api/videos/`)
   }
 
-  postVideo(video: any): Observable<Video>{
+  getVideo(id: number): Observable<Video> {
+    return this.client.get<Video>(`${this.BASE_URL}/api/videos/${id}`)
+  }
+
+  postVideo(video: any): Observable<Video> {
     return this.client.post<Video>(
       `${this.BASE_URL}/api/videos/`,
       {
@@ -27,14 +31,14 @@ export class VideoService {
       )
   }
 
-  updateVideo(video_id: number, video: Video): Observable<Video>{
+  updateVideo(video_id: number, video: Video): Observable<Video> {
     return this.client.put<Video>(
       `${this.BASE_URL}/api/videos/${video_id}`,
       video
     )
   }
 
-  deleteVideo(video_id: number, video: Video): Observable<Video>{
+  deleteVideo(video_id: number, video: Video): Observable<Video> {
     return this.client.delete<any>(
       `${this.BASE_URL}/api/videos/${video_id}`
     )
