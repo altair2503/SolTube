@@ -93,8 +93,5 @@ export class VideoItemComponent implements AfterViewInit {
 
   }
 
-  deleteFromLiked() {
-
-  }
 
 }
