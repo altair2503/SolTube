@@ -26,8 +26,6 @@ class Video(models.Model):
     upload_time = models.DateTimeField(default=datetime.datetime.now)
     total_duration = models.CharField(default="", max_length=255)
 
-    def __str__(self):
-        return f'{self.owner} - {self.name}'
 
 
 class UserVideoIntermediate(models.Model):

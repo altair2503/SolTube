@@ -14,5 +14,6 @@ urlpatterns = [
     path('videos/', video_list),
     path('categories/<int:category_id>/videos', category_videos_list),
     path('videos/<int:video_id>', video_details),
-    path('videos/user/<int:user_id>', user_videos)
+    path('videos/user/<int:user_id>', user_videos),
+    path('videos/liked', liked_videos)
 ]

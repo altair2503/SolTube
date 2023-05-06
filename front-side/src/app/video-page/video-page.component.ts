@@ -3,6 +3,7 @@ import { MenuConditionService } from "../services/menu-condition.service";
 import {Video} from "../models";
 import {ActivatedRoute} from "@angular/router";
 import {VideoService} from "../services/video.service";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-video-page',
@@ -12,6 +13,11 @@ import {VideoService} from "../services/video.service";
 export class VideoPageComponent implements AfterViewInit, OnInit {
 
   video: Video = {} as Video
+  ownerVideos: Video[] = []
+  categoryVideos: Video[] = []
+
+  likedVideos: any = []
+  isLiked: number = 0
 
   videoCondition: boolean
 
@@ -19,15 +25,13 @@ export class VideoPageComponent implements AfterViewInit, OnInit {
 
   linkToVideo: string = ""
 
-  title = '"Quantum dots from Sber - OLED TV 65" for 55K with assistant and installation .apk. That good?'
-  chanel = "Wylsacom"
-
-  constructor(private elementRef:ElementRef, private route: ActivatedRoute, private videoService: VideoService) {
+  constructor(private elementRef:ElementRef, private route: ActivatedRoute, private videoService: VideoService, private userService: UserService) {
     this.videoCondition = false
   }
 
   ngOnInit() {
     this.getVideo()
+    this.getLikedVideos()
   }
   ngAfterViewInit() {
     // Initialize video documents
@@ -52,6 +56,28 @@ export class VideoPageComponent implements AfterViewInit, OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.videoService.getVideo(id).subscribe((video) => {
       this.video = video
+      this.video.upload_time = new Date(video.upload_time)
+    },
+    () => {},
+    () => {
+      this.getVideosFromThisOwner()
+      this.getVideosFromSameCategory()
+    })
+  }
+
+  getVideosFromThisOwner() {
+    this.userService.getUserVideos(this.video.owner.id).subscribe((videos) => {
+      this.ownerVideos = videos.filter((video) => {
+        return video.id != this.video.id
+      })
+    })
+  }
+
+  getVideosFromSameCategory() {
+    this.videoService.filterVideos(this.video.category.id).subscribe((videos) => {
+      this.categoryVideos = videos.filter((video) => {
+        return video.owner.username != this.video.owner.username
+      })
     })
   }
 
@@ -303,17 +329,43 @@ export class VideoPageComponent implements AfterViewInit, OnInit {
   }
 
   // Like and dislike video
-  likeOrDislikeVideo(condition: boolean) {
-    condition ? this.like() : this.dislike()
+  likeOrDislikeVideo(condition: boolean, option: number) {
+    condition ? this.like(option) : this.dislike(option)
   }
-  like() {
-    document.querySelector(".dislike").classList.remove("disliked")
-    document.querySelector(".like").classList.add("liked")
-    console.log(this.video)
+  like(option: number) {
+    if(document.querySelector(".like.liked")) {
+      this.videoService.likeOperations(this.video.id, 0).subscribe(() => {
+        document.querySelector(".like").classList.remove("liked")
+      })
+    }
+    else {
+      this.videoService.likeOperations(this.video.id, option).subscribe(() => {
+        document.querySelector(".dislike").classList.remove("disliked")
+        document.querySelector(".like").classList.add("liked")
+      })
+    }
   }
-  dislike() {
-    document.querySelector(".like").classList.remove("liked")
-    document.querySelector(".dislike").classList.add("disliked")
+  dislike(option: number) {
+    if(document.querySelector(".dislike.disliked")) {
+      this.videoService.likeOperations(this.video.id, 0).subscribe(() => {
+        document.querySelector(".like").classList.remove("disliked")
+      })
+    }
+    else {
+      this.videoService.likeOperations(this.video.id, option).subscribe(() => {
+        document.querySelector(".like").classList.remove("liked")
+        document.querySelector(".dislike").classList.add("disliked")
+      })
+    }
+  }
+  getLikedVideos() {
+    this.videoService.likedVideos().subscribe((liked)=>{
+      this.likedVideos = liked; let cnt = 0
+      this.likedVideos.forEach((video: { id: number; }) => {
+        if(video.id == this.video.id) cnt++
+      })
+      if(cnt > 0) this.isLiked = 1
+    })
   }
 
 }

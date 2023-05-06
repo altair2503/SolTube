@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {VideoService} from "../services/video.service";
 
 @Component({
   selector: 'app-liked-videos',
@@ -9,13 +10,25 @@ export class LikedVideosComponent implements OnInit {
 
   isAuthorized = localStorage.getItem("token")
 
-  title2 = '"Quantum dots from Sber - OLED TV 65" for 55K with assistant and installation .apk. That good?'
-  chanel2 = "Wylsacom"
+  likedVideos: any = []
+  index = 1
 
-  ngOnInit() { }
+  constructor(private videoService: VideoService) { }
+
+  ngOnInit() {
+    this.getLikedVideos()
+  }
 
   clearAllLiked() {
 
   }
+
+  getLikedVideos(){
+    this.videoService.likedVideos().subscribe((liked)=>{
+      this.likedVideos = liked
+    })
+  }
+
+
 
 }

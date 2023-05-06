@@ -7,8 +7,7 @@
   <p class="title">Liked Videos</p>
   <div class="liked_top">
     <div class="liked_info">
-      <p>• 50 videos</p>
-      <p>• Updated at 27.04.2023</p>
+      <p>• {{likedVideos.length}} videos</p>
     </div>
     <button class="clear_liked_btn" (click)="clearAllLiked()">
       <img src="/assets/svg/trash.svg" alt="clear-liked">
@@ -17,9 +16,9 @@
   </div>
   <div class="separator"></div>
   <div class="liked_container">
-    <div class="liked_item_container">
-      <p class="index">1</p>
-      <app-video-item [videoType]="3"></app-video-item>
+    <div *ngFor="let video of likedVideos; let i = index" class="liked_item_container">
+      <p class="index">{{i + 1}}</p>
+      <app-video-item [videoType]="3" [video]="video"></app-video-item>
     </div>
   </div>
 </div>

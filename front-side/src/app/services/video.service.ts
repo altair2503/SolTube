@@ -18,6 +18,10 @@ export class VideoService {
     return this.client.get<Video[]>(`${this.BASE_URL}/api/categories/${id}/videos`)
   }
 
+  getVideosFromThisOwner(id: number): Observable<Video[]> {
+    return this.client.get<Video[]>(`${this.BASE_URL}/api/videos`)
+  }
+
   getVideo(id: number): Observable<Video> {
     return this.client.get<Video>(`${this.BASE_URL}/api/videos/${id}`)
   }
@@ -46,6 +50,21 @@ export class VideoService {
   deleteVideo(video_id: number, video: Video): Observable<Video> {
     return this.client.delete<any>(
       `${this.BASE_URL}/api/videos/${video_id}`
+    )
+  }
+
+  likeOperations(id: number, option: number): Observable<any> {
+    return this.client.put<any>(
+      `${this.BASE_URL}/api/videos/${id}`,
+      {
+        isLiked: option
+      }
+    )
+  }
+
+  likedVideos(): Observable<Video[]>{
+    return this.client.get<Video[]>(
+      `${this.BASE_URL}/api/videos/liked`
     )
   }
 

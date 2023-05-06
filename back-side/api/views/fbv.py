@@ -97,3 +97,14 @@ def category_videos_list(request, category_id):
     if request.method == 'GET':
         serializer = VideoSerializerModel(videos, many=True)
         return Response(serializer.data)
+
+
+@api_view(['GET'])
+def liked_videos(request):
+    if request.method == 'GET':
+        videos = Video.objects.filter(
+            id__in=UserVideoIntermediate.objects.filter(user_id=request.user.id, isLiked=1)
+            .values_list('video_id', flat=True)).all()
+        print(videos)
+        serializer = VideoSerializerModel(videos, many=True)
+        return Response(serializer.data)

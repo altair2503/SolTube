@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, Input} from '@angular/core';
 import {MenuConditionService} from "../services/menu-condition.service";
 import {Video} from "../models";
+import {VideoService} from "../services/video.service";
 
 @Component({
   selector: 'app-video-item',
@@ -14,15 +15,14 @@ export class VideoItemComponent implements AfterViewInit {
   @Input() isChanel: boolean
   @Input() video: Video = {} as Video
 
-  linkToVideo: string = ""
+  linkToVideo: number = 0
 
   title = 'Beautiful nature of Kazakhstan'
   chanel = "ABRAMOV MEDIA"
 
-  title2 = '"Quantum dots from Sber - OLED TV 65" for 55K with assistant and installation .apk. That good?'
-  chanel2 = "Wylsacom"
-
-  constructor(private menuConditionService: MenuConditionService) { }
+  constructor(private menuConditionService: MenuConditionService, private videoService: VideoService) {
+    this.video.upload_time = new Date(this.video.upload_time)
+  }
 
   ngAfterViewInit() {
     this.closeMoreWindow()
@@ -56,8 +56,8 @@ export class VideoItemComponent implements AfterViewInit {
       document.body.classList.add("lock")
       e.composedPath()[1].classList.remove("open")
 
-      linkToVideo.value = location.href
-      this.linkToVideo = linkToVideo.value
+      linkToVideo.value = `http://localhost:4200/watch/${this.video.id}`
+      localStorage.setItem("linkToVideo", `http://localhost:4200/watch/${this.video.id}`)
 
       if(document.querySelector("video")) document.querySelector("video").pause()
     }
@@ -76,7 +76,7 @@ export class VideoItemComponent implements AfterViewInit {
 
   copyToClipboard(e: any) {
     const successfullyCopied = e.composedPath()[4].querySelector(".successfully_copied")
-    navigator.clipboard.writeText(this.linkToVideo)
+    navigator.clipboard.writeText(localStorage.getItem("linkToVideo"))
       .then(() => {
         successfullyCopied.classList.add("show")
         setTimeout(() => {
@@ -90,7 +90,12 @@ export class VideoItemComponent implements AfterViewInit {
   }
 
   deleteFromLiked(id: number) {
-
+    this.videoService.likeOperations(id, 0).subscribe(
+      () => {},
+      () => {},
+      () => {
+        location.reload()
+    })
   }
 
 }

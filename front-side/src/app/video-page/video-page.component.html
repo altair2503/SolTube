@@ -104,18 +104,18 @@
         <div class="views_and_date">
           <p class="views_count">{{video.total_views}} views</p>
           <span>|</span>
-          <p class="upload_date">2 years ago</p>
+          <p class="upload_date">{{video.upload_time.toDateString() | date:'dd.MM.yyyy'}}</p>
         </div>
         <div class="rate_video">
-          <button class="like" (click)="likeOrDislikeVideo(true)">
+          <button class="like" [ngClass]="isLiked == 1 ? 'like liked' : 'like'" (click)="likeOrDislikeVideo(true, 1)">
             <img src="/assets/svg/liked.svg" alt="">
             <img src="/assets/svg/liked-active.svg" alt="">
-            15K
+            LIKE
           </button>
-          <button class="dislike" (click)="likeOrDislikeVideo(false)">
+          <button class="dislike" (click)="likeOrDislikeVideo(false, -1)">
             <img src="/assets/svg/liked.svg" alt="">
             <img src="/assets/svg/liked-active.svg" alt="">
-            390
+            DISLIKE
           </button>
         </div>
         <button class="add_to_playlist">
@@ -127,8 +127,10 @@
         </button>
       </div>
       <div class="chanel_info">
-        <a routerLink="">
-          <img src="/assets/abramov.jpg" alt="">
+        <a routerLink="/chanel/{{video.owner.username}}">
+          <div class="avatar" [ngClass]="video.owner.avatar == '/assets/avatar.png' ? 'avatar default' : 'avatar'">
+            <img src="{{video.owner.avatar}}" alt="">
+          </div>
           <div class="right_info">
             <p class="chanel_name">{{video.owner.username}}</p>
             <p class="subscribers_count">12.7K subscribers</p>
@@ -143,18 +145,9 @@
     </div>
   </div>
   <div class="recommended">
-    <app-video-item [videoType]="2"></app-video-item>
-    <app-video-item [videoType]="2"></app-video-item>
-    <app-video-item [videoType]="2"></app-video-item>
-    <app-video-item [videoType]="2"></app-video-item>
-    <app-video-item [videoType]="2"></app-video-item>
-    <app-video-item [videoType]="2"></app-video-item>
-    <app-video-item [videoType]="2"></app-video-item>
-    <app-video-item [videoType]="2"></app-video-item>
-    <app-video-item [videoType]="2"></app-video-item>
-    <app-video-item [videoType]="2"></app-video-item>
-    <app-video-item [videoType]="2"></app-video-item>
-    <app-video-item [videoType]="2"></app-video-item>
-    <app-video-item [videoType]="2"></app-video-item>
+    <p *ngIf="ownerVideos.length != 0">From {{video.owner.username}}</p>
+    <app-video-item *ngFor="let video of ownerVideos" [videoType]="2" [video]="video"></app-video-item>
+    <p *ngIf="categoryVideos.length != 0">From the same category</p>
+    <app-video-item *ngFor="let video of categoryVideos" [videoType]="2" [video]="video"></app-video-item>
   </div>
 </div>
