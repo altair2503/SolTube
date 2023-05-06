@@ -35,3 +35,8 @@ class UserVideoIntermediate(models.Model):
     isViewed = models.BooleanField(default=True)
 
 
+class Subscription(models.Model):
+    channel = models.ForeignKey(User, related_name='channel', on_delete=models.CASCADE)
+    follower = models.ForeignKey(User, related_name='follower', on_delete=models.CASCADE)
+    isSubscribed = models.IntegerField(default=0)
+

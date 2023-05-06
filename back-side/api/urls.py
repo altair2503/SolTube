@@ -15,5 +15,12 @@ urlpatterns = [
     path('categories/<int:category_id>/videos', category_videos_list),
     path('videos/<int:video_id>', video_details),
     path('videos/user/<int:user_id>', user_videos),
+<<<<<<< HEAD
     path('videos/liked', liked_videos)
+=======
+    path('user/<int:user_id>/subscribe', UserSubscribeAPIView.as_view()),
+    path('subscribed/videos', subscribed_videos),
+    path('subcribed/users', subscribedUserAPIView.as_view()),
+    path('watched/videos', watched_videos),
+>>>>>>> 9e58fe57a947d900e9cdf21f0f6046f2a2f47811
 ]

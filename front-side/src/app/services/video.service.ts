@@ -53,6 +53,7 @@ export class VideoService {
     )
   }
 
+<<<<<<< HEAD
   likeOperations(id: number, option: number): Observable<any> {
     return this.client.put<any>(
       `${this.BASE_URL}/api/videos/${id}`,
@@ -65,6 +66,17 @@ export class VideoService {
   likedVideos(): Observable<Video[]>{
     return this.client.get<Video[]>(
       `${this.BASE_URL}/api/videos/liked`
+=======
+  subscribedVideos(): Observable<Video[]>{
+    return this.client.get<Video[]>(
+      `${this.BASE_URL}/api/subscribed/videos`
+    )
+  }
+
+  watchedVideos(): Observable<Video[]>{
+    return this.client.get<Video[]>(
+      `${this.BASE_URL}/api/watched/videos`
+>>>>>>> 9e58fe57a947d900e9cdf21f0f6046f2a2f47811
     )
   }
 

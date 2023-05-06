@@ -31,93 +31,15 @@
 <div class="separator"></div>
 <div class="pages_container data_videos">
   <div class="page videos">
-    videos page works!
+    <p *ngIf="userVideos.length == 0" style="text-align: center">There is no video on your channel yet</p>
+    <app-video-item *ngFor="let video of userVideos" [videoType]="1" [isChanel]="true" [video]="video"></app-video-item>
   </div>
   <div class="page channels">
-    <div class="channel">
-      <a routerLink="">
-        <img src="/assets/wylsacom.jpg" alt="">
-        <p class="channel_name">Wylsacom</p>
-        <p class="channel_subscribers_count">10.3M subscribers</p>
-      </a>
-      <button class="subscribe">Subscribe</button>
-    </div>
-    <div class="channel">
-      <a routerLink="">
-        <img src="/assets/abramov.jpg" alt="">
-        <p class="channel_name">ABRAMOV MEDIA</p>
-        <p class="channel_subscribers_count">12.7K subscribers</p>
-      </a>
-      <button class="subscribe">Subscribe</button>
-    </div>
-    <div class="channel">
-      <a routerLink="">
-        <img src="/assets/wylsacom.jpg" alt="">
-        <p class="channel_name">Wylsacom</p>
-        <p class="channel_subscribers_count">10.3M subscribers</p>
-      </a>
-      <button class="subscribe">Subscribe</button>
-    </div>
-    <div class="channel">
-      <a routerLink="">
-        <img src="/assets/abramov.jpg" alt="">
-        <p class="channel_name">ABRAMOV MEDIA</p>
-        <p class="channel_subscribers_count">12.7K subscribers</p>
-      </a>
-      <button class="subscribe">Subscribe</button>
-    </div>
-    <div class="channel">
-      <a routerLink="">
-        <img src="/assets/wylsacom.jpg" alt="">
-        <p class="channel_name">Wylsacom</p>
-        <p class="channel_subscribers_count">10.3M subscribers</p>
-      </a>
-      <button class="subscribe">Subscribe</button>
-    </div>
-    <div class="channel">
-      <a routerLink="">
-        <img src="/assets/abramov.jpg" alt="">
-        <p class="channel_name">ABRAMOV MEDIA</p>
-        <p class="channel_subscribers_count">12.7K subscribers</p>
-      </a>
-      <button class="subscribe">Subscribe</button>
-    </div>
-    <div class="channel">
-      <a routerLink="">
-        <img src="/assets/wylsacom.jpg" alt="">
-        <p class="channel_name">Wylsacom</p>
-        <p class="channel_subscribers_count">10.3M subscribers</p>
-      </a>
-      <button class="subscribe">Subscribe</button>
-    </div>
-    <div class="channel">
-      <a routerLink="">
-        <img src="/assets/abramov.jpg" alt="">
-        <p class="channel_name">ABRAMOV MEDIA</p>
-        <p class="channel_subscribers_count">12.7K subscribers</p>
-      </a>
-      <button class="subscribe">Subscribe</button>
-    </div>
-    <div class="channel">
-      <a routerLink="">
-        <img src="/assets/wylsacom.jpg" alt="">
-        <p class="channel_name">Wylsacom</p>
-        <p class="channel_subscribers_count">10.3M subscribers</p>
-      </a>
-      <button class="subscribe">Subscribe</button>
-    </div>
-    <div class="channel">
-      <a routerLink="">
-        <img src="/assets/abramov.jpg" alt="">
-        <p class="channel_name">ABRAMOV MEDIA</p>
-        <p class="channel_subscribers_count">12.7K subscribers</p>
-      </a>
-      <button class="subscribe">Subscribe</button>
-    </div>
-    <div class="channel">
-      <a routerLink="">
-        <img src="/assets/wylsacom.jpg" alt="">
-        <p class="channel_name">Wylsacom</p>
+    <div class="channel" *ngFor="let subscribe of subscribes">
+      <a routerLink=`chanel/`>
+        
+        <img [src]="subscribe.avatar" alt="">
+        <p class="channel_name">{{subscribe.username}}</p>
         <p class="channel_subscribers_count">10.3M subscribers</p>
       </a>
       <button class="subscribe">Subscribe</button>

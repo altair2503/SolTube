@@ -3,7 +3,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
-from api.models import Category
+from api.models import Category, Subscription
 from api.serializers import CategorySerializer, UserSerializer
 from django.contrib.auth.models import User
 
@@ -68,4 +68,30 @@ class UserSearchAPIView(APIView):
         except Category.DoesNotExist as e:
             return Response({"Error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         serializer = UserSerializer(user, fields=['id', 'username', 'first_name', 'last_name', 'avatar', 'description'])
+        return Response(serializer.data)
+
+
+class UserSubscribeAPIView(APIView):
+    def put(self, request, user_id):
+        try:
+            subscription = Subscription.objects.get(channel_id=user_id, follower_id=request.user.id)
+            if subscription.isSubscribed == 1:
+                subscription.isSubscribed = 0
+            else:
+                subscription.isSubscribed = 1
+            subscription.save()
+        except Subscription.DoesNotExist as e:
+            subscription = Subscription(channel_id=user_id, follower_id=request.user.id)
+            subscription.isSubscribed = 1
+            subscription.save()
+            return Response({"Created": True}, status=status.HTTP_200_OK)
+        return Response({"Subscription": 'Changed'}, status=status.HTTP_200_OK)
+
+
+class subscribedUserAPIView(APIView):
+    def get(self, request):
+        users = User.objects.filter(
+            pk__in=Subscription.objects.filter(follower_id=request.user.id, isSubscribed=1)
+            .values_list('channel_id', flat=True)).all()
+        serializer = UserSerializer(users, many=True)
         return Response(serializer.data)

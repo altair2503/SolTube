@@ -3,6 +3,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { User } from "../models";
 import { JwtService } from "../services/jwt.service";
 import {UserService} from "../services/user.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -14,7 +15,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
 
   user: User
 
-  constructor(private userService: UserService, private jwtService: JwtService) { }
+  constructor(private userService: UserService, private jwtService: JwtService, private router: Router) { }
 
   ngOnInit() {
     this.getUser()
@@ -87,6 +88,15 @@ export class SettingsComponent implements OnInit, AfterViewInit {
     if(username.value != this.user.username || description.value != this.user.description || firstName.value != this.user.first_name || lastName.value != this.user.last_name) {
       document.querySelector(".user_update_btn").classList.add("active")
     } else document.querySelector(".user_update_btn").classList.remove("active")
+  }
+
+  delete() {
+    this.userService.deleteUser().subscribe( ()=> {
+      localStorage.removeItem('token')
+      this.router.navigate(['/home']).then(() => {
+        location.reload()
+      })
+    })
   }
 
 }

@@ -6,13 +6,13 @@ from rest_framework.response import Response
 from rest_framework import status
 from api.serializers import UserSerializer, VideoSerializerModel, VideoSerializer, UserVideoInterSerializer
 from django.contrib.auth.models import User
-from api.models import Video, UserVideoIntermediate
+from api.models import Video, UserVideoIntermediate, Subscription
 
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 def user_details(request):
     if request.method == 'GET':
-        serializer = UserSerializer(request.user, fields=('username', 'first_name', 'last_name', 'avatar', 'description'))
+        serializer = UserSerializer(request.user, fields=('id', 'username', 'first_name', 'last_name', 'avatar', 'description'))
         return Response(serializer.data)
     if request.method == 'PUT':
         user = User.objects.get(id=request.user.id)
@@ -100,6 +100,7 @@ def category_videos_list(request, category_id):
 
 
 @api_view(['GET'])
+<<<<<<< HEAD
 def liked_videos(request):
     if request.method == 'GET':
         videos = Video.objects.filter(
@@ -108,3 +109,23 @@ def liked_videos(request):
         print(videos)
         serializer = VideoSerializerModel(videos, many=True)
         return Response(serializer.data)
+=======
+def subscribed_videos(request):
+    if request.method == 'GET':
+        videos = Video.objects.filter(
+            owner_id__in=Subscription.objects.filter(follower_id=request.user.id, isSubscribed=1)
+            .values_list('channel_id', flat=True)).all()
+        print(videos)
+        serializer = VideoSerializerModel(videos, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def watched_videos(request):
+    if request.method == 'GET':
+        videos = Video.objects.filter(
+            id__in=UserVideoIntermediate.objects.filter(user_id=request.user.id, isViewed=1)
+            .values_list('video_id', flat=True)).all()
+        serializer = VideoSerializerModel(videos, many=True)
+        return Response(serializer.data)
+>>>>>>> 9e58fe57a947d900e9cdf21f0f6046f2a2f47811

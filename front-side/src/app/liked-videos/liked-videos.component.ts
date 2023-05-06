@@ -10,6 +10,7 @@ export class LikedVideosComponent implements OnInit {
 
   isAuthorized = localStorage.getItem("token")
 
+<<<<<<< HEAD
   likedVideos: any = []
   index = 1
 
@@ -18,6 +19,9 @@ export class LikedVideosComponent implements OnInit {
   ngOnInit() {
     this.getLikedVideos()
   }
+=======
+  ngOnInit() { }
+>>>>>>> 9e58fe57a947d900e9cdf21f0f6046f2a2f47811
 
   clearAllLiked() {
 
