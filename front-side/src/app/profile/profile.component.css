@@ -193,27 +193,33 @@ button img
 
 .pages_container
 {
-  padding: 30px 50px;
+  padding: 30px 0;
 }
 .page
 {
   display: none;
 }
-.pages_container.data_home .home
-{
-  display: block;
-}
 .pages_container.data_videos .videos
 {
-  display: block;
+  display: grid;
 }
 .pages_container.data_channels .channels
 {
   display: grid !important;
+  padding: 0 50px;
 }
 .pages_container.data_about .about
 {
   display: block;
+  padding: 0 50px;
+}
+
+/* Videos section styling */
+.videos
+{
+  padding-right: 5px;
+  grid-template-columns: repeat(4, 0fr);
+  justify-content: space-between;
 }
 
 /* Channels section styling */

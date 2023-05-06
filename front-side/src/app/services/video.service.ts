@@ -17,10 +17,7 @@ export class VideoService {
   filterVideos(id: number): Observable<Video[]> {
     return this.client.get<Video[]>(`${this.BASE_URL}/api/categories/${id}/videos`)
   }
-<<<<<<< HEAD
-=======
 
->>>>>>> ecb6c1c4368ae93dc5072c0f2b9fc8dc7525403c
   getVideo(id: number): Observable<Video> {
     return this.client.get<Video>(`${this.BASE_URL}/api/videos/${id}`)
   }
@@ -49,6 +46,18 @@ export class VideoService {
   deleteVideo(video_id: number, video: Video): Observable<Video> {
     return this.client.delete<any>(
       `${this.BASE_URL}/api/videos/${video_id}`
+    )
+  }
+
+  subscribedVideos(): Observable<Video[]>{
+    return this.client.get<Video[]>(
+      `${this.BASE_URL}/api/subscribed/videos`
+    )
+  }
+
+  watchedVideos(): Observable<Video[]>{
+    return this.client.get<Video[]>(
+      `${this.BASE_URL}/api/watched/videos`
     )
   }
 

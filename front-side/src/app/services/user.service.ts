@@ -35,6 +35,25 @@ export class UserService {
 
   getUserVideos(id: number): Observable<Video[]>{
     return this.client.get<Video[]>(`${this.BASE_URL}/api/videos/user/${id}`)
+  } // @ts-ignore
+
+  subscribeToUser(id: number): Observable<any> {
+    return this.client.put<any>(
+      `${this.BASE_URL}/api/user/${id}/subscribe`,
+      {}
+    )
+  }
+
+  deleteUser():Observable<any>{
+    return this.client.delete<any>(
+      `${this.BASE_URL}/api/user/`
+    )
+  }
+
+  subscribedUsers():Observable<User[]>{
+    return this.client.get<User[]>(
+      `${this.BASE_URL}/api/subcribed/users`
+    )
   }
 
 }

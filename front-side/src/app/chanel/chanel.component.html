@@ -19,7 +19,8 @@
         </div>
       </div>
     </div>
-    <button>SUBSCRIBE</button>
+    <button *ngIf="isSubscribed" class="subscribe_btn" (click)="subscribeToChannel(this.channel.id)">SUBSCRIBE</button>
+    <button *ngIf="!isSubscribed" class="unsubscribe_btn" (click)="unsubscribeFromChannel(this.channel.id)">SUBSCRIBED</button>
   </div>
   <div class="navigation">
     <p class="active" (click)="chooseNav($event)" data-nav="data_videos">VIDEOS</p>

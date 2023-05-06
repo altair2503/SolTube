@@ -26,8 +26,6 @@ class Video(models.Model):
     upload_time = models.DateTimeField(default=datetime.datetime.now)
     total_duration = models.CharField(default="", max_length=255)
 
-    def __str__(self):
-        return f'{self.owner} - {self.name}'
 
 
 class UserVideoIntermediate(models.Model):
@@ -36,4 +34,9 @@ class UserVideoIntermediate(models.Model):
     isLiked = models.IntegerField(default=0)
     isViewed = models.BooleanField(default=True)
 
+
+class Subscription(models.Model):
+    channel = models.ForeignKey(User, related_name='channel', on_delete=models.CASCADE)
+    follower = models.ForeignKey(User, related_name='follower', on_delete=models.CASCADE)
+    isSubscribed = models.IntegerField(default=0)
 

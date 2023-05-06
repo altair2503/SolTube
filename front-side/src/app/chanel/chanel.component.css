@@ -117,7 +117,8 @@
 }
 
 /* Log out button styling */
-button
+.subscribe_btn,
+.unsubscribe_btn
 {
   height: 40px;
   width: 120px;
@@ -134,9 +135,18 @@ button
 
   transition: .2s;
 }
-button:hover
+.unsubscribe_btn
+{
+  width: 135px;
+  background: #E40915;
+}
+.subscribe_btn:hover
 {
   background: #7c7c7c;
+}
+.unsubscribe_btn:hover
+{
+  background: #ff000e;
 }
 
 /* Navigation styling */
@@ -198,11 +208,6 @@ button:hover
 .page
 {
   display: none;
-}
-.pages_container.data_home .home
-{
-  display: block;
-  padding: 0 50px;
 }
 .pages_container.data_videos .videos
 {

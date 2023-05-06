@@ -23,7 +23,7 @@ export class SubscriptionsComponent implements OnInit {
   }
 
   getVideos(){
-    this.videoService.getVideos().subscribe((videos) => {
+    this.videoService.subscribedVideos().subscribe((videos)=>{
       this.videos = videos
     })
   }

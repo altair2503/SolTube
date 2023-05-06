@@ -11,9 +11,12 @@ import {User, Video} from "../models";
   templateUrl: './chanel.component.html',
   styleUrls: ['./chanel.component.css']
 })
-export class ChanelComponent implements OnInit{
+export class ChanelComponent implements OnInit {
+
   channel: User
   channelVideos: Video[]
+
+  isSubscribed: boolean = false
 
   ngOnInit() {
     const username = this.route.snapshot.paramMap.get('username');
@@ -59,7 +62,17 @@ export class ChanelComponent implements OnInit{
   getChannelVideos(id: number){
     this.userService.getUserVideos(id).subscribe((data)=>{
       this.channelVideos = data
-      console.log(this.channelVideos)
+    })
+  }
+
+  subscribeToChannel(id: number) {
+    this.userService.subscribeToUser(id).subscribe(() => {
+      this.isSubscribed = true
+    })
+  }
+  unsubscribeFromChannel(id: number) {
+    this.userService.subscribeToUser(id).subscribe(() => {
+      this.isSubscribed = false
     })
   }
 
